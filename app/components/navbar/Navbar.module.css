@@ -1,0 +1,76 @@
+.darkNavbar {
+  background-color: #222222;
+  display: flex;
+  min-height: 10vh;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  color: white
+}
+
+.lightNavbar {
+  background-color: #e0dfdf;
+  display: flex;
+  min-height: 10vh;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.homeLink {
+  text-decoration: none;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.homeLink:visited {
+  color: inherit; 
+}
+
+.buttonContainer {
+  margin-left: auto;
+  align-items: center;
+}
+
+.navButton {
+  min-height: 45px;
+  margin-right: 20px;
+}
+
+.loginButton {
+  min-height: 45px;
+  margin-right: 10px;
+}
+
+/* Light Theme Styles */
+.lightNavbar button {
+  background-color: #e0dfdf;
+  border: 1px solid #e0dfdf;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.lightNavbar button:hover {
+  background-color: #d4d4d4;
+}
+
+/* Dark Theme Styles */
+
+.darkNavbar button {
+  /* margin-right: 20px; */
+  background-color: #222222;
+  border: 1px solid #222222;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.darkNavbar button:hover {
+  background-color: #1a1a1a;
+}

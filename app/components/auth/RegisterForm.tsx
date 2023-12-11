@@ -1,5 +1,6 @@
 "use client";
 import { FormEvent } from "react";
+import classes from "./RegisterForm.module.css";
 
 export default function RegisterForm() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -18,14 +19,16 @@ export default function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className={classes.registerContainer}>
+    <form onSubmit={handleSubmit} >
+      <h3>Register Page</h3>
       <label htmlFor="email">Email</label>
       <input name="email" id="email" type="email" />
 
-      <label htmlFor="password">Email</label>
+      <label htmlFor="password">Password</label>
       <input name="password" id="password" type="password" />
 
       <button type="submit">Register</button>
-    </form>
+    </form></div>
   );
 }
