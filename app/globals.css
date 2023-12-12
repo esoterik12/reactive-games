@@ -7,7 +7,7 @@ html {
 }
 
 .app-container {
-  min-height: 120vh;
+  min-height: 100vh;
   width: 100vw;
   box-sizing: border-box;
 }
@@ -78,3 +78,14 @@ html {
   background-color: #1a1a1a;
 }
 
+#modal-root {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  box-sizing: border-box;
+}

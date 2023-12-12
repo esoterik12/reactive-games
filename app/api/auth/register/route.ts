@@ -20,12 +20,21 @@ export async function POST(request: Request) {
     }
 
     const hashedPassword = await hash(password, 10);
-    const response = await sql`
+
+    try {
+      const response = await sql`
     INSERT INTO users (email, password)
     VALUES (${email}, ${hashedPassword})`;
-    console.log("SQL update success: ", response)
+      console.log("SQL update success: ", response);
+    } catch (error) {
+      console.log("SQL update failed: ", error);
+      return NextResponse.json(
+        { error: "Email already in use." },
+        { status: 409 }
+      );
+    }
   } catch (error) {
-    console.log("Register failed:", error);
+    console.log("POST request update failed: ", error);
   }
 
   return NextResponse.json({ message: "Register Success" });

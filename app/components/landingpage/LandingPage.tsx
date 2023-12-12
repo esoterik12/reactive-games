@@ -40,7 +40,6 @@ const LandingPage = () => {
           <p>Ready to get started? Sign up for a free account now!</p>
 
           <Link href="/register">
-            {" "}
             <button className={classes.signupButton}>Sign Up</button>
           </Link>
         </section>

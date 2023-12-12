@@ -2,7 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  transform: translate(0%, 50%);
+}
+
+.registerContainer h3 {
+  text-align: center;
 }
 
 .registerContainer form {
@@ -24,4 +28,10 @@
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+.buttonContainer {
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
 }
