@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { toggleModal } from "@/app/redux/modalSlice";
+import classes from './Modal.module.css'
 
 interface ModalState {
   showModal: boolean;
@@ -29,7 +30,7 @@ const Modal = () => {
   if (!showModal) return null;
 
   return createPortal(
-    <div>
+    <div className={classes.modal}>
       <p>{message}</p>
     </div>,
     document.getElementById("modal-root") as HTMLElement

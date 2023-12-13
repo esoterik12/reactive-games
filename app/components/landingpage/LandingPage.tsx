@@ -1,8 +1,7 @@
 import classes from "./LandingPage.module.css";
 import "../../globals.css";
-import Link from "next/link";
-
 const LandingPage = () => {
+
   return (
     <section>
       <div className={classes.container}>
@@ -37,11 +36,15 @@ const LandingPage = () => {
           </div>
         </section>
         <section className={classes.callToAction}>
-          <p>Ready to get started? Sign up for a free account now!</p>
+          {/* {!session && (
+            <>
+              <p>Ready to get started? Sign up for a free account now!</p>
 
-          <Link href="/register">
-            <button className={classes.signupButton}>Sign Up</button>
-          </Link>
+              <Link href="/register">
+                <button className={classes.signupButton}>Sign Up</button>
+              </Link>
+            </>
+          )} */}
         </section>
         <footer className={classes.footer}>
           <p>&copy; 2023 Puzzle Creator. All rights reserved.</p>

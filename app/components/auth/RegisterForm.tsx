@@ -27,6 +27,7 @@ const RegisterForm: React.FC = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
+        console.log("Error in registration: ", errorData)
         dispatch(setMessage("Email already in use."));
         dispatch(toggleModal());
         setIsLoading(false);

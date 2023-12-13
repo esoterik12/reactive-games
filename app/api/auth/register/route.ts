@@ -20,11 +20,13 @@ export async function POST(request: Request) {
     }
 
     const hashedPassword = await hash(password, 10);
+    const date = new Date();
+    const isoDate = date.toISOString()
 
     try {
       const response = await sql`
-    INSERT INTO users (email, password)
-    VALUES (${email}, ${hashedPassword})`;
+    INSERT INTO users (email, password, date)
+    VALUES (${email}, ${hashedPassword}, ${isoDate})`;
       console.log("SQL update success: ", response);
     } catch (error) {
       console.log("SQL update failed: ", error);

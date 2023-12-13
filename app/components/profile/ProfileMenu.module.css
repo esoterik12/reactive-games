@@ -1,0 +1,47 @@
+.menuContainer {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuLink {
+  text-align: left;
+  min-width: 90%;
+  margin: 10px;
+}
+
+.menuLinkActive {
+  text-align: left;
+  min-width: 90%;
+  margin: 10px;
+  font-weight: 900;
+
+}
+
+.buttonContainerActiveLight button {
+  background-color: rgb(180, 91, 180);
+  margin: 0;
+  text-align: left;
+  min-width: 90%;
+  margin: 10px;
+  font-weight: 600;
+}
+
+.buttonContainerActiveDark button {
+  background-color: rgb(134, 18, 43);
+  margin: 0;
+  text-align: left;
+  min-width: 90%;
+  margin: 10px;
+  font-weight: 600;
+}
+
+.buttonContainer button {
+  text-align: left;
+  min-width: 90%;
+  margin: 10px;
+}
+
+.buttonContainer button:hover {
+  background-color: inherit;
+}

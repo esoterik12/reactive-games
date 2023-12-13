@@ -31,8 +31,11 @@
 }
 
 .buttonContainer {
-  min-height: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center horizontally */
+  min-height: 45px;
+  display: flex;          /* Enable flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+}
+.buttonContainer button {
+  margin: 4px;
 }

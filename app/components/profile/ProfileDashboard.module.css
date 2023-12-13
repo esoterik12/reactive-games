@@ -1,0 +1,10 @@
+.profileMainContainer {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 10px;
+}
+
+.profileItem {
+  margin: 10px;
+  height: 100vh;
+}

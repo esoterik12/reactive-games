@@ -23,7 +23,7 @@ export default function Navbar({ session }: NavbarProps) {
   console.log("Theme: ", theme);
 
   function logoutHandler() {
-    signOut();
+    signOut({ callbackUrl: '/' });
   }
 
   function themeHandler() {

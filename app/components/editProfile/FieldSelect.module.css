@@ -1,0 +1,29 @@
+.selectContainer {
+  width: 100%;
+  max-width: 30rem;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.selectContainer label {
+  display: block;
+  font-weight: bold;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.selectContainer select {
+  display: block;
+  width: 105%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  color: #414956;
+  font-size: 0.8rem;
+  font-family: 'Quicksand', sans-serif;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.selectContainer option {
+  color: #414956;
+  font-size: 0.8rem;
+  font-family: 'Quicksand', sans-serif;
+}

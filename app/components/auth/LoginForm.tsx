@@ -6,6 +6,7 @@ import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";
 import CircularProgress from "@mui/material/CircularProgress";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -55,7 +56,10 @@ export default function LoginForm() {
         <label htmlFor="password">Password</label>
         <input name="password" id="password" type="password" />
         <div className={classes.buttonContainer}>
-          {!isLoading && <button type="submit">Login</button>}
+          {!isLoading && <><button type="submit">Login</button>
+          <Link href="/register">
+            <button className={classes.signupButton}>Sign Up</button>
+          </Link></>}
           {isLoading && <CircularProgress />}
         </div>
       </form>
