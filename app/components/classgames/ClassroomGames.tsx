@@ -28,6 +28,10 @@ const IDEA_GAMES = [
     key: "l5",
     name: "Jeopardy",
   },
+  {
+    key: "l6",
+    name: "Picture Reveal",
+  },
 ];
 
 export function ClassroomGames(props: IClassroomGamesProps) {

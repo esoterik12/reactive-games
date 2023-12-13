@@ -1,0 +1,27 @@
+
+.editProfileImages {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, 3rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.editProfileImages li {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.selectedImage {
+  border: 2px solid #0f61ef;
+  background-color: rgb(161, 150, 150);
+}
+
+.editProfileImagesNextImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

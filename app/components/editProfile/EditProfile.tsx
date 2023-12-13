@@ -1,16 +1,25 @@
 "use client";
 import * as React from "react";
 import { useState, useRef } from "react";
-import images from "../../../public/assets/avatars/images";
 import Image from "next/image";
 import classes from "./EditProfile.module.css";
 import { CountrySelect } from "./CountrySelect";
 import { StaticImageData } from "next/image";
 import { FieldSelect } from "./FieldSelect";
+import { ImageSelect } from "./ImageSelect";
+import editProfileValidation from "@/utils/validation/editProfile";
 
 interface Image {
   src: StaticImageData;
   alt: string;
+}
+
+export interface ProfileData {
+  username: string;
+  country: string;
+  field: string;
+  birthday: string;
+  image: Image | undefined;
 }
 
 export default function EditProfile() {
@@ -20,14 +29,31 @@ export default function EditProfile() {
   const usernameRef = useRef<HTMLInputElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
 
-  function handleSelectImage(image: Image) {
-    setSelectedImage(image);
-  }
+  // DEFINE ERROR STATE TO HANDLE VALIDATION ERRORS AND FUTURE POST REQUEST ERRORS
 
   function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    const selectedUsername = usernameRef.current?.value
-    const selectedDate = dateRef.current?.value
+    e.preventDefault();
+    const selectedUsername = usernameRef.current?.value;
+    const selectedDate = dateRef.current?.value;
+
+    const profileData: ProfileData = {
+      username: selectedUsername || "",
+      country: selectedCountry || "",
+      field: selectedField || "",
+      birthday: selectedDate || "",
+      image: selectedImage || undefined,
+    };
+
+    try {
+      editProfileValidation(profileData);
+      console.log(
+        "Profile data object after validation in EditProfile.tsx: ",
+        profileData
+      );
+    } catch (error) {
+      console.log("Error in validation: ", error);
+    }
+
     // ADD post request here
   }
 
@@ -49,26 +75,11 @@ export default function EditProfile() {
           <input type="date" name="deadline" id="deadline" ref={dateRef} />
         </p>
 
-        <div>
-          <p>Choose an Avatar</p>
-          <ul className={classes.editProfileImages}>
-            {images.map((image) => (
-              <li
-                className={
-                  selectedImage === image ? classes.selectedImage : undefined
-                }
-                key={image.alt}
-                onClick={() => handleSelectImage(image)}
-              >
-                <Image
-                  className={classes.editProfileImagesNextImage}
-                  src={image.src}
-                  alt={image.alt}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ImageSelect
+          setSelectedImage={setSelectedImage}
+          selectedImage={selectedImage}
+        />
+
         <button onClick={handleSubmit} className={classes.editProfileButton}>
           Submit
         </button>
