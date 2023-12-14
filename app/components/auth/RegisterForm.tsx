@@ -15,6 +15,8 @@ const RegisterForm: React.FC = () => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
+    // needs client side validation
+
     try {
       setIsLoading(true);
       const response = await fetch("/api/auth/register", {

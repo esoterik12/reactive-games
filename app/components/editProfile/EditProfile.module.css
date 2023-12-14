@@ -1,23 +1,66 @@
 .editProfileContainer {
   width: 70%;
   max-width: 25rem;
-  margin: 1rem auto;
+  margin: auto;
+  margin-top: 20px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
 }
-.editProfile label {
-  display: block;
-  margin-bottom: 0.15rem;
-  font-weight: bold;
-  font-size: 0.8rem;
+
+.editProfile {
+  display: flex;
+  flex-direction: column;
+}
+
+.editProfile h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  text-align: center;
   font-family: 'Quicksand', sans-serif;
 }
 
+.selectField {
+  margin-top: 15px;
+}
+
+.editProfile label {
+  display: block;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 .editProfile input,
-.editProfile textarea {
+.editProfile textarea,
+.editProfile select {
   display: block;
   width: 100%;
-  padding: 0.5rem;
-  border-radius: 4px;
-  color: #414956;
-  font-size: 0.8rem;
+  padding: 0.55rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
   font-family: 'Quicksand', sans-serif;
+  box-sizing: border-box; /* Added for better width control */
+}
+
+.editProfileButton {
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  background-color: #4CAF50;
+  font-size: 1rem;
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.editProfileButton:hover {
+  background-color: #45a049;
+}
+
+.CircularProgress {
+  display: block;
+  margin: 1rem auto;
 }

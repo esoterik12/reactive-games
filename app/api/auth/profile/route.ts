@@ -15,6 +15,10 @@ export async function GET() {
       email: response.rows[0].email,
       joinedDate: response.rows[0].date,
       country: response.rows[0].country,
+      username: response.rows[0].username,
+      field: response.rows[0].field,
+      image: response.rows[0].image,
+      birthday: response.rows[0].birthday,
     };
 
     return NextResponse.json(

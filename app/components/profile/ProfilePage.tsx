@@ -3,8 +3,8 @@ import { useSession } from "next-auth/react";
 import classes from "./ProfilePage.module.css";
 import { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
-
 import Link from "next/link";
+import Image from "next/image";
 
 export interface IProfilePageProps {}
 
@@ -13,10 +13,12 @@ interface ProfileData {
     joinedDate: string;
     email: string;
     country: string | null;
+    username: string | null;
+    field: string | null;
+    image: string | null;
+    birthday: string | null;
   } | null;
 }
-
-
 
 export function ProfilePage(props: IProfilePageProps) {
   const { data: session } = useSession();
@@ -51,25 +53,68 @@ export function ProfilePage(props: IProfilePageProps) {
   const formattedDate =
     dateString && new Date(dateString).toLocaleDateString("en-US");
 
+  console.log("Profile data in ProfilePage.tsx: ", profileData);
+
+  const userImage = `/assets/avatars/${profileData?.data?.image}.png`;
+
   return (
     <div className={classes.profileContainer}>
       {!profileData ? (
         <CircularProgress />
       ) : (
         <>
-          <div className={classes.profileTop}>
-            <h2>Profile Page</h2>
-            <p>Username: {profileData?.data?.email}</p>
-            <p>Joined Date: {formattedDate}</p>
-            <Link href="/edit-profile" >Edit Profile</Link>
+          <div className={classes.profileLeft}>
+            <h2>{profileData?.data?.username}</h2>
+
+            {userImage && (
+              <div className={classes.profileImageWrapper}>
+                <Image
+                  src={userImage}
+                  alt={`Profile image of ${
+                    profileData?.data?.username || "user"
+                  }`}
+                  width={100}
+                  height={100}
+                  className={classes.profileImage}
+                />
+              </div>
+            )}
+            <p>
+              <span className={classes.detailTextMinor}>Email: </span>
+              <span className={classes.detailText}>
+                {profileData?.data?.email}
+              </span>
+            </p>
+            <p>
+              <span className={classes.detailTextMinor}>Joined Date: </span>
+              <span className={classes.detailText}>{formattedDate}</span>
+            </p>
+            <div className={classes.linkContainer}>
+              <Link className={classes.editLink} href="/edit-profile">
+                <button>Edit Profile</button>
+              </Link>
+            </div>
           </div>
-          <br className={classes.linebreak} />
-          <div className={classes.profileBottom}>
-            <h3>Profile Details</h3>
-            <p>Username: {session?.user?.email}</p>
-            <p>Joined Date: </p>
+          <div className={classes.profileRight}>
+            <p>
+              <span className={classes.detailTextMinor}>Birthday: </span>
+              <span className={classes.detailText}>
+                {profileData?.data?.birthday}
+              </span>
+            </p>
+            <p>
+              <span className={classes.detailTextMinor}>Country: </span>
+              <span className={classes.detailText}>
+                {profileData?.data?.country}
+              </span>
+            </p>
+            <p>
+              <span className={classes.detailTextMinor}>Field: </span>
+              <span className={classes.detailText}>
+                {profileData?.data?.field}
+              </span>
+            </p>
           </div>
-          
         </>
       )}
     </div>

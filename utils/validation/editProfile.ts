@@ -1,19 +1,12 @@
-import { StaticImageData } from "next/image";
 import { ProfileData } from "@/app/components/editProfile/EditProfile";
-
-interface Image {
-  src: StaticImageData;
-  alt: string;
-}
-
 
 export default function editProfileValidation(
   { username, country, field, birthday, image }: ProfileData
 ): boolean {
-  if (!username || username.trim().length < 8 || username.trim().length > 30) {
+  if (!username || username.trim().length < 5 || username.trim().length > 30) {
     throw new Error("Invalid username.");
   }
-  if (!country || country.trim().length < 8 || country.trim().length > 30) {
+  if (!country || country.trim().length < 2 || country.trim().length > 30) {
     throw new Error("Invalid country selection.");
   }
   if (!field || field.trim().length < 8 || field.trim().length > 30) {

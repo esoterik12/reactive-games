@@ -14,7 +14,11 @@ import sunImg from "./sun.png";
 import trainImg from "./train.png";
 import virusImg from "./virus.png";
 import worldImg from "./world.png";
-
+import boardImg from "./board.png";
+import catImg from "./cat.png";
+import clownImg from "./clown.png";
+import cubeImg from "./cube.png";
+import dolphinImg from "./dolphin.png";
 
 export default [
   { src: alertImg, alt: "alert" },
@@ -33,5 +37,9 @@ export default [
   { src: trainImg, alt: "train" },
   { src: virusImg, alt: "virus" },
   { src: worldImg, alt: "world" },
-
+  { src: boardImg, alt: "board" },
+  { src: catImg, alt: "cat" },
+  { src: clownImg, alt: "clown" },
+  { src: cubeImg, alt: "cube" },
+  { src: dolphinImg, alt: "dolphin" },
 ];

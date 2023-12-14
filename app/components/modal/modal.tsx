@@ -16,8 +16,6 @@ const Modal = () => {
     (state: any) => state.modal
   ) as ModalState;
 
-  console.log("Modal: ", showModal, message)
-
   useEffect(() => {    
     let timer: NodeJS.Timeout | number;
     if (showModal) {

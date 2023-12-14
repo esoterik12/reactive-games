@@ -1,17 +1,86 @@
 .profileContainer {
-  margin-top: 10px;
-  border: 0px solid black;
+  margin-top: 20px;
+  margin-right: 20px;
   border-radius: 20px;
+  min-height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
 }
 
-.profileTop {
-  margin: 20px;
+.profileLeft {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
 }
 
-.linkbreak {
-  color: aqua;
+.profileLeft p {
+  margin: 8px;
 }
 
-.profileBottom {
-  margin: 20px;
+.profileRight {
+  width: 50%;
+}
+
+.detailTextMinor {
+  color: gray;
+}
+
+.profileImage {
+  margin-left: 8%;
+  border-radius: 50%; 
+  object-fit: cover; /* ensures the image covers the area without distortion */
+  margin-bottom: 22px;
+  margin-top: 12px;
+}
+
+.profileDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.detail {
+  font-size: 1rem;
+}
+
+.detailText {
+  font-weight: 600;
+}
+
+.linkContainer {
+  margin: 6px;
+}
+
+.editLink {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.editLink:visited {
+  color: inherit; /* Use the default text color */
+}
+
+@media screen and (max-width: 1200px) {
+  .profileLeft {
+    width: 36%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profileContainer {
+    flex-direction: column;
+  }
+  .profileLeft {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profileRight {
+    width: 100%;
+  }
 }

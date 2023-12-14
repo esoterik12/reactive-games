@@ -20,14 +20,11 @@ export default function Navbar({ session }: NavbarProps) {
   const theme = useSelector((state: any) => state.theme.theme);
   const dispatch = useDispatch();
 
-  console.log("Theme: ", theme);
-
   function logoutHandler() {
     signOut({ callbackUrl: '/' });
   }
 
   function themeHandler() {
-    console.log("Theme button clicked");
     dispatch(toggleTheme());
   }
 
