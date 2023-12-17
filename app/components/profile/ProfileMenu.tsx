@@ -55,6 +55,7 @@ export function ProfileMenu(props: IProfileMenuProps) {
 
   return (
     <div className={classes.menuContainer}>
+
       {DUMMY_LINKS.map((link: LinkItem) => (
         <div
           key={link.key}

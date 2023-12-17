@@ -1,0 +1,39 @@
+.tabsContainerLight {
+  margin-top: 20px;
+}
+
+.tabsContainerDark {
+  margin-top: 20px;
+}
+
+.tabsContainerLight button {
+  margin-right: 20px;
+  background-color: rgb(95, 95, 95);
+  color: white;
+}
+
+.tabsContainerLight button:hover {
+  margin-right: 20px;
+  background-color: rgb(141, 141, 141);
+  color: white;
+}
+
+.tabsContainerDark button {
+  margin-right: 20px;
+  background-color: rgb(196, 196, 196);
+  color: black;
+}
+
+.tabsContainerDark button:hover {
+  margin-right: 20px;
+  background-color: rgb(128, 128, 128);
+  color: black;
+}
+
+.activeButtonDark {
+  background-color: green !important;
+}
+
+.activeButtonLight {
+  background-color: green !important;
+}

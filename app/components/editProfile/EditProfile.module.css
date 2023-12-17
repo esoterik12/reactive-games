@@ -41,7 +41,7 @@
   border-radius: 6px;
   font-size: 1rem;
   font-family: 'Quicksand', sans-serif;
-  box-sizing: border-box; /* Added for better width control */
+  box-sizing: border-box; 
 }
 
 .editProfileButton {

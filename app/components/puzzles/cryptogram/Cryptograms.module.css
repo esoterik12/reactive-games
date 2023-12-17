@@ -1,0 +1,52 @@
+.cryptogramContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.cryptoInput input {
+  max-width: 500px;
+  padding: 10px;
+  border: 1px solid #e0dfdf; /* Light Theme Border Color */
+  border-radius: 5px;
+  background-color: #f8f8f8; /* Light Theme Background Color */
+  box-sizing: border-box;
+  transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.cryptoInput label {
+  margin: 10px;
+}
+
+.cryptoInput button {
+  width: 70%;
+  max-width: 100px; 
+  margin: 10px;
+}
+
+.cryptoOutput {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center; 
+  text-align: center;
+  gap: 10px;
+  width: 60%; 
+  min-width: 620px;
+  max-width: 620px;
+  margin: auto; 
+  padding: 15px; 
+  /* border: 1px solid #ddd; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  */
+}
+
+.outputButtonsContainer {
+  display: flex;
+  flex-direction: row;
+}
+.outputButtonsContainer button{
+  margin: 12px;
+}

@@ -1,5 +1,7 @@
-import * as React from "react";
-
+import { useState } from "react";
+import { PuzzlesTabs } from "./PuzzlesTabs";
+import { Cryptogram } from "./cryptogram/Cryptograms";
+import { BingoPage } from "./bingo/Bingo";
 export interface IPuzzlesMenuProps {}
 
 interface ListItem {
@@ -7,40 +9,19 @@ interface ListItem {
   name: string;
 }
 
-const IDEA_PUZZLES = [
-  {
-    key: "l1",
-    name: "Cryptograms",
-  },
-  {
-    key: "l2",
-    name: "Crosswords",
-  },
-  {
-    key: "l3",
-    name: "Wordsearch",
-  },
-  {
-    key: "l4",
-    name: "Find Your Partner",
-  },
-  {
-    key: "l5",
-    name: "Word Scramble",
-  },
-];
-
 export function PuzzlesMenu(props: IPuzzlesMenuProps) {
+  const [activePuzzle, setActivePuzzle] = useState("cryptogram");
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
   return (
     <div>
-      <p>Puzzles Menu</p>
-      <ol>
-        {IDEA_PUZZLES.map((item: ListItem) => (
-          <li key={item.key}>
-            <p>{item.name}</p>
-          </li>
-        ))}
-      </ol>
+      <PuzzlesTabs
+        setActivePuzzle={setActivePuzzle}
+        activePuzzle={activePuzzle}
+      >
+        {activePuzzle === 'cryptogram' && <Cryptogram />}
+        {activePuzzle === 'bingo' && <BingoPage />}
+      </PuzzlesTabs>
     </div>
   );
 }
