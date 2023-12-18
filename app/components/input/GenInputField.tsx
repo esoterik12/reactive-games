@@ -5,10 +5,11 @@ export interface IGenInputFieldProps {
   name: string;
   label: string;
   type: string;
-  stateUpdatingFunction: React.Dispatch<React.SetStateAction<string>>
+  stateUpdatingFunction: React.Dispatch<React.SetStateAction<any>>;
+  value: any;
 }
 
-export function GenInputField({ name, label, type, stateUpdatingFunction, ...props }: IGenInputFieldProps) {
+export function GenInputField({ name, label, type, value, stateUpdatingFunction, ...props }: IGenInputFieldProps) {
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     stateUpdatingFunction(event.target.value)
   }
@@ -17,7 +18,7 @@ export function GenInputField({ name, label, type, stateUpdatingFunction, ...pro
     <div>
       <div className={classes.genInputField}>
         <label htmlFor={name}>{label}</label>
-        <input onChange={handleInput} id={name} type={type} name={name} required {...props} />
+        <input onChange={handleInput} id={name} value={value} type={type} name={name} required {...props} />
       </div>
     </div>
   );

@@ -2,15 +2,19 @@ export default function cryptogramGenerator(
   sentence: string,
   givenAnswers: string
 ) {
-  const uppercaseAnswers = givenAnswers.toUpperCase();
-  const givenAnswersSet = new Set(uppercaseAnswers.split(""));
-  const givenAnswersArray = [...givenAnswersSet];
 
   let alphabet: string[] = [];
   for (let i = 0; i < 26; i++) {
     alphabet.push(String.fromCharCode(i + 65));
   }
 
+  const uppercaseAnswers = givenAnswers.toUpperCase();
+  const filteredUppercaseAnswers = uppercaseAnswers.split("").filter((ele) => alphabet.includes(ele))
+  console.log("filtered given answers: ", filteredUppercaseAnswers)
+  const givenAnswersSet = new Set(filteredUppercaseAnswers);
+  const givenAnswersArray = [...givenAnswersSet];
+
+  
   const shuffledAlphabetArray: string[] = shuffleArray(alphabet);
   const splitString: string[] = sentence.toUpperCase().split("");
   // removes any non letters in the array, excluding white space
@@ -45,11 +49,9 @@ export default function cryptogramGenerator(
   for (let i = 0; i <cryptogramOutput.length; i++) {
     // creates an array to hold the remainig letters in the x-long (20?) row
     let remainingLetters: any[] = []
-    for (let j = 0; j < (20-rowCounter); j++) {
+    for (let j = 0; j < (19-rowCounter); j++) {
       remainingLetters.push(cryptogramOutput[i+j])
     }
-
-    console.log("remaining letters: ", remainingLetters)
 
     // if the row max length is not met AND the remaining letters still include a space this continnues added letters to the current row
     if (wrappedWords[row].length < 19 && (remainingLetters.includes("  ") || remainingLetters.includes("#"))) {
@@ -61,6 +63,7 @@ export default function cryptogramGenerator(
       wrappedWords.push([]);
       rowCounter = 0
       row++;
+      i--;
     }
   }
 

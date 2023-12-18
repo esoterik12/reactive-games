@@ -9,11 +9,14 @@
 .cryptoInput input {
   max-width: 500px;
   padding: 10px;
-  border: 1px solid #e0dfdf; /* Light Theme Border Color */
+  border: 1px solid #e0dfdf; 
   border-radius: 5px;
-  background-color: #f8f8f8; /* Light Theme Background Color */
-  box-sizing: border-box;
-  transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  background-color: #f8f8f8; 
+}
+
+.cryptoInput p {
+  margin: 0.8px;
+  color: rgb(158, 158, 158);
 }
 
 .cryptoInput label {
@@ -36,11 +39,25 @@
   width: 60%; 
   min-width: 620px;
   max-width: 620px;
-  margin: auto; 
-  padding: 15px; 
-  /* border: 1px solid #ddd; 
+  margin: 20px auto;
+  padding: 5px; 
+  border: 1px solid #ddd; 
   border-radius: 10px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.cryptoOutputRow{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center; 
+  text-align: center;
+  gap: 10px;
+  width: 60%; 
+  min-width: 620px;
+  max-width: 620px;
+  margin: auto; 
+  padding: 5px; 
 }
 
 .outputButtonsContainer {
