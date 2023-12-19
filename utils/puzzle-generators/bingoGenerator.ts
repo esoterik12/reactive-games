@@ -1,10 +1,6 @@
-import validateBingoInput from "../validation/validateBingo";
-
-export default function bingoGenerator(bingoInput: string, bingoTitle: string, numberOfCards: number) {
-  const wordsArray = bingoInput.split(",").map((ele) => ele.trim());
+export default function bingoGenerator(wordsArray: string[], bingoTitle: string, numberOfCards: number) {
 
   try {
-    validateBingoInput(wordsArray, bingoInput);
     const bingoArray = new Array(numberOfCards);
 
     const shuffleArr = (array: any[]) => {

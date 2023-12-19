@@ -13,9 +13,9 @@
 .bingoInput input {
   max-width: 500px;
   padding: 10px;
-  border: 1px solid #e0dfdf; 
+  border: 1px solid #e0dfdf;
   border-radius: 5px;
-  background-color: #f8f8f8; 
+  background-color: #f8f8f8;
 }
 
 .bingoInput p {
@@ -25,7 +25,7 @@
 
 .bingoInput button {
   width: 70%;
-  max-width: 100px; 
+  max-width: 100px;
   margin: 10px;
 }
 
@@ -35,12 +35,24 @@
   color: #2c3e50;
 }
 
-.cardContainer {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Creates five equal columns in a row */
+.bingoOutputContainer {
+  margin: 0;
 }
 
-.item{
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(
+    5,
+    1fr
+  ); 
+}
+
+.cardContainer {
+  margin-top: 12.55mm;
+  margin-bottom: 16.55mm;
+}
+
+.item {
   min-height: 100px;
   min-width: 100px;
   box-sizing: border-box;
@@ -54,4 +66,13 @@
 .item p {
   font-size: 20px;
   margin-top: 36px;
+}
+
+.outputButtonsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.outputButtonsContainer button {
+  margin: 12px;
 }

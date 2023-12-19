@@ -37,8 +37,6 @@ export function Cryptogram() {
         scale: pageScale,
       },
       async callback(doc) {
-        doc.setFont("helvetica");
-
         doc.save("output");
       },
     });
