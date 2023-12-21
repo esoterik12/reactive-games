@@ -1,0 +1,95 @@
+.wordsearchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.wordsearchInput {
+  min-width: 600px;
+}
+
+.wordsearchInput input {
+  max-width: 500px;
+  padding: 10px;
+  border: 1px solid #e0dfdf;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+}
+
+.wordsearchInput p {
+  margin: 0.8px;
+  color: rgb(158, 158, 158);
+}
+
+.wordsearchInput button {
+  width: 70%;
+  max-width: 100px;
+  margin: 10px;
+}
+
+.numberInputs {
+  display: flex;
+  justify-content: center;
+}
+
+.numberInputs input {
+  max-width: 235px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+.pdfContainer {
+  display: flex;
+  justify-content: center;
+  width: 595px;
+  min-height: 842px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.individualContainer {
+  min-height: 842px;
+}
+
+.outputButtonsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.outputButtonsContainer button {
+  margin: 12px;
+}
+.letterRow {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin: 0;
+}
+.letterRow p {
+  margin: 0;
+  font-size: 18px;
+  padding: 10px;
+  min-width: 16px;
+
+  /* Styles to define wordsearch more if needed */
+  /* border: 1px solid #ccc;
+  background-color: #ecf0f1; */
+}
+
+.wordsToFind{
+  border-top: #2c3e50 1px solid;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+}

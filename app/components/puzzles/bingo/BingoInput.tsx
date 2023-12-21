@@ -9,7 +9,7 @@ import jsPDF from "jspdf";
 // queen, well, egg, real, trap, yes, up, in, octopus, punt, awake, seal, door, freeze, grow, help, jail, keen, lose, zeal, cream, veal, bean, need, mend
 
 export function BingoInput() {
-  const [bingoInput, setBingoInput] = useState<string>("");
+  const [bingoInput, setBingoInput] = useState<string | undefined>();
   const [bingoTitle, setBingoTitle] = useState<string>("");
   const [numOfCards, setNumOfCards] = useState<number>(12);
   const [bingoOutput, setBingoOutput] = useState<any>();
@@ -18,10 +18,12 @@ export function BingoInput() {
 
   function handleSubmit() {
     try {
-      const wordsArray = bingoInput.split(",").map((ele) => ele.trim());
-      validateBingoInput(wordsArray, bingoTitle, numOfCards); // validates
-      setBingoOutput(bingoGenerator(wordsArray, bingoTitle, numOfCards)); //  generates
-      console.log("Bingo output success: ", bingoOutput);
+      if (bingoInput) {
+        const wordsArray = bingoInput.split(",").map((ele) => ele.trim());
+        validateBingoInput(wordsArray, bingoTitle, numOfCards); // validates
+        setBingoOutput(bingoGenerator(wordsArray, bingoTitle, numOfCards)); //  generates
+        console.log("Bingo output success: ", bingoOutput);
+      }
     } catch (error) {
       console.log("Error generating bingo output: ", error);
       dispatch(setMessage(`${error}`));
@@ -35,6 +37,7 @@ export function BingoInput() {
     setBingoOutput(null);
   }
 
+  // this pdf export has some scaling issues
   const generatePDF = async () => {
     const doc = new jsPDF({
       orientation: "p",
@@ -46,7 +49,7 @@ export function BingoInput() {
       x: 44,
       y: 0,
       html2canvas: {
-        scale: 0.24141,
+        scale: 0.241415,
       },
       async callback(doc) {
         doc.save("bingoOutput");
@@ -58,13 +61,27 @@ export function BingoInput() {
     await generatePDF();
   }
 
+  //  counts number of words but splitting input array into words, trimming each word, and filtering out empty array elements
+  let bingoWordCount: number | undefined = 0;
+  if (bingoInput) {
+    bingoWordCount = (bingoInput
+      ?.split(",")
+      .map((word) => word.trim())
+      .filter((word) => word.length > 0)).length;
+  }
+
   return (
     <div className={classes.bingoContainer}>
       {!bingoOutput && (
         <div className={classes.bingoInput}>
-          <h2>React Bingo Card Generator V1.0</h2>
+          <h2>Bingo Card Generator</h2>
           <p>Enter 25 words separated by commas to create bingo cards!</p>
-          <p>You have entered {bingoInput.split(",").length} words so far.</p>
+
+          {bingoWordCount === 1 ? (
+            <p>You have entered {bingoWordCount} word so far.</p>
+          ) : (
+            <p>You have entered {bingoWordCount} words so far.</p>
+          )}
           <GenInputField
             stateUpdatingFunction={setBingoTitle}
             name="bingoTitle"
