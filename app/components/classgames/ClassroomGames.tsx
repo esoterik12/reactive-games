@@ -32,6 +32,18 @@ const IDEA_GAMES = [
     key: "l6",
     name: "Picture Reveal",
   },
+  {
+    key: "l7",
+    name: "Doubled word, misspelled word, missing word",
+  },
+  {
+    key: "l8",
+    name: "Image Generators",
+  },
+  {
+    key: "l9",
+    name: "XX",
+  },
 ];
 
 export function ClassroomGames(props: IClassroomGamesProps) {

@@ -15,6 +15,7 @@
     "@reduxjs/toolkit": "^2.0.1",
     "@types/react-redux": "^7.1.32",
     "@vercel/postgres": "^0.5.1",
+    "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
     "jspdf": "^2.5.1",
     "mui": "^0.0.1",

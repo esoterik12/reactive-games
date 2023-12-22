@@ -47,8 +47,6 @@
 }
 
 .pdfContainer {
-  display: flex;
-  justify-content: center;
   width: 595px;
   min-height: 842px;
   display: flex;

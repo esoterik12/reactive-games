@@ -59,10 +59,10 @@ export function PuzzlesTabs(props: IPuzzlesTabsProps) {
             <p onClick={() => props.setActivePuzzle("wordsearch")}>
               Wordsearch
             </p>
-            <p onClick={() => props.setActivePuzzle("wordScramble")}>
+            <p onClick={() => props.setActivePuzzle("wordscramble")}>
               Word Scramble
             </p>
-            <p onClick={() => props.setActivePuzzle("findYourPartner")}>
+            <p onClick={() => props.setActivePuzzle("findyourpartner")}>
               Find Your Partner
             </p>
           </div>
@@ -101,17 +101,17 @@ export function PuzzlesTabs(props: IPuzzlesTabsProps) {
         </button>
         <button
           className={`${
-            props.activePuzzle === "wordScramble" ? activeButtonStyles : ""
+            props.activePuzzle === "wordscramble" ? activeButtonStyles : ""
           }`}
-          onClick={() => props.setActivePuzzle("wordScramble")}
+          onClick={() => props.setActivePuzzle("wordscramble")}
         >
           Word Scramble
         </button>
         <button
           className={`${
-            props.activePuzzle === "findYourPartner" ? activeButtonStyles : ""
+            props.activePuzzle === "findyourpartner" ? activeButtonStyles : ""
           }`}
-          onClick={() => props.setActivePuzzle("findYourPartner")}
+          onClick={() => props.setActivePuzzle("findyourpartner")}
         >
           Find Your Partner
         </button>
