@@ -10,9 +10,6 @@
   min-width: 600px;
 }
 
-.partnerInput label {
-  margin: 10px;
-}
 
 .partnerInput input, .partnerInput select {
   width: 100%;
@@ -28,7 +25,12 @@
 }
 
 .partnerInput p {
-  margin: 10px;
+  margin: 2px;
+  color: rgb(158, 158, 158);
+}
+
+.partnerOutputContainer p {
+    margin: 2px;
   color: rgb(158, 158, 158);
 }
 
@@ -40,11 +42,14 @@
 
 .pdfContainer {
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 595px;
   min-height: 842px;
+  border: #a7a7a7 1px solid;
+  border-radius: 5px;
 }
 
 .partnerOutputContainer {
@@ -58,10 +63,21 @@
   border-style: dotted;
   border-width: 1px;
   border-color: #a7a7a7;
+  min-width: 130px;
+  min-height: 130px;
 }
 
 .cardContainer p {
   text-align: center;
+  margin-top: 35px;
+}
+
+.cardContainer input {
+  text-align: center;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 14px;
 }
 
 .outputButtonsContainer {
@@ -71,4 +87,14 @@
 
 .outputButtonsContainer button {
   margin: 12px;
+}
+
+.loadingSpinnerContainer {
+  margin: 100px;
+}
+
+.formLabel {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }

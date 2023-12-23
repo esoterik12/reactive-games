@@ -5,6 +5,7 @@ import { setMessage, toggleModal } from "@/app/redux/modalSlice";
 import CircularProgress from "@mui/material/CircularProgress";
 import { gptObjectCreator } from "@/utils/text-extractors/gptObjectCreator";
 import jsPDF from "jspdf";
+import { PreviewOutput } from "./PreviewOutput";
 
 interface outputData {
   [key: string]: string[];
@@ -15,14 +16,16 @@ export function FindYourPartner() {
   const [isLoading, setIsLoading] = useState(false);
   const [outputData, setOutputData] = useState<outputData | null>();
   const partnerRef = useRef<any>(null);
+  const [finalSubmitted, setFinalSubmitted] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     setIsLoading(true);
     setOutputData({});
-    event.preventDefault();
     const fd = new FormData(event.target as HTMLFormElement);
     const data = Object.fromEntries(fd.entries());
-    console.log("data: ", data);
+
+    // validation
 
     try {
       const response = await fetch("/api/generators/find-your-partner", {
@@ -95,56 +98,65 @@ export function FindYourPartner() {
 
   return (
     <div className={classes.partnerContainer}>
-      <h2>GPT-Powered Find Your Partner</h2>
       {!outputData && (
-        <form onSubmit={handleSubmit} className={classes.partnerInput}>
-          
-          <p>Enter all your words separeated by commas.</p>
-          <p>fat, mash, cap, sad, wet, peg, kit, fish, seen, well, for, cry</p>
-          <label htmlFor="words">Enter your words:</label>
-          <input type="text" name="words" id="words" />
-
-          <div>
-            <label htmlFor="options">
-              Choose how you'd like your matching pairs to be generated.
+        <>
+          <h2>Find Your Partner</h2>
+          <form onSubmit={handleSubmit} className={classes.partnerInput}>
+            <p>Enter all your words separeated by commas.</p>
+            <p>
+              Carefully consider the words you use for synonyms and antonyms.
+            </p>
+            <p>
+              fat, mash, cap, sad, wet, peg, kit, fish, seen, well, for, cry
+            </p>
+            <label className={classes.formLabel} htmlFor="words">
+              Enter your words:
             </label>
-            <select name="options" id="options">
-              <option value="rhyme">Rhyming pairs</option>
-              <option value="synonym">Synonyms</option>
-              <option value="antonym">Antonyms</option>
-            </select>
-          </div>
-          {!isLoading && (
-            <>
-              <button type="reset" onClick={handleReset}>
-                Reset
-              </button>
-              <button type="submit">Submit</button>
-            </>
-          )}
-          
-        </form>
+            <input type="text" name="words" id="words" />
+
+            <div>
+              <label className={classes.formLabel} htmlFor="options">
+                Choose how you'd like your matching pairs to be generated.
+              </label>
+              <select name="options" id="options">
+                <option value="rhyme">Rhyming pairs</option>
+                <option value="synonym">Synonyms</option>
+                <option value="antonym">Antonyms</option>
+              </select>
+            </div>
+            {!isLoading && (
+              <>
+                <button type="reset" onClick={handleReset}>
+                  Reset
+                </button>
+                <button type="submit">Submit</button>
+              </>
+            )}
+          </form>
+        </>
       )}
-      {isLoading && <CircularProgress />}
+      {isLoading && (
+        <div className={classes.loadingSpinnerContainer}>
+          <CircularProgress />
+        </div>
+      )}
       {outputData && !isLoading && (
         <>
+          <h2>Preview Your Cards:</h2>
+          {!finalSubmitted && <p>Edit the output.</p>}
+          {finalSubmitted && <p>Download your final version.</p>}
           <div className={classes.outputButtonsContainer}>
             <button onClick={handleReset}>Reset</button>
-            <button onClick={handleGeneratePDF}>Download PDF</button>
+            {finalSubmitted && (
+              <button onClick={handleGeneratePDF}>Download PDF</button>
+            )}
           </div>
           <div ref={partnerRef} className={classes.pdfContainer}>
-            <div className={classes.partnerOutputContainer}>
-              {Object.keys(outputData).map((key) => (
-                <div key={key}>
-                  <div className={classes.cardContainer}>
-                    <p>{key}</p>
-                  </div>
-                  <div className={classes.cardContainer}>
-                    <p>{outputData[key][0]}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <PreviewOutput
+              outputData={outputData}
+              finalSubmitted={finalSubmitted}
+              setFinalSubmitted={setFinalSubmitted}
+            />
           </div>
         </>
       )}

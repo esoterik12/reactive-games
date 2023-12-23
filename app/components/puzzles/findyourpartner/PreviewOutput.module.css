@@ -1,0 +1,29 @@
+.partnerOutputContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.cardContainer {
+  box-sizing: border-box;
+  padding: 15px;
+  border-style: dotted;
+  border-width: 1px;
+  border-color: #a7a7a7;
+  max-width: 130px;
+  min-width: 130px;
+  min-height: 130px;
+}
+
+.cardContainer p {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.cardContainer input {
+  text-align: center;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  max-width: 90px;
+  font-size: 24px;
+  margin-top: 30px;
+}
