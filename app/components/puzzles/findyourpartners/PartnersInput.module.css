@@ -1,0 +1,33 @@
+.partnerInput {
+  min-width: 600px;
+}
+
+.partnerInput input, .partnerInput select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e0dfdf;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  margin: 15px;
+}
+
+.partnerInput select {
+  width:30%;
+}
+
+.partnerInput p {
+  margin: 2px;
+  color: rgb(158, 158, 158);
+}
+
+.partnerInput button {
+  width: 70%;
+  max-width: 100px;
+  margin: 10px;
+}
+
+.formLabel {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
