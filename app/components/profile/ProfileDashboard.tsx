@@ -8,7 +8,7 @@ import { SocialFeed } from "./SocialFeed";
 import { MyPuzzles } from "./MyPuzzles";
 import { SessionProvider } from "next-auth/react";
 import { PuzzlesMenu } from "../puzzles/PuzzlesMenu";
-import { ClassroomGames } from "../classgames/ClassroomGames";
+import { GamesMenu } from "../classgames/GamesMenu";
 
 export interface IProfileDashboardProps {}
 
@@ -26,7 +26,7 @@ export function ProfileDashboard(props: IProfileDashboardProps) {
           {active === "socialFeed" && <SocialFeed />}
           {active === "myPuzzles" && <MyPuzzles />}
           {active === "puzzleCreators" && <PuzzlesMenu />}
-          {active === "classroomGames" && <ClassroomGames />}
+          {active === "classroomGames" && <GamesMenu />}
         </div>
       </div>
     </SessionProvider>

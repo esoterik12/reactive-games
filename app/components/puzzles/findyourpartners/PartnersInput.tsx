@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { setMessage, toggleModal } from "@/app/redux/modalSlice";
 import { gptObjectCreator } from "@/utils/text-extractors/gptObjectCreator";
 import { outputData } from "./FindYourPartners";
+import { validatePartners } from "@/utils/validation/validatePartners";
+import { IPartnersData } from "@/utils/validation/validatePartners";
 
 export interface IPartnersInputProps {
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,16 +23,19 @@ export function PartnersInput(props: IPartnersInputProps) {
     props.setIsLoading(true);
     props.setOutputData(null);
     const fd = new FormData(event.target as HTMLFormElement);
-    const data = Object.fromEntries(fd.entries());
-
-    // validation
+    const partnersData: IPartnersData = {
+      words: fd.get('words') as string,
+      options: fd.get('options') as string
+    }
 
     try {
+      validatePartners(partnersData)
+
       const response = await fetch("/api/generators/find-your-partner", {
         method: "POST",
         body: JSON.stringify({
-          words: data.words,
-          options: data.options,
+          words: partnersData.words,
+          options: partnersData.options,
         }),
         headers: {
           "Content-Type": "application/json",

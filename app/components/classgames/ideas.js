@@ -1,12 +1,3 @@
-import * as React from "react";
-
-export interface IClassroomGamesProps {}
-
-interface ListItem {
-  key: string;
-  name: string;
-}
-
 const IDEA_GAMES = [
   {
     key: "l1",
@@ -45,18 +36,3 @@ const IDEA_GAMES = [
     name: "XX",
   },
 ];
-
-export function ClassroomGames(props: IClassroomGamesProps) {
-  return (
-    <div>
-      <p>Classroom Games</p>
-      <ol>
-        {IDEA_GAMES.map((item: ListItem) => (
-          <li key={item.key}>
-            <p>{item.name}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  );
-}

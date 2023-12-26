@@ -1,0 +1,98 @@
+export const DUMMY_WORDS = {
+  cat: {
+    word: "cat",
+    number: 1,
+    visible: false,
+    completed: false,
+  },
+  rat: {
+    word: "rat",
+    number: 1,
+    visible: false,
+    completed: false,
+  },
+  peg: {
+    word: "peg",
+    number: 2,
+    visible: false,
+    completed: false,
+  },
+  leg: {
+    word: "leg",
+    number: 2,
+    visible: false,
+    completed: false,
+  },
+  big: {
+    word: "big",
+    number: 3,
+    visible: false,
+    completed: false,
+  },
+  fig: {
+    word: "fig",
+    number: 3,
+    visible: false,
+    completed: false,
+  },
+  dog: {
+    word: "dog",
+    number: 4,
+    visible: false,
+    completed: false,
+  },
+  log: {
+    word: "log",
+    number: 4,
+    visible: false,
+    completed: false,
+  },
+  sun: {
+    word: "sun",
+    number: 5,
+    visible: false,
+    completed: false,
+  },
+  fun: {
+    word: "fun",
+    number: 5,
+    visible: false,
+    completed: false,
+  },
+  pen: {
+    word: "pen",
+    number: 6,
+    visible: false,
+    completed: false,
+  },
+  hen: {
+    word: "hen",
+    number: 6,
+    visible: false,
+    completed: false,
+  },
+  kit: {
+    word: "kit",
+    number: 7,
+    visible: false,
+    completed: false,
+  },
+  sit: {
+    word: "sit",
+    number: 7,
+    visible: false,
+    completed: false,
+  },
+  box: {
+    word: "box",
+    number: 8,
+    visible: false,
+    completed: false,
+  },
+  fox: {
+    word: "fox",
+    number: 8,
+    visible: false,
+    completed: false,
+  },
+};

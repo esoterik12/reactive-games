@@ -1,0 +1,101 @@
+.tabsContainerLight {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.tabsContainerDark {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.tabsContainerLight button {
+  margin-right: 20px;
+  background-color: rgb(95, 95, 95);
+  color: white;
+  min-width:150px;
+}
+
+.tabsContainerLight button:hover {
+  margin-right: 20px;
+  background-color: rgb(141, 141, 141);
+  color: white;
+}
+
+.tabsContainerDark button {
+  margin-right: 20px;
+  background-color: rgb(196, 196, 196);
+  color: black;
+  min-width:150px;
+}
+
+.tabsContainerDark button:hover {
+  margin-right: 20px;
+  background-color: rgb(128, 128, 128);
+  color: black;
+}
+
+.activeButtonDark {
+  background-color: #D8315B !important;
+}
+
+.activeButtonLight {
+  background-color: #D8315B !important;
+}
+
+.hamburgerDark {
+  display: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.hamburgerLight {
+  display: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.hamburgerLight button {
+  background-color: rgb(95, 95, 95);
+  color: white;
+}
+
+@media (max-width: 864px) {
+  .hamburgerDark, .hamburgerLight {
+    display: block
+  };
+}
+
+@media (max-width: 864px) {
+  .tabsContainerDark, .tabsContainerLight {
+    display: none;
+  }
+}
+
+/* Dropdown Menu Styles */
+.dropdown {
+  background-color: #ffffff; 
+  border-radius: 5px;
+  position: absolute;
+  z-index: 100;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 10px 0; 
+  width: 200px; 
+  box-sizing: border-box; 
+}
+
+.dropdown p {
+  padding: 8px 15px; 
+  margin: 0; 
+  cursor: pointer; 
+  color: #333333; 
+  font-size: 16px; 
+  transition: background-color 0.2s ease;
+}
+
+.dropdown p:hover {
+  background-color: #f8f8f8; 
+}
