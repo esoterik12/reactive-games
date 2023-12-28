@@ -96,3 +96,201 @@ export const DUMMY_WORDS = {
     completed: false,
   },
 };
+
+export const MEMORY_OBJ = {
+  cat: {
+    word: "",
+    number: 1,
+    visible: false,
+    completed: false,
+  },
+  rat: {
+    word: "",
+    number: 1,
+    visible: false,
+    completed: false,
+  },
+  peg: {
+    word: "",
+    number: 2,
+    visible: false,
+    completed: false,
+  },
+  leg: {
+    word: "",
+    number: 2,
+    visible: false,
+    completed: false,
+  },
+  big: {
+    word: "",
+    number: 3,
+    visible: false,
+    completed: false,
+  },
+  fig: {
+    word: "",
+    number: 3,
+    visible: false,
+    completed: false,
+  },
+  dog: {
+    word: "",
+    number: 4,
+    visible: false,
+    completed: false,
+  },
+  log: {
+    word: "",
+    number: 4,
+    visible: false,
+    completed: false,
+  },
+  sun: {
+    word: "",
+    number: 5,
+    visible: false,
+    completed: false,
+  },
+  fun: {
+    word: "",
+    number: 5,
+    visible: false,
+    completed: false,
+  },
+  pen: {
+    word: "",
+    number: 6,
+    visible: false,
+    completed: false,
+  },
+  hen: {
+    word: "",
+    number: 6,
+    visible: false,
+    completed: false,
+  },
+  kit: {
+    word: "",
+    number: 7,
+    visible: false,
+    completed: false,
+  },
+  sit: {
+    word: "",
+    number: 7,
+    visible: false,
+    completed: false,
+  },
+  box: {
+    word: "",
+    number: 8,
+    visible: false,
+    completed: false,
+  },
+  fox: {
+    word: "",
+    number: 8,
+    visible: false,
+    completed: false,
+  },
+};
+
+export const DUMMY_WORDS_NUMBERS = {
+  1: {
+    word: "cat",
+    number: 1,
+    visible: false,
+    completed: false,
+  },
+  2: {
+    word: "rat",
+    number: 1,
+    visible: false,
+    completed: false,
+  },
+  3: {
+    word: "peg",
+    number: 2,
+    visible: false,
+    completed: false,
+  },
+  4: {
+    word: "leg",
+    number: 2,
+    visible: false,
+    completed: false,
+  },
+  5: {
+    word: "big",
+    number: 3,
+    visible: false,
+    completed: false,
+  },
+  6: {
+    word: "fig",
+    number: 3,
+    visible: false,
+    completed: false,
+  },
+  7: {
+    word: "dog",
+    number: 4,
+    visible: false,
+    completed: false,
+  },
+  8: {
+    word: "log",
+    number: 4,
+    visible: false,
+    completed: false,
+  },
+  9: {
+    word: "sun",
+    number: 5,
+    visible: false,
+    completed: false,
+  },
+  10: {
+    word: "fun",
+    number: 5,
+    visible: false,
+    completed: false,
+  },
+  11: {
+    word: "pen",
+    number: 6,
+    visible: false,
+    completed: false,
+  },
+  12: {
+    word: "hen",
+    number: 6,
+    visible: false,
+    completed: false,
+  },
+  13: {
+    word: "kit",
+    number: 7,
+    visible: false,
+    completed: false,
+  },
+  14: {
+    word: "sit",
+    number: 7,
+    visible: false,
+    completed: false,
+  },
+  15: {
+    word: "box",
+    number: 8,
+    visible: false,
+    completed: false,
+  },
+  16: {
+    word: "fox",
+    number: 8,
+    visible: false,
+    completed: false,
+  },
+};

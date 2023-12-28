@@ -3,7 +3,7 @@ import classes from "./MemoryCard.module.css";
 import { wordsData } from "./Memory";
 
 export interface IMemoryCardProps {
-  number: string; // will be parsedInt
+  word: string;
   setWordsData: any;
   addVisible: any;
   wordsData: wordsData;
@@ -12,33 +12,32 @@ export interface IMemoryCardProps {
 }
 
 export function MemoryCard(props: IMemoryCardProps) {
-  const numberKey = parseInt(props.number)
-
   function handleClick() {
     // stops clicks while evaluating two cards
     if (props.visibleWords.length > 1) {
       return;
     }
-    // if (!(props.word in props.wordsData)) {
-    //   console.log("Word not found in wordsData: ", props.word);
-    //   return;
-    // }
-    // if (props.visibleWords.includes(props.word)) {
-    //   console.log("Word is already visible: ", props.word);
-    //   return;
-    // }
-    props.addVisible(numberKey);
+    if (!(props.word in props.wordsData)) {
+      console.log("Word not found in wordsData: ", props.word);
+      return;
+    }
+    if (props.visibleWords.includes(props.word)) {
+      console.log("Word is already visible: ", props.word);
+      return;
+    }
+    console.log("Handling MemoryCard click: ", props.word);
+    props.addVisible(props.word);
     props.setWordsData((prevWordsData: wordsData) => ({
       ...prevWordsData,
-      [numberKey]: {
-        ...prevWordsData[numberKey],
+      [props.word]: {
+        ...prevWordsData[props.word],
         visible: true,
       },
     }));
   }
 
-  const isCompleted = props.wordsData[numberKey].completed;
-  const isFlipped = props.wordsData[numberKey].visible;
+  const isCompleted = props.wordsData[props.word].completed;
+  const isFlipped = props.wordsData[props.word].visible;
 
   let backStyles;
   if (isCompleted) {
@@ -47,13 +46,15 @@ export function MemoryCard(props: IMemoryCardProps) {
     backStyles = classes.backIncomplete;
   }
 
+  // finds index of word in data to provide a number for each card
+  const wordNumber = props.shuffledWords.indexOf(props.word) + 1
 
   return (
     <div className={classes.container}>
       <div className={`${classes.card} ${isFlipped ? classes.flipped : ""}`}>
         {!isFlipped && !isCompleted && (
           <button onClick={() => handleClick()} className={classes.front}>
-            <p>click</p>
+            <p>{wordNumber}</p>
           </button>
         )}
         {(isFlipped || isCompleted) && (
@@ -61,7 +62,7 @@ export function MemoryCard(props: IMemoryCardProps) {
             disabled
             className={`${classes.back} ${backStyles}`}
           >
-              <p>{props.wordsData[numberKey].word}</p>
+              <p>{props.word}</p>
           </button>
         )}
       </div>
