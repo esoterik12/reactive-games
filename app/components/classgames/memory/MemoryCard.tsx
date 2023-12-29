@@ -3,6 +3,7 @@ import classes from "./MemoryCard.module.css";
 import { wordsData } from "./Memory";
 
 export interface IMemoryCardProps {
+  index: number
   number: string; // will be parsedInt
   setWordsData: any;
   addVisible: any;
@@ -19,14 +20,6 @@ export function MemoryCard(props: IMemoryCardProps) {
     if (props.visibleWords.length > 1) {
       return;
     }
-    // if (!(props.word in props.wordsData)) {
-    //   console.log("Word not found in wordsData: ", props.word);
-    //   return;
-    // }
-    // if (props.visibleWords.includes(props.word)) {
-    //   console.log("Word is already visible: ", props.word);
-    //   return;
-    // }
     props.addVisible(numberKey);
     props.setWordsData((prevWordsData: wordsData) => ({
       ...prevWordsData,
@@ -53,7 +46,7 @@ export function MemoryCard(props: IMemoryCardProps) {
       <div className={`${classes.card} ${isFlipped ? classes.flipped : ""}`}>
         {!isFlipped && !isCompleted && (
           <button onClick={() => handleClick()} className={classes.front}>
-            <p>click</p>
+            <p>{props.index + 1}</p>
           </button>
         )}
         {(isFlipped || isCompleted) && (

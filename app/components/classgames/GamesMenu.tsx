@@ -5,16 +5,12 @@ import { Memory } from "./memory/Memory";
 export interface IGamesMenuProps {}
 
 export function GamesMenu(props: IGamesMenuProps) {
-  const [activeGame, setActiveGame] = useState("cryptogram");
+  const [activeGame, setActiveGame] = useState("memory");
 
   return (
     <div>
-      <GamesTabs
-        setActiveGame={setActiveGame}
-        activeGame={activeGame}
-      >
-        {activeGame === 'memory' && <Memory />}
-
+      <GamesTabs setActiveGame={setActiveGame} activeGame={activeGame}>
+        {activeGame === "memory" && <Memory />}
       </GamesTabs>
     </div>
   );

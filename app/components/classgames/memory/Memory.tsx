@@ -1,10 +1,7 @@
 import * as React from "react";
 import classes from "./Memory.module.css";
-import { DUMMY_WORDS_NUMBERS } from "./dummyWords";
 import { MemoryCard } from "./MemoryCard";
 import { MemoryInput } from "./MemoryInput";
-
-export interface IMemoryProps {}
 
 export interface wordsData {
   [key: number]: {
@@ -15,25 +12,21 @@ export interface wordsData {
   };
 }
 
-export function Memory(props: IMemoryProps) {
-  const [wordsData, setWordsData] =
-    React.useState<wordsData>({}); // holds all game data
+export function Memory() {
+  const [wordsData, setWordsData] = React.useState<wordsData>({}); // holds all game data
   const [visibleWords, setVisibleWords] = React.useState<any>([]); // holds the current words in play
   const [shuffledWords, setShuffledWords] = React.useState<string[]>([]);
   const [isSubmitted, setIsSubmitted] = React.useState<boolean>(false);
 
   // adds words to the visibleWords array
   function addVisible(key: number) {
-    setVisibleWords((prevVisibleWords: []) => [
-      ...prevVisibleWords,
-      key,
-    ]);
+    setVisibleWords((prevVisibleWords: []) => [...prevVisibleWords, key]);
   }
 
   React.useEffect(() => {
     if (visibleWords && visibleWords.length > 1) {
       const timeout = setTimeout(() => {
-        const [keyOne, keyTwo] = visibleWords
+        const [keyOne, keyTwo] = visibleWords;
         if (wordsData[keyOne].number === wordsData[keyTwo].number) {
           setWordsData((prevWordsData) => ({
             ...prevWordsData,
@@ -84,35 +77,46 @@ export function Memory(props: IMemoryProps) {
     console.log("Shuffled words: ", shuffledWords);
   }, [isSubmitted]);
 
+  function handleReset() {
+    setIsSubmitted(false);
+    setWordsData({});
+  }
+
   return (
     <div className={classes.pageContainer}>
       <h2>Play a Memory Game</h2>
-      <MemoryInput
-        setWordsData={setWordsData}
-        setIsSubmitted={setIsSubmitted}
-      />
       <p>
-        This generator takes a sentence and outputs a cryptogram for players to
-        decode.
+        Input eight pairs of words to create a 4x4 memory grid.
       </p>
-      {
-        isSubmitted && <div className={classes.memoryContainer}>
-        {shuffledWords.map((number, index) => (
-          <div key={index}>
-            <MemoryCard
-              number={number}
-              addVisible={addVisible}
-              visibleWords={visibleWords}
-              setWordsData={setWordsData}
-              wordsData={wordsData}
-              shuffledWords={shuffledWords}
-            />
-          </div>
-        ))}
-      </div>
+      {!isSubmitted && (
+        <MemoryInput
+          setWordsData={setWordsData}
+          setIsSubmitted={setIsSubmitted}
+        />
+      )}
 
-      }
-      
+      {isSubmitted && (
+        <>
+          <div className={classes.buttonContainer}>
+            <button onClick={handleReset}>Reset</button>
+          </div>
+          <div className={classes.memoryContainer}>
+            {shuffledWords.map((number, index) => (
+              <div key={index}>
+                <MemoryCard
+                  index={index}
+                  number={number}
+                  addVisible={addVisible}
+                  visibleWords={visibleWords}
+                  setWordsData={setWordsData}
+                  wordsData={wordsData}
+                  shuffledWords={shuffledWords}
+                />
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
