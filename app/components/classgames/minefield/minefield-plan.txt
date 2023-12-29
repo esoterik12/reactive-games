@@ -1,0 +1,25 @@
+overview:
+
+considerable costomization options when it comes to the input:
+FIRST: grid size / teams
+this will add a lot of complexity to the scoring
+teams between 2-8 size and a rotation of scoring
+this can be buttons: 6x6 (fast game) - 9x9 (medium) - 12x12 (long) - or custom?
+
+SECOND: input
+based on the selected gridsize, generate an input field that accepts" 
+  numbers (plus and minus)
+  key words (delete all points)
+  steal (steal random team's points - other team if only 2)
+  switch (switch random team's points)
+  multiply (*x)
+
+input should have default entries
+
+input format: object {
+  action: "string" // describes: addition, subtraction, multiply, divide, steal, delete, switch, etc.
+  quantity: "number" // applicable to certain actions
+}
+
+THIRD:
+computation may require an external and complex function that uses case switch

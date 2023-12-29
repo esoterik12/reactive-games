@@ -6,6 +6,7 @@ const IDEA_GAMES = [
   {
     key: "l2",
     name: "Mineflied",
+    // add sound effects and image support? animations?
   },
   {
     key: "l3",

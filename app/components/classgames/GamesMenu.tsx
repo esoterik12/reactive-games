@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { GamesTabs } from "./GamesTabs";
 import { Memory } from "./memory/Memory";
+import { Minefield } from "./minefield/Minefield";
 
 export interface IGamesMenuProps {}
 
@@ -11,6 +12,7 @@ export function GamesMenu(props: IGamesMenuProps) {
     <div>
       <GamesTabs setActiveGame={setActiveGame} activeGame={activeGame}>
         {activeGame === "memory" && <Memory />}
+        {activeGame === "minefield" && <Minefield />}
       </GamesTabs>
     </div>
   );

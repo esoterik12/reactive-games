@@ -52,8 +52,8 @@ export function GamesTabs(props: IGamesTabsProps) {
             <p onClick={() => props.setActiveGame("memory")}>
               Memory
             </p>
-            <p onClick={() => props.setActiveGame("bingo")}>
-              Bingo
+            <p onClick={() => props.setActiveGame("minefield")}>
+              Minefield
             </p>
             <p onClick={() => props.setActiveGame("wordsearch")}>
               Wordsearch
@@ -84,11 +84,11 @@ export function GamesTabs(props: IGamesTabsProps) {
         </button>
         <button
           className={`${
-            props.activeGame === "bingo" ? activeButtonStyles : ""
+            props.activeGame === "minefield" ? activeButtonStyles : ""
           }`}
-          onClick={() => props.setActiveGame("bingo")}
+          onClick={() => props.setActiveGame("minefield")}
         >
-          Bingo
+          Minefield
         </button>
         <button
           className={`${

@@ -1,0 +1,34 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pointsContainer {
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.teamsContainer {
+  margin: 4px;
+  margin-top: 20px;
+}
+
+.activeTeam {
+  color: red;
+  font-weight: 700;
+}
+
+.minefieldContainer {
+  width: 400px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px;
+}
+
+.buttonContainer button {
+  width: 100px;
+}
