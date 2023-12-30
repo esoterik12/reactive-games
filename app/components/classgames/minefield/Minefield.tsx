@@ -1,7 +1,7 @@
 import * as React from "react";
 import classes from "./Minefield.module.css";
-import { DUMMY_MINES } from "./dummyMineInput";
 import { MinefieldCard } from "./MinefieldCard";
+import { MinefieldInput } from "./MinefieldInput";
 
 const initialPointsState = [0, 0];
 
@@ -12,7 +12,7 @@ export interface MineData {
   action: string;
   quantity?: number;
   turned: boolean;
-  audio:string;
+  audio: string;
 }
 
 export function Minefield(props: IMinefieldProps) {
@@ -20,45 +20,63 @@ export function Minefield(props: IMinefieldProps) {
   const [points, setPoints] = React.useState<number[]>(initialPointsState);
   const [turn, setTurn] = React.useState(0);
 
-  React.useEffect(() => {
-    const shuffledMines = [...DUMMY_MINES];
-    for (let i = shuffledMines.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledMines[i], shuffledMines[j]] = [
-        shuffledMines[j],
-        shuffledMines[i],
-      ];
-    }
-    setMinesData(shuffledMines);
-  }, []);
+  // conditional grid size styling:
+  let gridStyles;
+  if (minesData.length === 20) {
+    gridStyles = classes.smallGrid;
+  } else if (minesData.length === 25) {
+    gridStyles = classes.mediumGrid;
+  } else if (minesData.length === 36) {
+    gridStyles = classes.largeGrid;
+  } else {
+    gridStyles = classes.superGrid;
+  }
+
+  function handleReset() {
+    setTurn(0)
+    setMinesData([])
+  }
 
   return (
     <div className={classes.pageContainer}>
-      <div className={classes.pointsContainer}>
-        {points.map((team, index) => (
-          <div key={index} className={classes.teamsContainer}>
-            <div className={`${index === turn ? classes.activeTeam : ""}`}>
-              Team {index + 1}: {team}
-            </div>
+      {minesData.length === 0 && (
+        <MinefieldInput setMinesData={setMinesData} setPoints={setPoints} />
+      )}
+
+      {minesData.length !== 0 && (
+        <>
+          <div className={classes.pointsContainer}>
+            {points.map((team, index) => (
+              <div key={index} className={classes.teamsContainer}>
+                <div
+                  className={`${classes.indivTeamContainer} ${
+                    index === turn ? classes.activeTeam : ""
+                  }`}
+                >
+                  Team {index + 1}: {team}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div className={classes.minefieldContainer}>
-        {Array.isArray(minesData) &&
-          minesData.map((mine, index) => (
-            <MinefieldCard
-              key={`${mine.id}`}
-              index={index}
-              number={mine.id}
-              minesData={minesData}
-              setMinesData={setMinesData}
-              turn={turn}
-              setTurn={setTurn}
-              points={points}
-              setPoints={setPoints}
-            />
-          ))}
-      </div>
+          <div className={`${classes.minefieldContainer} ${gridStyles}`}>
+            {Array.isArray(minesData) &&
+              minesData.map((mine, index) => (
+                <MinefieldCard
+                  key={`${mine.id}`}
+                  index={index}
+                  number={mine.id}
+                  minesData={minesData}
+                  setMinesData={setMinesData}
+                  turn={turn}
+                  setTurn={setTurn}
+                  points={points}
+                  setPoints={setPoints}
+                />
+              ))}
+          </div>
+          <button onClick={handleReset}>Reset</button>
+        </>
+      )}
     </div>
   );
 }

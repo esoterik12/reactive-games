@@ -5,8 +5,8 @@
   justify-content: center;
   align-items: center;
   border: none;
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 60px;
   transition: transform 0.6s, box-shadow 0.3s; 
   transform-style: preserve-3d;
   border-radius: 5px; 

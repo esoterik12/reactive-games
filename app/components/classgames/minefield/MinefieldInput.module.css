@@ -1,0 +1,44 @@
+.minesInputContianer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.minesInputContianer h2 {
+  margin: 0;
+}
+
+.minesInputContianer input {
+  margin: 10px;
+  width: 25%;
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  padding: 8px 10px; 
+  justify-content: center;
+  font-size: 16px;
+  text-align: center;
+}
+
+.gridSize button {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.buttonSelected {
+  background-color: rgb(235, 174, 174) !important;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+.buttonContainer button {
+  margin: 10px;
+  width: 160px; 
+  padding: 10px; 
+  border: none;
+  border-radius: 4px;
+}
