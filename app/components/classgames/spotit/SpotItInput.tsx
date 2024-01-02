@@ -1,0 +1,106 @@
+import * as React from "react";
+import classes from "./SpotItInput.module.css";
+import { GenInputField } from "../../input/GenInputField";
+import { useDispatch } from "react-redux";
+import { setMessage, toggleModal } from "@/app/redux/modalSlice";
+import { setWords, resetWords, displayWords } from "@/app/redux/spotitSlice";
+export interface ISpotItInputProps {}
+
+export function SpotItInput(props: ISpotItInputProps) {
+  const dispatch = useDispatch();
+  const [spotItInput, setSpotItInput] = React.useState<string>('');
+  const [spotItRequest, setSpotItRequest] = React.useState<string>('');
+
+  async function handleGenerate() {
+    try {
+      const response = await fetch("/api/generators/spot-it", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          spotItRequest,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.log(
+          "Error with response in fetch request in tsx file: ",
+          errorData
+        );
+        dispatch(setMessage("Error - please try again."));
+        dispatch(toggleModal());
+      }
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("Success with api request: ", responseData);
+        dispatch(setWords(responseData));
+        dispatch(displayWords())
+      }
+    } catch (error: any) {
+      console.log("Error from catch: ", error);
+      dispatch(setMessage("Error - please try again."));
+      dispatch(toggleModal());
+    }
+  }
+
+  function handleSubmit() {
+    if (spotItInput?.trim() !== "" || spotItInput !== undefined) {
+      const wordsArray = spotItInput?.split(",");
+      dispatch(setWords(wordsArray))
+      dispatch(displayWords())
+      return;
+    }
+  }
+
+  function handleReset() {
+    dispatch(resetWords())
+  }
+
+  return (
+    <div className={classes.spotItInputContainer}>
+      <h2>Spot It</h2>
+      <p>Enter 10 - 20 words to create a word soup with one duplicated word.</p>
+      <p>Race to find the word that appears twice!</p>
+      <p>
+        queen, well, egg, real, trap, yes, up, in, octopus, punt, keen, lose,
+        zeal
+      </p>
+      {/* {wordCount === 1 ? (
+        <p>You have entered {wordCount} word so far.</p>
+      ) : (
+        <p>You have entered {wordCount} words so far.</p>
+      )} */}
+
+      <GenInputField
+        stateUpdatingFunction={setSpotItInput}
+        name="spotItInput"
+        type="text"
+        label="Enter words separated by commas:"
+        value={spotItInput}
+      />
+      <div className={classes.buttonContainer}>
+        <button onClick={handleSubmit}>Create</button>
+      </div>
+
+      <p>
+        Or enter a description of the words you'd like to use, for example:
+        "Basic short E words."
+      </p>
+
+      <GenInputField
+        stateUpdatingFunction={setSpotItRequest}
+        name="spotItRequest"
+        type="text"
+        label="Enter your description:"
+        value={spotItRequest}
+      />
+      <div className={classes.buttonContainer}>
+        <button onClick={handleGenerate}>Generate</button>
+        <button onClick={handleReset}>Reset</button>
+      </div>
+    </div>
+  );
+}

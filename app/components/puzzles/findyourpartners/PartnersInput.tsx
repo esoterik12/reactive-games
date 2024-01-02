@@ -79,7 +79,7 @@ export function PartnersInput(props: IPartnersInputProps) {
       <form onSubmit={handleSubmit} className={classes.partnerInput}>
         <p>Enter all your words separeated by commas.</p>
         <p>Carefully consider the words you use for synonyms and antonyms.</p>
-        <p>fat, mash, cap, sad, wet, peg, kit, fish, seen, well, for, cry</p>
+        {/* <p>fat, mash, cap, sad, wet, peg, kit, fish, seen, well, for, cry</p> */}
         <label className={classes.formLabel} htmlFor="words">
           Enter your words:
         </label>

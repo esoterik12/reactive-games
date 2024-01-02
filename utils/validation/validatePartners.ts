@@ -18,7 +18,7 @@ export function validatePartners(partnersData: IPartnersData) {
     throw new Error("Invalid words input.");
   }
 
-  if (partnersData.words.length > 12) {
-    throw new Error("Too many words; 12 is the current maximum.");
-  }
+  // if (partnersData.words.length > 12) {
+  //   throw new Error("Too many words; 12 is the current maximum.");
+  // }
 }

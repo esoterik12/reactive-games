@@ -33,8 +33,8 @@ export function GamesTabs(props: IGamesTabsProps) {
 
   // closes the menu once a selection is made
   React.useEffect(() => {
-    setMenuOpen(false)
-  }, [props.activeGame])
+    setMenuOpen(false);
+  }, [props.activeGame]);
 
   const activeButtonStyles =
     theme === "dark" ? classes.activeButtonDark : classes.activeButtonLight;
@@ -49,15 +49,9 @@ export function GamesTabs(props: IGamesTabsProps) {
         <button onClick={() => setMenuOpen(!menuOpen)}>Menu</button>
         {menuOpen && (
           <div ref={dropdownRef} className={classes.dropdown}>
-            <p onClick={() => props.setActiveGame("memory")}>
-              Memory
-            </p>
-            <p onClick={() => props.setActiveGame("minefield")}>
-              Minefield
-            </p>
-            <p onClick={() => props.setActiveGame("wordsearch")}>
-              Wordsearch
-            </p>
+            <p onClick={() => props.setActiveGame("memory")}>Memory</p>
+            <p onClick={() => props.setActiveGame("minefield")}>Minefield</p>
+            <p onClick={() => props.setActiveGame("spotit")}>Spot It</p>
             <p onClick={() => props.setActiveGame("wordscramble")}>
               Word Scramble
             </p>
@@ -92,11 +86,11 @@ export function GamesTabs(props: IGamesTabsProps) {
         </button>
         <button
           className={`${
-            props.activeGame === "wordsearch" ? activeButtonStyles : ""
+            props.activeGame === "spotit" ? activeButtonStyles : ""
           }`}
-          onClick={() => props.setActiveGame("wordsearch")}
+          onClick={() => props.setActiveGame("spotit")}
         >
-          Wordsearch
+          Spot It
         </button>
         <button
           className={`${

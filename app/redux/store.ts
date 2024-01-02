@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeSlice from "./themeslice";
 import modalSlice from "./modalSlice";
+import spotItSlice from "./spotitSlice";
 
 export const store = configureStore({
   reducer: {
     theme: themeSlice.reducer,
     modal: modalSlice.reducer,
+    spotIt: spotItSlice.reducer,
   },
 });
 

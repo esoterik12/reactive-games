@@ -1,0 +1,73 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 4px;
+  margin-top: 20px;
+}
+
+.spotItContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border: 1px solid gray;
+  border-radius: 15px;
+  gap: 3px;
+}
+
+.spotItContainer p {
+  margin: 0;
+}
+
+.wordCenter,
+.wordTopLeft,
+.wordBotRight,
+.wordTopRight, 
+.wordBotLeft {
+  font-size: 20px;
+  border: 1px solid gray;
+  margin: 5px;
+  width: 130px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wordCenter {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.wordBotRight {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.wordTopRight {
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.wordTopLeft {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.wordBotLeft {
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.buttonContainer button {
+  width: 70%;
+  max-width: 100px;
+  margin: 10px;
+}
