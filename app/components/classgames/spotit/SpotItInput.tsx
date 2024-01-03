@@ -4,6 +4,7 @@ import { GenInputField } from "../../input/GenInputField";
 import { useDispatch } from "react-redux";
 import { setMessage, toggleModal } from "@/app/redux/modalSlice";
 import { setWords, resetWords, displayWords } from "@/app/redux/spotitSlice";
+import { validateSpotIt, validateSpotItReq } from "@/utils/validation/validateSpotIt";
 export interface ISpotItInputProps {}
 
 export function SpotItInput(props: ISpotItInputProps) {
@@ -13,6 +14,7 @@ export function SpotItInput(props: ISpotItInputProps) {
 
   async function handleGenerate() {
     try {
+      validateSpotItReq(spotItRequest)
       const response = await fetch("/api/generators/spot-it", {
         method: "POST",
         headers: {
@@ -49,9 +51,15 @@ export function SpotItInput(props: ISpotItInputProps) {
   function handleSubmit() {
     if (spotItInput?.trim() !== "" || spotItInput !== undefined) {
       const wordsArray = spotItInput?.split(",");
-      dispatch(setWords(wordsArray))
-      dispatch(displayWords())
-      return;
+      try {
+        validateSpotIt(wordsArray)
+        dispatch(setWords(wordsArray))
+        dispatch(displayWords())
+      } catch (error:any) {
+        console.log("Error from handleSubmit: ", error);
+        dispatch(setMessage(`${error}`));
+        dispatch(toggleModal());
+      }
     }
   }
 
@@ -59,20 +67,25 @@ export function SpotItInput(props: ISpotItInputProps) {
     dispatch(resetWords())
   }
 
+  let wordCount: number | undefined = 0;
+  if (spotItInput) {
+    wordCount = (spotItInput
+      ?.split(",")
+      .map((word) => word.trim())
+      .filter((word) => word.length > 0)).length;
+  }
+
   return (
     <div className={classes.spotItInputContainer}>
       <h2>Spot It</h2>
       <p>Enter 10 - 20 words to create a word soup with one duplicated word.</p>
       <p>Race to find the word that appears twice!</p>
-      <p>
-        queen, well, egg, real, trap, yes, up, in, octopus, punt, keen, lose,
-        zeal
-      </p>
-      {/* {wordCount === 1 ? (
+
+      {wordCount === 1 ? (
         <p>You have entered {wordCount} word so far.</p>
       ) : (
         <p>You have entered {wordCount} words so far.</p>
-      )} */}
+      )} 
 
       <GenInputField
         stateUpdatingFunction={setSpotItInput}

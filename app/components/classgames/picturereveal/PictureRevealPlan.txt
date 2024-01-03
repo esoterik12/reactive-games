@@ -1,0 +1,39 @@
+The objective of this feature is to provide a colorful and engaging activity that has an 8x8 grid of colorful squares that gradually disappear
+to reveal an image below. 
+
+There are a few primary features to consider when designing and making this feature:
+1. Input of URLs for the images.
+  Users should be able to input URLs found on the internet
+    This means a form that creates an array of objects
+    An input field for each url - max 15 / 20
+
+  Users should also be able to select some default images / setups
+    Ideally there would be common categories like: animals, buildings, jobs, places, cities, flags, food, etc.
+
+  Users should also be able to generate images using Dall-E API (expensive!) - this is mostly just for demo purposes
+
+  Therefore, the input object/data should be considered carefully. Presumably it will be an array of objects.
+  Each object will have a few properties: url, name, id, seen?, resulotion?
+
+  Additionally, URLs could be stored on the database with a clear name to help save on API requests (difficult)
+
+  Handling images will be complicated as size and resulotion will cause problems.
+
+2. The display component(s) should be able to handle the array of objects regardless of the source.
+  This is an important opportunity to learn about NextImage processing
+  The images must be able to be cropped to always fit a certain size. 
+
+3. Create a DUMMY_IMAGES array that can serve as a foundation to build the feature around.
+
+4. How should state be managed in this feature? As it is fairly complex, RTK seems like the best option.
+  This would be the data store of objects. 
+
+Tile State:
+
+tilesArray: One array filled with 2s (or "hidden") of length 64
+indexArray: One array filled randomly with numbers 0 to 63
+currentIndex: 0 to 63, incremented each time reveal is made
+
+
+
+

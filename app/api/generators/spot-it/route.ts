@@ -14,9 +14,15 @@ export async function POST(request: Request) {
     }
 
     const gptResponse = await sendSpotItReq(spotItRequest);
-    const wordsArray = gptResponse.split(" ");
+    const commasRemoved = gptResponse.replace(/,/g, "");
+    const wordsArray = commasRemoved.split(" ");
+    const duplicatesRemoved = wordsArray.filter(
+      (value: string, index: number, self: string) => {
+        return self.indexOf(value) === index;
+      }
+    );
 
-    console.log("spot it gpt response: ", wordsArray);
+    console.log("spot it gpt response: ", duplicatesRemoved);
 
     return NextResponse.json(wordsArray);
   } catch (error: any) {
@@ -30,11 +36,11 @@ async function sendSpotItReq(spotItRequest: string) {
   const url = "https://api.openai.com/v1/chat/completions";
 
   const headers = {
-    "Context-Type": "application/json",
+    "Content-Type": "application/json",
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_SECRET}`,
   };
 
-  const spotItPrompt = `Please send me an array of 15 words that fit the description below. 
+  const spotItPrompt = `Please send me an array of 12 words that fit the description below. 
   The description is ${spotItRequest}.
   Utmost important: please return only the words separated by spaces. No other characters. 
   This should follow the following format: go, bow, glow, cone, phone, globe, no, goat
@@ -56,6 +62,3 @@ async function sendSpotItReq(spotItRequest: string) {
     throw new Error("Error in gpt request.");
   }
 }
-
-// Provide no extra text and follow this format exactly:
-// go, bow, glow, cone, phone, globe, no, goat

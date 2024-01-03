@@ -3,6 +3,7 @@ import { GamesTabs } from "./GamesTabs";
 import { Memory } from "./memory/Memory";
 import { Minefield } from "./minefield/Minefield";
 import { SpotIt } from "./spotit/SpotIt";
+import { PictureReveal } from "./picturereveal/PictureReveal";
 
 export interface IGamesMenuProps {}
 
@@ -15,6 +16,7 @@ export function GamesMenu(props: IGamesMenuProps) {
         {activeGame === "memory" && <Memory />}
         {activeGame === "minefield" && <Minefield />}
         {activeGame === 'spotit' && <SpotIt />}
+        {activeGame === "picturereveal" && <PictureReveal />}
       </GamesTabs>
     </div>
   );

@@ -52,8 +52,8 @@ export function GamesTabs(props: IGamesTabsProps) {
             <p onClick={() => props.setActiveGame("memory")}>Memory</p>
             <p onClick={() => props.setActiveGame("minefield")}>Minefield</p>
             <p onClick={() => props.setActiveGame("spotit")}>Spot It</p>
-            <p onClick={() => props.setActiveGame("wordscramble")}>
-              Word Scramble
+            <p onClick={() => props.setActiveGame("picturereveal")}>
+              Picture Reveal
             </p>
             <p onClick={() => props.setActiveGame("findyourpartner")}>
               Find Your Partner
@@ -94,11 +94,11 @@ export function GamesTabs(props: IGamesTabsProps) {
         </button>
         <button
           className={`${
-            props.activeGame === "wordscramble" ? activeButtonStyles : ""
+            props.activeGame === "picturereveal" ? activeButtonStyles : ""
           }`}
-          onClick={() => props.setActiveGame("wordscramble")}
+          onClick={() => props.setActiveGame("picturereveal")}
         >
-          Word Scramble
+          Picture Reveal
         </button>
         <button
           className={`${
