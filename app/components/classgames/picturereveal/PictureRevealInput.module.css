@@ -1,0 +1,39 @@
+.picturesInputContianer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.picturesInputContianer h2 {
+  margin-top: 20px;
+}
+
+.picturesInputContianer p {
+  margin: 2px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px;
+}
+
+.formContainer button {
+  margin: 15px;
+  width: 100px;
+}
+
+.linkContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 4px;
+}
+
+.linkContainer label {
+  margin: 4px;
+}
+
+.linkInput {
+  width: 500px;
+}

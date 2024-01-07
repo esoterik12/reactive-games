@@ -43,6 +43,7 @@ async function sendSpotItReq(spotItRequest: string) {
   const spotItPrompt = `Please send me an array of 12 words that fit the description below. 
   The description is ${spotItRequest}.
   Utmost important: please return only the words separated by spaces. No other characters. 
+  Make sure all entries are single words. For example, if asked for countries, do not return "United States".
   This should follow the following format: go, bow, glow, cone, phone, globe, no, goat
   `;
 
