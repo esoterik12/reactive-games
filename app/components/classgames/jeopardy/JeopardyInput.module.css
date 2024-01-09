@@ -1,0 +1,52 @@
+.jeopardyInputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.formContainer label {
+  margin: 10px;
+}
+
+.formContainer textarea {
+  min-width: 500px;
+  min-height: 100px;
+  max-width: 100%;
+  padding: 10px;
+  border: 1px solid #e0dfdf;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  resize: both; /* Allow both horizontal and vertical resizing */
+  overflow: auto; /* Enable scrolling for overflow content */
+}
+
+.jeopardyInputContainer p {
+  margin: 0.8px;
+  color: rgb(158, 158, 158);
+}
+
+.jeopardyInputContainer button {
+  width: 70%;
+  max-width: 100px;
+  margin: 10px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonContainer button {
+  margin: 20px !important;
+  width: 110px;
+  border: none;
+}

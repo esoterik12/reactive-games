@@ -1,0 +1,182 @@
+/* 
+Experimental Color Palette:
+
+Jet: #333333
+Seasalt: #F8F8F8
+Moonstone Blue: #00B2CA
+Softer Moonstone Blue: #66C7D9
+
+Blush Red: #DA627D
+Softer Blush Red: #E9899E
+
+True Blue: #4062BB
+Softer True Blue: #5A7ABE
+*/
+
+.scoreContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pointsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.teamsContainer {
+  margin: 10px;
+  font-size: 20px;
+}
+
+.indivTeamContainer {
+  border: 2px solid rgb(133, 133, 133);
+  border-radius: 8px; 
+  margin: 0;
+  width: 140px;
+  text-align: center;
+  padding: 10px 20px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.pointsText {
+  color: #DA627D;
+}
+
+.jeopardyGrid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 30px;
+  gap: 4px;
+  border-radius: 10px;
+  
+}
+
+.categoryColumn {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 10px;
+  width: 200px;
+  height: 600px;
+  gap: 4px;
+  
+}
+
+.categoryTitle {
+  background-color: #5a7abe;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
+}
+
+.categoryTitle h3 {
+  color: #f8f8f8;
+  font-weight: 600;
+}
+
+.cardContainer {
+  background-color: #5a7abe;
+  border-radius: 10px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); 
+
+}
+
+.cardContainer button {
+  margin: 0 !important;
+  background-color: inherit;
+  border: none;
+  color: #f8f8f8;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transition effect for background-color and transform */
+}
+
+.cardContainer button:hover {
+  background-color: rgb(171, 232, 241);
+  transform: scale(1.15); /* Slightly increase size on hover */
+}
+
+.cardContainer button:hover p {
+  color: #da627d;
+  transition: font-weight 0.3s ease; /* Transition effect for font-weight */
+}
+
+.cardContainer p {
+  font-size: 20px;
+  margin: 0;
+  color: #f8f8f8;
+}
+
+.cardContainer {
+  background-color: #67d4e2;
+}
+
+.flipped {
+  background-color: #da627d;
+  color: #333333 !important;
+}
+
+.flipped p {
+  color: #333333;
+}
+
+.flipped button:hover {
+  background-color: #da627d;
+  transform: scale(1.0); 
+}
+
+.flipped button:hover p {
+  color: #333333;
+}
+
+/* Modal CSS */
+.jeopardyModal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modalQuestion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 24px;
+  background-color: #f3feff;
+  width: 600px;
+  height: 400px;
+  border: 12px #da627d solid;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.pointsSelector {
+  display: flex;
+  flex-direction: row;
+}
+
+.pointsSelector button {
+  margin: 10px !important;
+}
+
+.selectedTeam {
+  background-color: #da627d !important;
+}

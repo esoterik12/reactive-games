@@ -55,8 +55,8 @@ export function GamesTabs(props: IGamesTabsProps) {
             <p onClick={() => props.setActiveGame("picturereveal")}>
               Picture Reveal
             </p>
-            <p onClick={() => props.setActiveGame("findyourpartner")}>
-              Find Your Partner
+            <p onClick={() => props.setActiveGame("jeopardy")}>
+              Jeopardy
             </p>
           </div>
         )}
@@ -102,11 +102,11 @@ export function GamesTabs(props: IGamesTabsProps) {
         </button>
         <button
           className={`${
-            props.activeGame === "findyourpartner" ? activeButtonStyles : ""
+            props.activeGame === "jeopardy" ? activeButtonStyles : ""
           }`}
-          onClick={() => props.setActiveGame("findyourpartner")}
+          onClick={() => props.setActiveGame("jeopardy")}
         >
-          Find Your Partner
+          Jeopardy
         </button>
       </div>
       <div className={classes.childrenContainer}>{props.children}</div>
