@@ -8,6 +8,10 @@
   margin: 0;
 }
 
+.minesInputContianer p {
+  color: rgb(158, 158, 158);
+}
+
 .minesInputContianer input {
   margin: 10px;
   width: 25%;

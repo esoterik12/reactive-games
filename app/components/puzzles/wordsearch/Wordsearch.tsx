@@ -28,7 +28,11 @@ export function Wordsearch() {
         gridSize
       ); // validates
       setWordsearchOutput(
-        multiWordsearchGenerator(wordsArray, parseInt(numOfVersions), parseInt(gridSize))
+        multiWordsearchGenerator(
+          wordsArray,
+          parseInt(numOfVersions),
+          parseInt(gridSize)
+        )
       ); //  generates - , wordsearchTitle, numOfVersions
     } catch (error) {
       console.log("Error generating wordsearch output: ", error);
@@ -41,8 +45,8 @@ export function Wordsearch() {
     setWordsearchInput("");
     setWordsearchTitle("");
     setWordsearchOutput(null);
-    setNumOfVersions("1")
-    setGridSize("12")
+    setNumOfVersions("1");
+    setGridSize("12");
   }
 
   const generatePDF = async () => {
@@ -72,48 +76,51 @@ export function Wordsearch() {
   }
 
   return (
-    <div className={classes.wordsearchContainer}>
+    <>
       {!wordsearchOutput && (
-        <div className={classes.wordsearchInput}>
-          <h2>Wordsearch Generator</h2>
-          <p>Enter words separated by commas to create a wordsearch!</p>
-          <p>
-            queen, well, egg, reality, trap, yes, up, indifferent, octopus, punt
-          </p>
+        <div className={classes.wordsearchContainer}>
+          <div className={classes.wordsearchInput}>
+            <h2>Wordsearch Generator</h2>
+            <p>Enter words separated by commas to create a wordsearch!</p>
+            <p>
+              queen, well, egg, reality, trap, yes, up, indifferent, octopus,
+              punt
+            </p>
 
-          <GenInputField
-            stateUpdatingFunction={setWordsearchTitle}
-            name="wordsearchTitle"
-            type="text"
-            label="Enter a title:"
-            value={wordsearchTitle}
-          />
-          <div className={classes.numberInputs}>
             <GenInputField
-              stateUpdatingFunction={setNumOfVersions}
-              name="numberOfCards"
-              type="number"
-              label="Create different versions:"
-              value={numOfVersions}
+              stateUpdatingFunction={setWordsearchTitle}
+              name="wordsearchTitle"
+              type="text"
+              label="Enter a title:"
+              value={wordsearchTitle}
             />
+            <div className={classes.numberInputs}>
+              <GenInputField
+                stateUpdatingFunction={setNumOfVersions}
+                name="numberOfCards"
+                type="number"
+                label="Create different versions:"
+                value={numOfVersions}
+              />
+              <GenInputField
+                stateUpdatingFunction={setGridSize}
+                name="size"
+                type="number"
+                label="Select your grid size - max. 15:"
+                value={gridSize}
+              />
+            </div>
+
             <GenInputField
-              stateUpdatingFunction={setGridSize}
-              name="size"
-              type="number"
-              label="Select your grid size - max. 15:"
-              value={gridSize}
+              stateUpdatingFunction={setWordsearchInput}
+              name="wordsearchWords"
+              type="text"
+              label="Enter your wordsearch words:"
+              value={wordsearchInput}
             />
+            <button onClick={handleSubmit}>Generate</button>
+            <button onClick={handleReset}>Reset</button>
           </div>
-
-          <GenInputField
-            stateUpdatingFunction={setWordsearchInput}
-            name="wordsearchWords"
-            type="text"
-            label="Enter your wordsearch words:"
-            value={wordsearchInput}
-          />
-          <button onClick={handleSubmit}>Generate</button>
-          <button onClick={handleReset}>Reset</button>
         </div>
       )}
       {wordsearchOutput && (
@@ -152,6 +159,6 @@ export function Wordsearch() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

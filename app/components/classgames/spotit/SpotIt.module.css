@@ -1,18 +1,43 @@
+/* 
+Experimental Color Palette:
+
+Jet: #333333
+Seasalt: #F8F8F8
+Moonstone Blue: #00B2CA
+Softer Moonstone Blue: #66C7D9
+
+Blush Red: #DA627D
+Softer Blush Red: #E9899E
+
+True Blue: #4062BB
+Softer True Blue: #5A7ABE
+*/
+
 .pageContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin: 4px;
-  margin-top: 20px;
+  gap: 10px;
+  width: 95%; 
+  min-height: 620px;
+  margin: 20px auto;
+  padding: 5px; 
+  border: 1px solid #ddd; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .spotItContainer {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  border: 1px solid gray;
+  border: 2px solid #00b2ca;
   border-radius: 15px;
+  margin: 0;
   gap: 3px;
+}
+
+.pageContainer h2 {
+  margin: 20px;
 }
 
 .spotItContainer p {
@@ -22,10 +47,9 @@
 .wordCenter,
 .wordTopLeft,
 .wordBotRight,
-.wordTopRight, 
+.wordTopRight,
 .wordBotLeft {
-  font-size: 20px;
-  /* border: 1px solid gray; */
+  font-size: 26px;
   margin: 5px;
   width: 130px;
   height: 64px;
@@ -39,25 +63,40 @@
   justify-content: center;
   align-items: center;
 }
+.wordCenter p {
+  color: #da627d;
+}
 
 .wordBotRight {
   align-items: flex-end;
   justify-content: flex-end;
+}
+.wordBotRight p {
+  color: #e9899e;
 }
 
 .wordTopRight {
   align-items: flex-start;
   justify-content: flex-end;
 }
+.wordTopRight p {
+  color: #da627d;
+}
 
 .wordTopLeft {
   align-items: flex-start;
   justify-content: flex-start;
 }
+.wordTopLeft p {
+  color: #e9899e;
+}
 
 .wordBotLeft {
   align-items: flex-end;
   justify-content: flex-start;
+}
+.wordBotLeft p {
+  color: #da627d;
 }
 
 .buttonContainer {
@@ -71,3 +110,12 @@
   max-width: 100px;
   margin: 10px;
 }
+/* 
+Moonstone Blue: #00B2CA
+Softer Moonstone Blue: #66C7D9
+
+Blush Red: #DA627D
+Softer Blush Red: #E9899E
+
+True Blue: #4062BB
+Softer True Blue: #5A7ABE */

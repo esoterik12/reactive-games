@@ -3,7 +3,14 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 20px;
+  gap: 10px;
+  width: 95%; 
+  min-height: 70vh;
+  margin: 20px auto;
+  padding: 5px; 
+  border: 1px solid #ddd; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .wordsearchInput {
@@ -46,9 +53,10 @@
   color: #2c3e50;
 }
 
+/* Set to 840 (not 842) to avoid extra page */
 .pdfContainer {
   width: 595px;
-  min-height: 842px;
+  min-height: 840px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +64,7 @@
 }
 
 .individualContainer {
-  min-height: 842px;
+  min-height: 840px;
 }
 
 .outputButtonsContainer {
@@ -78,10 +86,6 @@
   font-size: 18px;
   padding: 10px;
   min-width: 16px;
-
-  /* Styles to define wordsearch more if needed */
-  /* border: 1px solid #ccc;
-  background-color: #ecf0f1; */
 }
 
 .wordsToFind{

@@ -168,15 +168,34 @@ Softer True Blue: #5A7ABE
   padding: 20px;
 }
 
+.modalQuestion h2 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
 .pointsSelector {
   display: flex;
   flex-direction: row;
 }
 
 .pointsSelector button {
-  margin: 10px !important;
+  margin: 12px !important;
+  background-color: #7fa1eb;
+}
+.pointsSelector button:hover {
+  background-color: #5e88e4;
 }
 
 .selectedTeam {
-  background-color: #da627d !important;
+  box-sizing: border-box;
+  background-color: #5e88e4 !important;
+  border: 1px red solid !important;
+}
+
+.buttonContainer button {
+  background-color: #f0b2bf !important;
+}
+
+.buttonContainer button:hover {
+  background-color: #f08098 !important;
 }

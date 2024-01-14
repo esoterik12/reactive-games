@@ -1,0 +1,55 @@
+// This file contains arrays of 15 images for different catergories to act as presets for the picture reveal activity
+
+export const mammalsPreset = [
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Zaniskari_Horse_in_Ladakh.jpg/1920px-Zaniskari_Horse_in_Ladakh.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Florida-015.jpg/1920px-Florida-015.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Rhesus_macaque_%28Macaca_mulatta_mulatta%29%2C_male%2C_Gokarna.jpg/1920px-Rhesus_macaque_%28Macaca_mulatta_mulatta%29%2C_male%2C_Gokarna.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/California_sea_lion_in_La_Jolla_%2870568%29.jpg/1920px-California_sea_lion_in_La_Jolla_%2870568%29.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Spotted_hyena_%28Crocuta_crocuta%29.jpg/2560px-Spotted_hyena_%28Crocuta_crocuta%29.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Panthera_tigris_tigris_Tidoba_20150306.jpg/1920px-Panthera_tigris_tigris_Tidoba_20150306.jpg",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+];
+
+export const flagsPreset = [
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_South_Korea.svg/400px-Flag_of_South_Korea.svg.png",
+  "https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1920px-Flag_of_Germany.svg.png",
+  "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1920px-Flag_of_Brazil.svg.png",
+  "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1920px-Flag_of_India.svg.png",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1920px-Flag_of_Portugal.svg.png",
+  "https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/1920px-Flag_of_Japan.svg.png",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+];
+
+export const vehiclesPreset = [
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Transperth_Volgren_CR228L_bodied_Volvo_B7RLE.jpg/2560px-Transperth_Volgren_CR228L_bodied_Volvo_B7RLE.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Motorboat_at_Kankaria_lake.JPG/1920px-Motorboat_at_Kankaria_lake.JPG",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/LAPD_Bell_206_Jetranger.jpg/1920px-LAPD_Bell_206_Jetranger.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/d/d9/Continental_Airlines_DC-10.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/2018_Honda_Jazz_%28GK5_MY18%29_VTi-S_hatchback_%282018-08-06%29_01.jpg/2560px-2018_Honda_Jazz_%28GK5_MY18%29_VTi-S_hatchback_%282018-08-06%29_01.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/5/5d/Leopard_2_A7.JPG",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/F-16_June_2008.jpg/1920px-F-16_June_2008.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Left_side_of_Flying_Pigeon.jpg/1920px-Left_side_of_Flying_Pigeon.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Kymco_G3_Mark_II_20080111.jpg/1920px-Kymco_G3_Mark_II_20080111.jpg",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+]

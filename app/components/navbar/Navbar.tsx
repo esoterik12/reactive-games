@@ -41,9 +41,10 @@ export default function Navbar({ session }: NavbarProps) {
         </Link>
 
         <div className={classes.buttonContainer}>
-          <button className={classes.navButton} onClick={themeHandler}>
+          {/* Disabled due to styling viewport issue */}
+          {/* <button className={classes.navButton} onClick={themeHandler}>
             {theme === "dark" ? <ModeNightIcon /> : <LightModeIcon />}
-          </button>
+          </button> */}
           {!session && (
             <Link className={classes.navButton} href="/login">
               <button>

@@ -39,17 +39,20 @@ export function BingoInput() {
 
   // this pdf export has some scaling issues
   const generatePDF = async () => {
+    const pixelWidth = 595; // A4 width in pixels
+    const pixelHeight = 842; // A4 height in pixels
+
     const doc = new jsPDF({
       orientation: "p",
       unit: "mm",
-      format: "a4",
+      format: [pixelWidth, pixelHeight],
     });
 
     doc.html(bingoRef.current, {
-      x: 44,
+      x: 25,
       y: 0,
       html2canvas: {
-        scale: 0.241415,
+        scale: 1,
       },
       async callback(doc) {
         doc.save("bingoOutput");
@@ -103,7 +106,7 @@ export function BingoInput() {
             label="Enter your bingo words:"
             value={bingoInput}
           />
-          <button onClick={handleSubmit}>Generate</button>
+          <button onClick={handleSubmit}>Create</button>
           <button onClick={handleReset}>Reset</button>
         </div>
       )}

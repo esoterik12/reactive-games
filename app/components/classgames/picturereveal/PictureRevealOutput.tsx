@@ -98,7 +98,7 @@ export function PictureRevealOutput(props: IPictureRevealOutputProps) {
         {/* If array element in tiles is 2, the tile is shown */}
         {tilesArray.map((tile: number, index: number) => {
           if (tile === 2) {
-            return <div key={index} className={classes.imgTile}></div>;
+            return <div key={index} className={imgIndex % 2 === 0 ? classes.imgTile : classes.imgTileAlt}></div>;
           } else {
             return <div key={index} className={classes.imgShow}></div>;
           }

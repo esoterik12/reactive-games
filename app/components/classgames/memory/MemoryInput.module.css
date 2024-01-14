@@ -4,6 +4,10 @@
   gap: 10px;
 }
 
+.inputContainer p {
+  color: rgb(158, 158, 158);
+}
+
 .inputItem input {
   border: 1px solid #ccc; 
   border-radius: 4px; 

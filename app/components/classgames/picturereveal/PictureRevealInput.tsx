@@ -3,6 +3,7 @@ import classes from "./PictureRevealInput.module.css";
 import { validatePictureLink } from "@/utils/validation/validatePictureReveal";
 import { useDispatch } from "react-redux";
 import { setMessage, toggleModal } from "@/app/redux/modalSlice";
+import { mammalsPreset, flagsPreset, vehiclesPreset } from "./picture-presents";
 
 export interface IPictureRevealInputProps {
   pictureLinks: string[];
@@ -56,6 +57,10 @@ export function PictureRevealInput(props: IPictureRevealInputProps) {
     props.setPictureLinks(Array(15).fill(""));
   }
 
+  function handlePreset(id: string[]) {
+    props.setPictureLinks(id);
+  }
+
   return (
     <div className={classes.picturesInputContianer}>
       <h2>Create Your Picture Reveal Activity</h2>
@@ -68,7 +73,14 @@ export function PictureRevealInput(props: IPictureRevealInputProps) {
         This service is limited to images hosted on Wikipedia for licensing and
         performance reasons.
       </p>
-      <p>
+      <p>Try the presets:</p>
+
+      <div className={classes.presetsContainer}>
+        <button onClick={() => handlePreset(mammalsPreset)}>Mammals</button>
+        <button onClick={() => handlePreset(flagsPreset)}>Flags</button>
+        <button onClick={() => handlePreset(vehiclesPreset)}>Vehicles</button>
+      </div>
+      {/* <p>
         https://media.architecturaldigest.com/photos/59b046a50f5802540ef19d8f/16:9/w_1920,c_limit/GettyImages-543522135.jpg
       </p>
       <p>
@@ -76,7 +88,7 @@ export function PictureRevealInput(props: IPictureRevealInputProps) {
       </p>
       <p>
         https://upload.wikimedia.org/wikipedia/commons/e/ea/Westminster_Abbey.jpeg
-      </p>
+      </p> */}
       <form onSubmit={handleSubmit} className={classes.formContainer}>
         {props.pictureLinks.map((link, index) => (
           <div className={classes.linkContainer}>

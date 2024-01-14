@@ -4,17 +4,22 @@ import { GenInputField } from "../../input/GenInputField";
 import { useDispatch } from "react-redux";
 import { setMessage, toggleModal } from "@/app/redux/modalSlice";
 import { setWords, resetWords, displayWords } from "@/app/redux/spotitSlice";
-import { validateSpotIt, validateSpotItReq } from "@/utils/validation/validateSpotIt";
-export interface ISpotItInputProps {}
+import {
+  validateSpotIt,
+  validateSpotItReq,
+} from "@/utils/validation/validateSpotIt";
+import CircularProgress from "@mui/material/CircularProgress";
 
-export function SpotItInput(props: ISpotItInputProps) {
+export function SpotItInput() {
   const dispatch = useDispatch();
-  const [spotItInput, setSpotItInput] = React.useState<string>('');
-  const [spotItRequest, setSpotItRequest] = React.useState<string>('');
+  const [spotItInput, setSpotItInput] = React.useState<string>("");
+  const [spotItRequest, setSpotItRequest] = React.useState<string>("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   async function handleGenerate() {
+    setIsLoading(true);
     try {
-      validateSpotItReq(spotItRequest)
+      validateSpotItReq(spotItRequest);
       const response = await fetch("/api/generators/spot-it", {
         method: "POST",
         headers: {
@@ -33,18 +38,21 @@ export function SpotItInput(props: ISpotItInputProps) {
         );
         dispatch(setMessage("Error - please try again."));
         dispatch(toggleModal());
+        setIsLoading(false);
       }
 
       if (response.ok) {
         const responseData = await response.json();
         console.log("Success with api request: ", responseData);
         dispatch(setWords(responseData));
-        dispatch(displayWords())
+        dispatch(displayWords());
+        setIsLoading(false);
       }
     } catch (error: any) {
       console.log("Error from catch: ", error);
       dispatch(setMessage("Error - please try again."));
       dispatch(toggleModal());
+      setIsLoading(false);
     }
   }
 
@@ -52,10 +60,10 @@ export function SpotItInput(props: ISpotItInputProps) {
     if (spotItInput?.trim() !== "" || spotItInput !== undefined) {
       const wordsArray = spotItInput?.split(",");
       try {
-        validateSpotIt(wordsArray)
-        dispatch(setWords(wordsArray))
-        dispatch(displayWords())
-      } catch (error:any) {
+        validateSpotIt(wordsArray);
+        dispatch(setWords(wordsArray));
+        dispatch(displayWords());
+      } catch (error: any) {
         console.log("Error from handleSubmit: ", error);
         dispatch(setMessage(`${error}`));
         dispatch(toggleModal());
@@ -64,7 +72,7 @@ export function SpotItInput(props: ISpotItInputProps) {
   }
 
   function handleReset() {
-    dispatch(resetWords())
+    dispatch(resetWords());
   }
 
   let wordCount: number | undefined = 0;
@@ -85,7 +93,7 @@ export function SpotItInput(props: ISpotItInputProps) {
         <p>You have entered {wordCount} word so far.</p>
       ) : (
         <p>You have entered {wordCount} words so far.</p>
-      )} 
+      )}
 
       <GenInputField
         stateUpdatingFunction={setSpotItInput}
@@ -95,7 +103,9 @@ export function SpotItInput(props: ISpotItInputProps) {
         value={spotItInput}
       />
       <div className={classes.buttonContainer}>
-        <button onClick={handleSubmit}>Create</button>
+        <button disabled={isLoading} onClick={handleSubmit}>
+          Create
+        </button>
       </div>
 
       <p>
@@ -110,9 +120,15 @@ export function SpotItInput(props: ISpotItInputProps) {
         label="Enter your description:"
         value={spotItRequest}
       />
+
       <div className={classes.buttonContainer}>
-        <button onClick={handleGenerate}>Generate</button>
-        <button onClick={handleReset}>Reset</button>
+        {!isLoading && (
+          <>
+            <button onClick={handleGenerate}>Generate</button>
+            <button onClick={handleReset}>Reset</button>
+          </>
+        )}
+        {isLoading && <CircularProgress />}
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { QuestionDataObject } from "./Jeopardy";
 import classes from "./JeopardyOutput.module.css";
 import { Question } from "./Jeopardy";
 
@@ -18,14 +17,6 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
 
   function handleClick(catIndex: number, objIndex: number) {
     if (props.jeopardyBoard) {
-      const updatedArray = [...props.jeopardyBoard];
-
-      updatedArray[catIndex][objIndex] = {
-        ...updatedArray[catIndex][objIndex],
-        turned: true,
-      };
-
-      props.setJeopardyBoard(updatedArray);
       setModal(true);
       setActiveQuestion([catIndex, objIndex]);
     }
@@ -56,6 +47,15 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
   // as well as the selectedTeams state in the question modal
   function handleContinue() {
     if (props.jeopardyBoard) {
+      const updatedArray = [...props.jeopardyBoard];
+
+      updatedArray[activeQuestion[0]][activeQuestion[1]] = {
+        ...updatedArray[activeQuestion[0]][activeQuestion[1]],
+        turned: true,
+      };
+
+      props.setJeopardyBoard(updatedArray);
+
       const points = Math.floor(
         props.jeopardyBoard[activeQuestion[0]][activeQuestion[1]].points /
           selectedTeams.length
@@ -79,16 +79,17 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
     <div>
       <div className={classes.scoreContainer}>
         <div className={classes.pointsContainer}>
-            {pointsArray.map((team, index) => (
-              <div key={index} className={classes.teamsContainer}>
-                <div
-                  className={classes.indivTeamContainer}
-                >
-                  Team {index + 1}: <span className={classes.pointsText}>{team.toLocaleString()}</span>
-                </div>
+          {pointsArray.map((team, index) => (
+            <div key={index} className={classes.teamsContainer}>
+              <div className={classes.indivTeamContainer}>
+                Team {index + 1}:{" "}
+                <span className={classes.pointsText}>
+                  {team.toLocaleString()}
+                </span>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
       </div>
       <div className={classes.jeopardyGrid}>
         {props.jeopardyBoard &&
@@ -159,4 +160,3 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
     </div>
   );
 }
-

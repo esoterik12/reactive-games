@@ -33,7 +33,7 @@ export function PictureReveal(props: IPictureRevealProps) {
   }, [invalidImages]);
 
   return (
-    <div>
+    <div className={classes.pictureRevealContainer}>
       {!isSubmit && (
         <PictureRevealInput
           pictureLinks={pictureLinks}
