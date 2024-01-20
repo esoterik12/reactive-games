@@ -48,14 +48,17 @@ export function WordScramble() {
     dataType: "scrambleOutput",
   };
   async function handleSaveClick() {
+    dispatch(setMessage("Saving..."));
+    dispatch(toggleModal());
     try {
       console.log("Scrambled Save data: ", scrambleSave);
       await handleDataSave(scrambleSave);
+
       dispatch(setMessage("Save successful."));
       dispatch(toggleModal());
       setSaved(true);
     } catch (error: any) {
-      console.log("Save failed.");
+      console.log("Save failed in handleSaveClick in WordScramble.ts.");
       dispatch(setMessage(`${error}`));
       dispatch(toggleModal());
     }
@@ -120,8 +123,12 @@ export function WordScramble() {
             {loadedData.length === 0 && (
               <>
                 <button onClick={handleReset}>Reset</button>
-                <button disabled={saved} onClick={handleSaveClick}>
-                  Save
+                <button
+                  disabled={saved}
+                  className={saved ? classes.savedButton : ""}
+                  onClick={handleSaveClick}
+                >
+                  {saved ? "Saved" : "Save"}
                 </button>
               </>
             )}

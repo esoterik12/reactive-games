@@ -13,15 +13,100 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.saveGrid {
+.pageContainer h2 {
+  margin: 0;
+  margin-top: 10px;
+}
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 150px;
+}
+
+.saveTable {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin-bottom: 30px;
+}
+
+.saveItemContainer {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px gray solid;
+  border-radius: 5px;
+  height: 40px;
+}
+
+.tableHeader {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  width: 900px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  grid-template-columns: 5% 25% 25% 20% 15% 10%;
+  border: 1px gray solid;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: rgb(199, 199, 199);
 }
 
 .saveItem {
-  border: 1px gray solid;
-  border-radius: 10px;
-  padding: 10px;
+  display: grid;
+  grid-template-columns: 5% 25% 25% 20% 15% 10%;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 14px;
+  width: 100%;
+}
+
+.tableHeader p {
+  font-weight: 600;
+}
+
+.saveItem p,
+.tableHeader p {
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.saveItemTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 25px;
+}
+
+.saveItemTitle p {
+  font-weight: 700;
+}
+
+.saveItemTitle:hover {
+  cursor: pointer;
+  background-color: rgb(221, 215, 215);
+}
+
+/* .saveItem:hover {
+  background-color: rgb(212, 212, 212);
+  cursor: pointer;
+} */
+
+.saveItem button {
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  height: 25px;  width: 60px;
+  border: none;
+}
+.saveItem button:hover {
+  background-color: rgb(221, 215, 215);
 }

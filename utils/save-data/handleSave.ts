@@ -9,15 +9,15 @@ export default async function handleDataSave(saveData: {} | []) {
     });
 
     if (response.ok) {
-      console.log("Save successful.");
+      console.log("Response is ok - Save successful.");
     }
 
     if (!response.ok) {
-      console.log("Save failed.");
+      console.log("Response not ok. Save failed in handleSave.ts");
       throw new Error("Save failed.")
     }
   } catch (error: any) {
-    console.log("Save failed.");
+    console.log("Caught error in handleSave.ts - Save failed.");
     throw new Error("Save failed.")
   }
 }

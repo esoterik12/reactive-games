@@ -71,4 +71,9 @@
 
 .outputButtonsContainer button {
   margin: 12px;
+  width: 100px;
+}
+
+.savedButton {
+  background-color: rgb(118, 238, 74) !important;
 }

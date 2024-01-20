@@ -1,7 +1,7 @@
 "use client";
 import { createPortal } from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toggleModal } from "@/app/redux/modalSlice";
 import classes from './Modal.module.css'
 
@@ -12,6 +12,7 @@ interface ModalState {
 
 const Modal = () => {
   const dispatch = useDispatch();
+
   const { showModal, message } = useSelector(
     (state: any) => state.modal
   ) as ModalState;

@@ -57,66 +57,62 @@ export function ProfilePage(props: IProfilePageProps) {
 
   const userImage = `/assets/avatars/${profileData?.data?.image}.png`;
 
+  if (!profileData) {
+    return (
+      <div className={classes.loadingContainer}>
+        <CircularProgress />
+      </div>
+    );
+  }
+
   return (
     <div className={classes.profileContainer}>
-      {!profileData ? (
-        <CircularProgress />
-      ) : (
-        <>
-          <div className={classes.profileLeft}>
-            <h2>{profileData?.data?.username}</h2>
+      <div className={classes.profileLeft}>
+        <h2>{profileData?.data?.username}</h2>
 
-            {userImage && (
-              <div className={classes.profileImageWrapper}>
-                <Image
-                  src={userImage}
-                  alt={`Profile image of ${
-                    profileData?.data?.username || "user"
-                  }`}
-                  width={100}
-                  height={100}
-                  className={classes.profileImage}
-                />
-              </div>
-            )}
-            <p>
-              <span className={classes.detailTextMinor}>Email: </span>
-              <span className={classes.detailText}>
-                {profileData?.data?.email}
-              </span>
-            </p>
-            <p>
-              <span className={classes.detailTextMinor}>Joined Date: </span>
-              <span className={classes.detailText}>{formattedDate}</span>
-            </p>
-            <div className={classes.linkContainer}>
-              <Link className={classes.editLink} href="/edit-profile">
-                <button>Edit Profile</button>
-              </Link>
-            </div>
+        {userImage && (
+          <div className={classes.profileImageWrapper}>
+            <Image
+              src={userImage}
+              alt={`Profile image of ${profileData?.data?.username || "user"}`}
+              width={100}
+              height={100}
+              className={classes.profileImage}
+            />
           </div>
-          <div className={classes.profileRight}>
-            <p>
-              <span className={classes.detailTextMinor}>Birthday: </span>
-              <span className={classes.detailText}>
-                {profileData?.data?.birthday}
-              </span>
-            </p>
-            <p>
-              <span className={classes.detailTextMinor}>Country: </span>
-              <span className={classes.detailText}>
-                {profileData?.data?.country}
-              </span>
-            </p>
-            <p>
-              <span className={classes.detailTextMinor}>Field: </span>
-              <span className={classes.detailText}>
-                {profileData?.data?.field}
-              </span>
-            </p>
-          </div>
-        </>
-      )}
+        )}
+        <p>
+          <span className={classes.detailTextMinor}>Email: </span>
+          <span className={classes.detailText}>{profileData?.data?.email}</span>
+        </p>
+        <p>
+          <span className={classes.detailTextMinor}>Joined Date: </span>
+          <span className={classes.detailText}>{formattedDate}</span>
+        </p>
+        <div className={classes.linkContainer}>
+          <Link className={classes.editLink} href="/edit-profile">
+            <button>Edit Profile</button>
+          </Link>
+        </div>
+      </div>
+      <div className={classes.profileRight}>
+        <p>
+          <span className={classes.detailTextMinor}>Birthday: </span>
+          <span className={classes.detailText}>
+            {profileData?.data?.birthday}
+          </span>
+        </p>
+        <p>
+          <span className={classes.detailTextMinor}>Country: </span>
+          <span className={classes.detailText}>
+            {profileData?.data?.country}
+          </span>
+        </p>
+        <p>
+          <span className={classes.detailTextMinor}>Field: </span>
+          <span className={classes.detailText}>{profileData?.data?.field}</span>
+        </p>
+      </div>
     </div>
   );
 }
