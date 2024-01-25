@@ -1,13 +1,24 @@
 The general objective is to get a working version up in the next seven to fourteen days, ideally by about 01/20/2024
 
 Major:
+
+  THIS IS HALF DONE: (add for all work)
   -Save functionality for users:
     +This means saving an array or object to the PostgreSQL server in JSON(?) that represents the data for the object
   -Load functionality:
     +Retrieving the data from the db and using it to output one of the 10 activities
+
+  -Templating development feature:
+    +One major issue with this project is that the game / activity components are all very similar and could probably be
+    considerably improved with a more streamlined and component-based development process.
+    +Saving, input, output, CSS, etc are all areas that should probably be more standardized by using components
+    +Another key area is for the GeneratePDF function
+    +This also applies to little functions like the word count function or validation
+
   -Share / Send data to other users:
     +This means allowing other users access to your files
     +Or it may simply mean a search functionality that allows all users to access all files?
+
   -Add fullscreen support for games
 
 Minor:

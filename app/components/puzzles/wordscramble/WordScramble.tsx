@@ -5,9 +5,9 @@ import { GenInputField } from "../../input/GenInputField";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";
 import { scrambleGenerator } from "@/utils/puzzle-generators/scrambleGenerator";
 import { validateScramble } from "@/utils/validation/validateScramble";
-import { useSelector } from "react-redux";
-import handleDataSave from "@/utils/save-data/handleSave";
 import { WordScrambleOutput } from "./WordScrambleOutput";
+import { SaveButton } from "../../input/SaveButton";
+import { WordsearchOutput } from "../wordsearch/WordsearchOutput";
 // queen, well, egg, real, trap, yes, up, in, octopus, punt, awake, seal, door, freeze, grow, help, jail, keen, lose, zeal, cream, veal, bean, need, mend
 
 export function WordScramble() {
@@ -16,7 +16,6 @@ export function WordScramble() {
   const [scrambleOutput, setScrambleOutput] = useState<any>();
   const [saved, setSaved] = useState(false);
   const dispatch = useDispatch();
-  const loadedData = useSelector((state: any) => state.load.loadedData);
 
   function handleSubmit() {
     try {
@@ -41,28 +40,12 @@ export function WordScramble() {
     setSaved(false);
   }
 
-  // Save Functionality //
+  // Save Object //
   const scrambleSave = {
-    scrambleTitle,
-    scrambleOutput,
+    title: scrambleTitle,
+    output: scrambleOutput,
     dataType: "scrambleOutput",
   };
-  async function handleSaveClick() {
-    dispatch(setMessage("Saving..."));
-    dispatch(toggleModal());
-    try {
-      console.log("Scrambled Save data: ", scrambleSave);
-      await handleDataSave(scrambleSave);
-
-      dispatch(setMessage("Save successful."));
-      dispatch(toggleModal());
-      setSaved(true);
-    } catch (error: any) {
-      console.log("Save failed in handleSaveClick in WordScramble.ts.");
-      dispatch(setMessage(`${error}`));
-      dispatch(toggleModal());
-    }
-  }
 
   //  Counts number of words by splitting, trimming words, and filtering out empty elements
   let scrambleWordCount: number | undefined = 0;
@@ -120,23 +103,13 @@ export function WordScramble() {
         <div className={classes.scrambleContainer}>
           <h2>Preview your Puzzles:</h2>
           <div className={classes.outputButtonsContainer}>
-            {loadedData.length === 0 && (
-              <>
-                <button onClick={handleReset}>Reset</button>
-                <button
-                  disabled={saved}
-                  className={saved ? classes.savedButton : ""}
-                  onClick={handleSaveClick}
-                >
-                  {saved ? "Saved" : "Save"}
-                </button>
-              </>
-            )}
+            <button onClick={handleReset}>Reset</button>
+            <SaveButton
+              saveObject={scrambleSave}
+              saved={saved}
+              setSaved={setSaved}
+            />
           </div>
-          <WordScrambleOutput
-            scrambleTitle={scrambleTitle}
-            scrambleOutput={scrambleOutput}
-          />
         </div>
       )}
     </>

@@ -1,4 +1,4 @@
-export default async function handleDataSave(saveData: {} | []) {
+export default async function saveFunc(saveData: {} | []) {
   try {
     const response = await fetch("/api/save", {
       method: "POST",

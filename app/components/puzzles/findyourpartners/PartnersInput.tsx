@@ -24,6 +24,7 @@ export function PartnersInput(props: IPartnersInputProps) {
     props.setOutputData(null);
     const fd = new FormData(event.target as HTMLFormElement);
     const partnersData: IPartnersData = {
+      title: fd.get('title') as string,
       words: fd.get('words') as string,
       options: fd.get('options') as string
     }
@@ -58,7 +59,7 @@ export function PartnersInput(props: IPartnersInputProps) {
         const extractedJson = gptObjectCreator(responseData);
         console.log("Success with JSON extraction: ", extractedJson);
         props.setIsLoading(false);
-        props.setOutputData(extractedJson);
+        props.setOutputData({data: extractedJson, title: partnersData.title});
       }
     } catch (error) {
       console.log("Error from catch: ", error);
@@ -68,11 +69,6 @@ export function PartnersInput(props: IPartnersInputProps) {
     }
   }
 
-  function handleReset() {
-    props.setIsLoading(false);
-    props.setOutputData(null);
-  }
-
   return (
     <div>
       <h2>Find Your Partner</h2>
@@ -80,6 +76,10 @@ export function PartnersInput(props: IPartnersInputProps) {
         <p>Enter all your words separeated by commas.</p>
         <p>Carefully consider the words you use for synonyms and antonyms.</p>
         {/* <p>fat, mash, cap, sad, wet, peg, kit, fish, seen, well, for, cry</p> */}
+        <label className={classes.formLabel} htmlFor="title">
+          Enter a title:
+        </label>
+        <input type="text" name="title" id="title" />
         <label className={classes.formLabel} htmlFor="words">
           Enter your words:
         </label>
@@ -97,9 +97,6 @@ export function PartnersInput(props: IPartnersInputProps) {
         </div>
         {!props.isLoading && (
           <>
-            <button type="reset" onClick={handleReset}>
-              Reset
-            </button>
             <button type="submit">Submit</button>
           </>
         )}

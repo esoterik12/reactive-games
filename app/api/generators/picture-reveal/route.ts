@@ -32,11 +32,12 @@ async function sendPictureReq(imageRequest: string) {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_SECRET}`,
   };
 
-  const imagePrompt = `Please send me an artistic image of a cat.  `;
+  const imagePrompt = `Please send me realistic pictures of different animals. Ensure that the image looks like a 
+  photograph and that all of the animals body can be seen in the image`;
 
   const body = JSON.stringify({
     prompt: imagePrompt,
-    n: 1,
+    n: 4,
     size: "1024x1024",
   });
 

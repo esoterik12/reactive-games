@@ -15,7 +15,6 @@ export function PartnersPreview(props: IPartnersPreviewProps) {
     const formProps = Object.fromEntries(formData) as { [key: string]: string };
     console.log(formProps);
     props.setFinalData(formProps);
-    props.setOutputData(null)
   };
 
   function handleReset() {
@@ -34,7 +33,7 @@ export function PartnersPreview(props: IPartnersPreviewProps) {
         </div>
         <div className={classes.pdfContainer}>
           <div className={classes.partnerOutputContainer}>
-            {Object.keys(props.outputData).map((key) => (
+            {Object.keys(props.outputData.data).map((key) => (
               <div key={key}>
                 <div className={classes.cardContainer}>
                   <input name={key} defaultValue={key} />
@@ -42,7 +41,7 @@ export function PartnersPreview(props: IPartnersPreviewProps) {
                 <div className={classes.cardContainer}>
                   <input
                     name={`${key}_value`}
-                    defaultValue={props.outputData[key][0]}
+                    defaultValue={props.outputData.data[key][0]}
                   />
                 </div>
               </div>

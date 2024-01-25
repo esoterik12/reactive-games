@@ -1,0 +1,43 @@
+
+/* Set to 840 (not 842) to avoid extra page */
+.pdfContainer {
+  width: 595px;
+  min-height: 840px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.individualContainer {
+  min-height: 840px;
+}
+
+.outputButtonsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.outputButtonsContainer button {
+  margin: 12px;
+}
+.letterRow {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin: 0;
+}
+.letterRow p {
+  margin: 0;
+  font-size: 18px;
+  padding: 10px;
+  min-width: 16px;
+}
+
+.wordsToFind{
+  border-top: #2c3e50 1px solid;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+}

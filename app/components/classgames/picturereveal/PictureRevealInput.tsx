@@ -4,6 +4,7 @@ import { validatePictureLink } from "@/utils/validation/validatePictureReveal";
 import { useDispatch } from "react-redux";
 import { setMessage, toggleModal } from "@/app/redux/modalSlice";
 import { mammalsPreset, flagsPreset, vehiclesPreset } from "./picture-presents";
+import { PictureRevealRequest } from "./PictureRevealRequest";
 
 export interface IPictureRevealInputProps {
   pictureLinks: string[];
@@ -91,7 +92,7 @@ export function PictureRevealInput(props: IPictureRevealInputProps) {
       </p> */}
       <form onSubmit={handleSubmit} className={classes.formContainer}>
         {props.pictureLinks.map((link, index) => (
-          <div className={classes.linkContainer}>
+          <div className={classes.linkContainer} key={index}>
             <label htmlFor="">Picture #{index + 1}</label>
             <input
               className={classes.linkInput}

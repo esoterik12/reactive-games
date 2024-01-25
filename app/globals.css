@@ -1,3 +1,11 @@
+/* New Color Palette 01/20/24
+Primary Color: #2F4461 - navy
+Secondary / Highlight: #E37430 - orange
+Third: 6777BF - blue
+Gray: #A3ADB1 - gray
+White: #F5F6F4 - off white
+*/
+
 body,
 html {
   font-family: "Poppins", Arial, sans-serif;
@@ -18,23 +26,22 @@ html {
   color: #333333;
 }
 
-.lightNavbar {
-  background-color: #e0dfdf;
-}
-
 .light h1,
 .light h2,
 .light h3,
-.light h4,
+.light h4 {
+  color: #F18F01;
+  font-weight: 300;
+}
 .light p,
 .light button {
-  color: #333333;
   font-weight: 300;
 }
 
+/* Main button border */
 .light button {
-  background-color: #e0dfdf;
-  border: 1px solid #e0dfdf;
+  background-color: #ffffff;
+  border: 0px solid #E37430;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
@@ -43,39 +50,6 @@ html {
 
 .light button:hover {
   background-color: #d4d4d4;
-}
-
-/* Dark Theme Styles (button styles also defined in navbar modules) */
-.dark {
-  background-color: #333333;
-  color: #f5f5f5;
-}
-
-.darkNavbar {
-  background-color: #222222;
-}
-
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark p,
-.dark button {
-  color: #f5f5f5;
-  font-weight: 300;
-}
-
-.dark button {
-  background-color: #222222;
-  border: 1px solid #222222;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.dark button:hover {
-  background-color: #1a1a1a;
 }
 
 #modal-root {

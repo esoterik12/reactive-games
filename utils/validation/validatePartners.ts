@@ -1,4 +1,5 @@
 export interface IPartnersData {
+  title: string;
   words: string;
   options: string;
 }
@@ -14,8 +15,12 @@ export function validatePartners(partnersData: IPartnersData) {
     throw new Error("Invalid options.");
   }
 
-  if (partnersData.words.length === 0) {
+  if (partnersData.words.trim().length === 0) {
     throw new Error("Invalid words input.");
+  }
+
+  if (partnersData.title.trim().length === 0) {
+    throw new Error("Invalid title.");
   }
 
   // if (partnersData.words.length > 12) {

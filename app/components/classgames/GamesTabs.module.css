@@ -14,42 +14,17 @@
 
 .tabsContainerLight button {
   margin-right: 20px;
-  background-color: rgb(95, 95, 95);
-  color: white;
   min-width:150px;
 }
 
 .tabsContainerLight button:hover {
   margin-right: 20px;
-  background-color: rgb(141, 141, 141);
-  color: white;
-}
-
-.tabsContainerDark button {
-  margin-right: 20px;
-  background-color: rgb(196, 196, 196);
-  color: black;
-  min-width:150px;
-}
-
-.tabsContainerDark button:hover {
-  margin-right: 20px;
-  background-color: rgb(128, 128, 128);
-  color: black;
-}
-
-.activeButtonDark {
-  background-color: #D8315B !important;
+  background-color: #A3ADB1;
 }
 
 .activeButtonLight {
-  background-color: #D8315B !important;
-}
-
-.hamburgerDark {
-  display: none;
-  cursor: pointer;
-  margin-top: 20px;
+  background-color: #2F4461 !important;
+  color: white;
 }
 
 .hamburgerLight {

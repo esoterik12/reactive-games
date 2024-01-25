@@ -6,6 +6,8 @@ import classes from "./MyPuzzles.module.css";
 import { WordScrambleOutput } from "../puzzles/wordscramble/WordScrambleOutput";
 import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
+import { WordsearchOutput } from "../puzzles/wordsearch/WordsearchOutput";
+import { PartnersOutput } from "../puzzles/findyourpartners/PartnersOutput";
 
 // Current situation:
 // This only works with WordScramble now.
@@ -14,8 +16,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 export interface IMyPuzzlesProps {}
 
 interface JsonData {
-  scrambleTitle: string;
-  scrambleInput: string;
+  title: string;
+  output: string;
   dataType: string;
 }
 
@@ -134,13 +136,14 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
             <p>Action</p>
           </div>
           {puzzles.map((puzzle, index) => (
-            <div className={classes.saveItemContainer}>
-              <div className={classes.saveItem} key={puzzle.id}>
+            <div key={puzzle.id} className={classes.saveItemContainer}>
+              <div className={classes.saveItem}>
                 <p>{puzzle.id}</p>
-                <div className={classes.saveItemTitle}>
-                  <p onClick={() => handleOpen(index)}>
-                    {puzzle.json_data.scrambleTitle}
-                  </p>
+                <div
+                  onClick={() => handleOpen(index)}
+                  className={classes.saveItemTitle}
+                >
+                  <p>{puzzle.json_data.title}</p>
                 </div>
                 <p>{puzzle.user_email}</p>
                 <p>{puzzle.work_data_type}</p>
@@ -154,8 +157,18 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
       {open && loadedData.work_data_type === "scrambleOutput" && (
         <WordScrambleOutput
           scrambleTitle={loadedData.json_data.title}
-          scrambleOutput={loadedData.json_data.scrambleOutput}
+          scrambleOutput={loadedData.json_data.output}
         />
+      )}
+      {open && loadedData.work_data_type === "wordsearch" && (
+        <WordsearchOutput
+          wordsearchOutput={loadedData.json_data.output.wordsearchOutput}
+          wordsearchInput={loadedData.json_data.output.wordsearchInput}
+          wordsearchTitle={loadedData.json_data.title}
+        />
+      )}
+      {open && loadedData.work_data_type === "partners" && (
+        <PartnersOutput finalData={loadedData.json_data.output} />
       )}
     </div>
   );

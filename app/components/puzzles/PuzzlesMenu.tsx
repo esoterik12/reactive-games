@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PuzzlesTabs } from "./PuzzlesTabs";
 import { Cryptogram } from "./cryptogram/Cryptograms";
-import { BingoInput } from "./bingo/BingoInput";
+import { Bingo } from "./bingo/Bingo";
 import { Wordsearch } from "./wordsearch/Wordsearch";
 import { WordScramble } from "./wordscramble/WordScramble";
 import { FindYourPartners } from "./findyourpartners/FindYourPartners";
@@ -18,7 +18,7 @@ export function PuzzlesMenu(props: IPuzzlesMenuProps) {
         activePuzzle={activePuzzle}
       >
         {activePuzzle === 'cryptogram' && <Cryptogram />}
-        {activePuzzle === 'bingo' && <BingoInput />}
+        {activePuzzle === 'bingo' && <Bingo />}
         {activePuzzle === "wordsearch" && <Wordsearch />}
         {activePuzzle === "wordscramble" && <WordScramble />}
         {activePuzzle === "findyourpartner" && <FindYourPartners />}

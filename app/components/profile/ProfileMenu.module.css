@@ -21,21 +21,12 @@
 }
 
 .buttonContainerActiveLight button {
-  background-color: #d4d4d4;
+  background-color: #2F4461 !important;
+  color: #F5F6F4;
   margin: 0;
   text-align: left;
   min-width: 90%;
   margin: 10px;
-  font-weight: 600;
-}
-
-.buttonContainerActiveDark button {
-  background-color: #1a1a1a;
-  margin: 0;
-  text-align: left;
-  min-width: 90%;
-  margin: 10px;
-  font-weight: 600;
 }
 
 .buttonContainer button {
@@ -45,5 +36,5 @@
 }
 
 .buttonContainer button:hover {
-  background-color: inherit;
+  background-color: #A3ADB1;
 }
