@@ -5,13 +5,11 @@ import { toggleModal, setMessage } from "@/app/redux/modalSlice";
 import classes from "./MyPuzzles.module.css";
 import { WordScrambleOutput } from "../puzzles/wordscramble/WordScrambleOutput";
 import { useSelector } from "react-redux";
-import CircularProgress from "@mui/material/CircularProgress";
+import { DefaultLoader } from "../common/thirdparty";
 import { WordsearchOutput } from "../puzzles/wordsearch/WordsearchOutput";
 import { PartnersOutput } from "../puzzles/findyourpartners/PartnersOutput";
-
-// Current situation:
-// This only works with WordScramble now.
-// Major functionality is to make it work for all outputs / generators.
+import { BingoOutput } from "../puzzles/bingo/BingoOutput";
+import generatePDF from "@/utils/pdf/generatePDF";
 
 export interface IMyPuzzlesProps {}
 
@@ -35,6 +33,7 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
   const loadedData = useSelector((state: any) => state.load.loadedData);
+  const printRef = React.useRef<HTMLDivElement>(null);
 
   // Function to fetch SQL data for user puzzles and set the returned data to state
   async function loadPuzzles() {
@@ -84,8 +83,11 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
     dispatch(setLoad(puzzles[index]));
   }
 
+  function handleGeneratePDF() {
+    generatePDF(printRef.current, "BingoPDF");
+  }
+
   async function handleDelete(puzzleId: number) {
-    console.log("delete handler clicked - puzzleId: ", puzzleId);
     try {
       const response = await fetch("/api/delete", {
         method: "POST",
@@ -115,7 +117,7 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
   if (loading) {
     return (
       <div className={classes.loadingContainer}>
-        <CircularProgress />
+        <DefaultLoader />
       </div>
     );
   }
@@ -124,7 +126,12 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
     <div className={classes.pageContainer}>
       <h2>My Saves</h2>
       <p>Revist your past work and share with other users.</p>
-      {open && <button onClick={handleBack}>Back</button>}
+      {open && (
+        <>
+          <button onClick={handleBack}>Back</button>
+          <button onClick={handleGeneratePDF}>Download PDF</button>
+        </>
+      )}
       {!open && (
         <div className={classes.saveTable}>
           <div className={classes.tableHeader}>
@@ -158,6 +165,7 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
         <WordScrambleOutput
           scrambleTitle={loadedData.json_data.title}
           scrambleOutput={loadedData.json_data.output}
+          printRef={printRef}
         />
       )}
       {open && loadedData.work_data_type === "wordsearch" && (
@@ -165,10 +173,20 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
           wordsearchOutput={loadedData.json_data.output.wordsearchOutput}
           wordsearchInput={loadedData.json_data.output.wordsearchInput}
           wordsearchTitle={loadedData.json_data.title}
+          printRef={printRef}
         />
       )}
       {open && loadedData.work_data_type === "partners" && (
-        <PartnersOutput finalData={loadedData.json_data.output} />
+        <PartnersOutput
+          finalData={loadedData.json_data.output}
+          printRef={printRef}
+        />
+      )}
+      {open && loadedData.work_data_type === "bingo" && (
+        <BingoOutput
+          bingoOutput={loadedData.json_data.output}
+          printRef={printRef}
+        />
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import classes from "./Wordsearch.module.css";
 import { useDispatch } from "react-redux";
 import { GenInputField } from "../../input/GenInputField";
@@ -7,6 +7,7 @@ import { multiWordsearchGenerator } from "@/utils/puzzle-generators/wordsearchGe
 import { validateWordSearchInput } from "@/utils/validation/validateWordsearch";
 import { WordsearchOutput } from "./WordsearchOutput";
 import { SaveButton } from "../../input/SaveButton";
+import generatePDF from "@/utils/pdf/generatePDF";
 
 export function Wordsearch() {
   const [wordsearchInput, setWordsearchInput] = useState<string>("");
@@ -16,6 +17,7 @@ export function Wordsearch() {
   const [saved, setSaved] = useState(false);
   const [wordsearchOutput, setWordsearchOutput] = useState<any[] | null>();
   const dispatch = useDispatch();
+  const printRef = useRef<HTMLDivElement>(null);
 
   function handleSubmit() {
     try {
@@ -48,6 +50,10 @@ export function Wordsearch() {
     setWordsearchOutput(null);
     setNumOfVersions("1");
     setGridSize("12");
+  }
+
+  function handleGeneratePDF() {
+    generatePDF(printRef.current, "BingoPDF");
   }
 
   const wordsearchSave = {
@@ -102,19 +108,21 @@ export function Wordsearch() {
         </div>
       )}
       {wordsearchOutput && (
-        <>
+        <div className={classes.outputButtonsContainer}>
           <SaveButton
             saveObject={wordsearchSave}
             saved={saved}
             setSaved={setSaved}
           />
+          <button onClick={handleGeneratePDF}>Download PDF</button>
           <button onClick={handleReset}>Reset</button>
           <WordsearchOutput
             wordsearchOutput={wordsearchOutput}
             wordsearchTitle={wordsearchTitle}
             wordsearchInput={wordsearchInput}
+            printRef={printRef}
           />
-        </>
+        </div>
       )}
     </div>
   );

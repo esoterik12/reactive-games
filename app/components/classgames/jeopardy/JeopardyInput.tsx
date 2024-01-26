@@ -3,7 +3,7 @@ import classes from "./JeopardyInput.module.css";
 import { useDispatch } from "react-redux";
 import { setMessage, toggleModal } from "@/app/redux/modalSlice";
 import { QuestionDataObject } from "./Jeopardy";
-import CircularProgress from "@mui/material/CircularProgress";
+import { DefaultLoader } from "../../common/thirdparty";
 
 export interface IJeopardyInputProps {
   setQuestionData: React.Dispatch<
@@ -84,7 +84,7 @@ export function JeopardyInput(props: IJeopardyInputProps) {
               <button type="reset">Reset</button>
             </>
           )}
-          {isLoading && <CircularProgress />}
+          {isLoading && <DefaultLoader />}
         </div>
       </form>
     </div>

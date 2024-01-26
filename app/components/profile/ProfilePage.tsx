@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSession } from "next-auth/react";
 import classes from "./ProfilePage.module.css";
 import { useEffect, useState } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
+import { DefaultLoader } from "../common/thirdparty";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -60,7 +60,7 @@ export function ProfilePage(props: IProfilePageProps) {
   if (!profileData) {
     return (
       <div className={classes.loadingContainer}>
-        <CircularProgress />
+        <DefaultLoader />
       </div>
     );
   }

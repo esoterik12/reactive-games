@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";
-import CircularProgress from "@mui/material/CircularProgress";
+import { DefaultLoader } from "../common/thirdparty";
 import Link from "next/link";
 
 export default function LoginForm() {
@@ -60,7 +60,7 @@ export default function LoginForm() {
           <Link href="/register">
             <button className={classes.signupButton}>Sign Up</button>
           </Link></>}
-          {isLoading && <CircularProgress />}
+          {isLoading && <DefaultLoader />}
         </div>
       </form>
     </div>

@@ -5,13 +5,14 @@ export default async function generatePDF(
   saveName: string,
   x: number = 0,
   y: number = 0,
-  scale: number = 1
+  scale: number = 1,
+  orientation: "p" | "l" = "p",
 ) {
   const pixelWidth = 595; // A4 width in pixels
   const pixelHeight = 842; // A4 height in pixels
 
   const doc = new jsPDF({
-    orientation: "p",
+    orientation: orientation,
     unit: "mm",
     format: [pixelWidth, pixelHeight],
   });

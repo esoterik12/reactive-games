@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import classes from "./WordScramble.module.css";
 import { useDispatch } from "react-redux";
 import { GenInputField } from "../../input/GenInputField";
@@ -7,7 +7,7 @@ import { scrambleGenerator } from "@/utils/puzzle-generators/scrambleGenerator";
 import { validateScramble } from "@/utils/validation/validateScramble";
 import { WordScrambleOutput } from "./WordScrambleOutput";
 import { SaveButton } from "../../input/SaveButton";
-import { WordsearchOutput } from "../wordsearch/WordsearchOutput";
+import generatePDF from "@/utils/pdf/generatePDF";
 // queen, well, egg, real, trap, yes, up, in, octopus, punt, awake, seal, door, freeze, grow, help, jail, keen, lose, zeal, cream, veal, bean, need, mend
 
 export function WordScramble() {
@@ -16,6 +16,7 @@ export function WordScramble() {
   const [scrambleOutput, setScrambleOutput] = useState<any>();
   const [saved, setSaved] = useState(false);
   const dispatch = useDispatch();
+  const printRef = useRef<HTMLDivElement>(null);
 
   function handleSubmit() {
     try {
@@ -38,6 +39,10 @@ export function WordScramble() {
     setScrambleTitle("");
     setScrambleOutput(null);
     setSaved(false);
+  }
+
+  function handleGeneratePDF() {
+    generatePDF(printRef.current, "BingoPDF");
   }
 
   // Save Object //
@@ -103,13 +108,19 @@ export function WordScramble() {
         <div className={classes.scrambleContainer}>
           <h2>Preview your Puzzles:</h2>
           <div className={classes.outputButtonsContainer}>
-            <button onClick={handleReset}>Reset</button>
+            <button onClick={handleReset}>Reset</button>{" "}
+            <button onClick={handleGeneratePDF}>Download PDF</button>
             <SaveButton
               saveObject={scrambleSave}
               saved={saved}
               setSaved={setSaved}
             />
           </div>
+          <WordScrambleOutput
+            scrambleTitle={scrambleTitle}
+            scrambleOutput={scrambleOutput}
+            printRef={printRef}
+          />
         </div>
       )}
     </>

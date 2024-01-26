@@ -3,46 +3,23 @@ import { useState } from "react";
 import { GenInputField } from "../../input/GenInputField";
 import classes from "./Cryptograms.module.css";
 import cryptogramGenerator from "@/utils/puzzle-generators/cryptogramGenerator";
-import jsPDF from "jspdf";
 import { useDispatch } from "react-redux";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";
 import validateCryptogram from "@/utils/validation/validateCryptogram";
+import { CryptogramOutput } from "./CryptogramOutput";
+import { SaveButton } from "../../input/SaveButton";
+import generatePDF from "@/utils/pdf/generatePDF";
 
 export function Cryptogram() {
   const [cryptogramInput, setCryptogramInput] = useState("");
   const [givenAnswers, setGivenAnswers] = useState<string>("");
   const [cryptogramOutput, setCryptogramOutput] = useState<[] | null>(null);
-  const cryptoRef = React.useRef<any>(null);
+  const [saved, setSaved] = useState(false)
+  const printRef = React.useRef<any>(null);
   const dispatch = useDispatch();
 
-  // configures jsPDF depending on input
-  let pageScale: number = 0.43;
-  let pageOrientation: "p" | "portrait" | "l" | "landscape" = "landscape";
-  if (cryptogramOutput && cryptogramOutput.length > 3) {
-    pageScale = 0.291;
-    pageOrientation = "portrait";
-  }
-
-  const generateObjectPDF = async () => {
-    const doc = new jsPDF({
-      orientation: pageOrientation,
-      unit: "mm",
-      format: "a4",
-    });
-
-    doc.html(cryptoRef.current, {
-      x: 13,
-      y: 5,
-      html2canvas: {
-        scale: pageScale,
-      },
-      async callback(doc) {
-        doc.save("output");
-      },
-    });
-  };
-  async function handleGeneratePDF() {
-    await generateObjectPDF();
+  function handleGeneratePDF() {
+    generatePDF(printRef.current, "CryptogramPDF", 10, 4, 1, "p");
   }
 
   function handleSubmit() {
@@ -58,8 +35,14 @@ export function Cryptogram() {
 
   function handleReset() {
     setCryptogramInput("");
-    setGivenAnswers("")
+    setGivenAnswers("");
     setCryptogramOutput(null);
+  }
+
+  const cryptogramSave = {
+    title: "placeholderTitleCrypto",
+    output: cryptogramOutput,
+    dataType: "cryptogram",
   }
 
   return (
@@ -99,41 +82,14 @@ export function Cryptogram() {
         </div>
       )}
       {cryptogramOutput && (
-        <>
-          <h2>Preview Output</h2>
-
-          <div ref={cryptoRef} className={classes.cryptoOutput}>
-            <div>
-              <p>Name:_____________ </p>
-            </div>
-            {cryptogramOutput.map((subArray: [], idx) => {
-              return (
-                <div key={idx} className={classes.cryptoOutputRow}>
-                  {subArray.map((element, subIdx) => {
-                    if (element === "  ") {
-                      return (
-                        <div key={`${idx}${subIdx}`}>
-                          <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                        </div>
-                      );
-                    } else {
-                      return (
-                        <div key={`${idx}${subIdx}`}>
-                          <p>{element}</p>
-                          <p>__</p>
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
-              );
-            })}
-          </div>
+        <div>
           <div className={classes.outputButtonsContainer}>
             <button onClick={handleGeneratePDF}>Download PDF</button>
             <button onClick={handleReset}>Reset</button>
+            <SaveButton saved={saved} setSaved={setSaved} saveObject={cryptogramSave}/>
           </div>
-        </>
+          <CryptogramOutput printRef={printRef} cryptogramOutput={cryptogramOutput} />
+        </div>
       )}
     </div>
   );

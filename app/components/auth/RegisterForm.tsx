@@ -4,7 +4,7 @@ import classes from "./RegisterForm.module.css";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";
-import CircularProgress from "@mui/material/CircularProgress";
+import { DefaultLoader } from "../common/thirdparty";
 
 const RegisterForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -64,7 +64,7 @@ const RegisterForm: React.FC = () => {
 
         <div className={classes.buttonContainer}>
           {!isLoading && <button type="submit">Register</button>}
-          {isLoading && <CircularProgress />}
+          {isLoading && <DefaultLoader />}
         </div>
       </form>
     </div>

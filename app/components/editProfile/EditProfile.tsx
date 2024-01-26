@@ -8,7 +8,7 @@ import { StaticImageData } from "next/image";
 import { FieldSelect } from "./FieldSelect";
 import { ImageSelect } from "./ImageSelect";
 import editProfileValidation from "@/utils/validation/editProfile";
-import CircularProgress from "@mui/material/CircularProgress";
+import { DefaultLoader } from "../common/thirdparty";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";
@@ -34,7 +34,7 @@ export default function EditProfile() {
   const dateRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const router = useRouter()
+  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -54,10 +54,10 @@ export default function EditProfile() {
       try {
         editProfileValidation(profileData);
       } catch (error) {
-        dispatch(setMessage(`${error}`))
-        dispatch(toggleModal())
+        dispatch(setMessage(`${error}`));
+        dispatch(toggleModal());
         setIsLoading(false);
-        return
+        return;
       }
 
       // fetch request
@@ -74,30 +74,30 @@ export default function EditProfile() {
         });
 
         if (!response.ok) {
-          const errorData = await response.json()
-          console.log("Error in profile update: ", errorData)
-          dispatch(setMessage("Unknown Network or Server Error."))
-          dispatch(toggleModal())
-          setIsLoading(false)
-          return
+          const errorData = await response.json();
+          console.log("Error in profile update: ", errorData);
+          dispatch(setMessage("Unknown Network or Server Error."));
+          dispatch(toggleModal());
+          setIsLoading(false);
+          return;
         }
 
-        if(response.ok) {
-          console.log("Profile update successful: ", response)
-          dispatch(setMessage("Profile update successful!"))
-          dispatch(toggleModal())
-          setIsLoading(false)
-          router.push('/profile')
+        if (response.ok) {
+          console.log("Profile update successful: ", response);
+          dispatch(setMessage("Profile update successful!"));
+          dispatch(toggleModal());
+          setIsLoading(false);
+          router.push("/profile");
         }
         console.log("Response in updateProfile function: ", response);
-      } catch (error:any) {
+      } catch (error: any) {
         console.log(
           "Error in updateProfile function in EditProfile.tsx: ",
           error
         );
-        dispatch(setMessage("Unknown Network or Server Error"))
-        dispatch(toggleModal())
-        setIsLoading(false)
+        dispatch(setMessage("Unknown Network or Server Error"));
+        dispatch(toggleModal());
+        setIsLoading(false);
       }
     };
     await updateProfile();
@@ -116,7 +116,7 @@ export default function EditProfile() {
         <CountrySelect setSelectedCountry={setSelectedCountry} />
 
         <div className={classes.selectField}>
-        <FieldSelect setSelectedField={setSelectedField} />
+          <FieldSelect setSelectedField={setSelectedField} />
         </div>
 
         <p>
@@ -129,10 +129,17 @@ export default function EditProfile() {
           selectedImage={selectedImage}
         />
 
-        <button onClick={handleSubmit} className={classes.editProfileButton}>
-          Submit
-        </button>
-        {isLoading && <CircularProgress />}
+        {!isLoading && (
+          <button onClick={handleSubmit} className={classes.editProfileButton}>
+            Submit
+          </button>
+        )}
+
+        {isLoading && (
+          <div className={classes.loadingContainer}>
+            <DefaultLoader />
+          </div>
+        )}
       </form>
     </div>
   );

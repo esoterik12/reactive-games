@@ -1,28 +1,18 @@
 import * as React from "react";
 import classes from "./WordsearchOutput.module.css";
-import { useRef } from "react";
-import generatePDF from "@/utils/pdf/generatePDF";
 
 export interface IWordsearchOutputProps {
   wordsearchOutput: any[];
   wordsearchTitle: string;
   wordsearchInput: string;
+  printRef: React.RefObject<HTMLDivElement>
 }
 
 export function WordsearchOutput(props: IWordsearchOutputProps) {
-  const wordsearchRef = useRef<any>(null);
-
-  async function handleGeneratePDF() {
-    await generatePDF(wordsearchRef.current, "wordSearchoutput");
-  }
-
   return (
     <>
-      <h2>Preview your Wordsearch:</h2>
-      <div className={classes.outputButtonsContainer}>
-        <button onClick={handleGeneratePDF}>Download PDF</button>
-      </div>
-      <div ref={wordsearchRef} className={classes.pdfContainer}>
+      <h2>Your Wordsearch:</h2>
+      <div ref={props.printRef} className={classes.pdfContainer}>
         {props.wordsearchOutput.map((versionArray, verIndex) => (
           <div className={classes.individualContainer} key={`ver-${verIndex}`}>
             <h3>

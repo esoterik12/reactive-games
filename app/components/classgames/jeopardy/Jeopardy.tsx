@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";
 import classes from "./Jeopardy.module.css";
 import { JeopardyOutput } from "./JeopardyOutput";
-import CircularProgress from "@mui/material/CircularProgress";
+import { DefaultLoader } from "../../common/thirdparty";
 import { JeopardyInput } from "./JeopardyInput";
 
 export interface jeopardyRequest {
@@ -111,7 +111,7 @@ export function Jeopardy(props: IJeopardyProps) {
     return (
       <div className={classes.jeopardyPageContainer}>
         <div className={classes.loadingSpinnerContainer}>
-          <CircularProgress />
+          <DefaultLoader />
           <p>Generating your questions...</p>
           <p>This process usually takes about 20 to 30 seconds.</p>
         </div>

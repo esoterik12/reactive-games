@@ -8,7 +8,7 @@ import {
   validateSpotIt,
   validateSpotItReq,
 } from "@/utils/validation/validateSpotIt";
-import CircularProgress from "@mui/material/CircularProgress";
+import { DefaultLoader } from "../../common/thirdparty";
 
 export function SpotItInput() {
   const dispatch = useDispatch();
@@ -128,7 +128,7 @@ export function SpotItInput() {
             <button onClick={handleReset}>Reset</button>
           </>
         )}
-        {isLoading && <CircularProgress />}
+        {isLoading && <DefaultLoader />}
       </div>
     </div>
   );
