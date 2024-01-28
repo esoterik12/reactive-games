@@ -1,20 +1,18 @@
 import { useState, useRef } from "react";
 import classes from "./Wordsearch.module.css";
 import { useDispatch } from "react-redux";
-import { GenInputField } from "../../input/GenInputField";
+import { GenInputField } from "../../common/input/GenInputField";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";
 import { multiWordsearchGenerator } from "@/utils/puzzle-generators/wordsearchGenerator";
 import { validateWordSearchInput } from "@/utils/validation/validateWordsearch";
 import { WordsearchOutput } from "./WordsearchOutput";
-import { SaveButton } from "../../input/SaveButton";
-import generatePDF from "@/utils/pdf/generatePDF";
+import { DefaultContainer } from "../../common/containers/DefaultContainer";
 
 export function Wordsearch() {
   const [wordsearchInput, setWordsearchInput] = useState<string>("");
   const [wordsearchTitle, setWordsearchTitle] = useState<string>("");
   const [numOfVersions, setNumOfVersions] = useState<string>("1");
   const [gridSize, setGridSize] = useState<string>("12");
-  const [saved, setSaved] = useState(false);
   const [wordsearchOutput, setWordsearchOutput] = useState<any[] | null>();
   const dispatch = useDispatch();
   const printRef = useRef<HTMLDivElement>(null);
@@ -29,14 +27,14 @@ export function Wordsearch() {
         wordsearchTitle,
         numOfVersions,
         gridSize
-      ); // validates
+      );
       setWordsearchOutput(
         multiWordsearchGenerator(
           wordsArray,
           parseInt(numOfVersions),
           parseInt(gridSize)
         )
-      ); //  generates - , wordsearchTitle, numOfVersions
+      );
     } catch (error) {
       console.log("Error generating wordsearch output: ", error);
       dispatch(setMessage(`${error}`));
@@ -52,18 +50,22 @@ export function Wordsearch() {
     setGridSize("12");
   }
 
-  function handleGeneratePDF() {
-    generatePDF(printRef.current, "BingoPDF");
-  }
-
-  const wordsearchSave = {
-    title: wordsearchTitle,
-    output: { wordsearchOutput, wordsearchInput },
-    dataType: "wordsearch",
+  const wordsearchData = {
+    save: {
+      title: wordsearchTitle,
+      output: { wordsearchOutput, wordsearchInput },
+      dataType: "wordsearch",
+    },
+    outputComplete: !!wordsearchOutput,
+    pdfTitle: "WordsearchPDF",
   };
 
   return (
-    <div className={classes.wordsearchContainer}>
+    <DefaultContainer
+      printRef={printRef}
+      resetFunction={handleReset}
+      saveObject={wordsearchData}
+    >
       {!wordsearchOutput && (
         <div className={classes.wordsearchInput}>
           <h2>Wordsearch Generator</h2>
@@ -108,22 +110,13 @@ export function Wordsearch() {
         </div>
       )}
       {wordsearchOutput && (
-        <div className={classes.outputButtonsContainer}>
-          <SaveButton
-            saveObject={wordsearchSave}
-            saved={saved}
-            setSaved={setSaved}
-          />
-          <button onClick={handleGeneratePDF}>Download PDF</button>
-          <button onClick={handleReset}>Reset</button>
-          <WordsearchOutput
-            wordsearchOutput={wordsearchOutput}
-            wordsearchTitle={wordsearchTitle}
-            wordsearchInput={wordsearchInput}
-            printRef={printRef}
-          />
-        </div>
+        <WordsearchOutput
+          wordsearchOutput={wordsearchOutput}
+          wordsearchTitle={wordsearchTitle}
+          wordsearchInput={wordsearchInput}
+          printRef={printRef}
+        />
       )}
-    </div>
+    </DefaultContainer>
   );
 }

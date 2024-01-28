@@ -10,6 +10,7 @@ export interface IPictureRevealInputProps {
   pictureLinks: string[];
   setPictureLinks: React.Dispatch<React.SetStateAction<string[]>>;
   setIsSubmit: React.Dispatch<React.SetStateAction<boolean>>;
+  handleReset: () => void;
   setInvalidImages: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -53,10 +54,7 @@ export function PictureRevealInput(props: IPictureRevealInputProps) {
     props.setPictureLinks(completeLinks);
   }
 
-  function handleReset() {
-    props.setIsSubmit(false);
-    props.setPictureLinks(Array(15).fill(""));
-  }
+
 
   function handlePreset(id: string[]) {
     props.setPictureLinks(id);
@@ -105,7 +103,7 @@ export function PictureRevealInput(props: IPictureRevealInputProps) {
         ))}
         <div className={classes.buttonContainer}>
           <button type="submit">Submit</button>
-          <button type="reset" onClick={handleReset}>
+          <button type="reset" onClick={props.handleReset}>
             Clear All
           </button>
         </div>

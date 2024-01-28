@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "./SpotItInput.module.css";
-import { GenInputField } from "../../input/GenInputField";
+import { GenInputField } from "../../common/input/GenInputField";
 import { useDispatch } from "react-redux";
 import { setMessage, toggleModal } from "@/app/redux/modalSlice";
 import { setWords, resetWords, displayWords } from "@/app/redux/spotitSlice";

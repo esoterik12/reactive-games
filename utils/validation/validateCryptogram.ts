@@ -1,6 +1,9 @@
-export default function validateCryptogram(cryptogramInput: string) {
+export default function validateCryptogram(cryptogramInput: string, cryptogramTitle: string) {
   if (!cryptogramInput || cryptogramInput.trim().length === 0) {
     throw new Error("Invalid input.");
+  }
+  if (!cryptogramTitle || cryptogramTitle.trim().length === 0) {
+    throw new Error("Invalid title.");
   }
   if (cryptogramInput.trim().length > 120) {
     throw new Error("You input is too long.");

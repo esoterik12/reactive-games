@@ -2,9 +2,11 @@ import classes from "./SaveButton.module.css";
 import { useDispatch } from "react-redux";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";
 import saveFunc from "@/utils/save-data/saveFunc";
+import { SaveObject } from "../containers/DefaultContainer";
+import { SaveGameObject } from "../containers/DefaultGameContainer";
 
 interface ISaveButtonProps {
-  saveObject: {};
+  saveObject: SaveObject | SaveGameObject;
   saved: boolean;
   setSaved: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -16,8 +18,8 @@ export function SaveButton(props: ISaveButtonProps) {
     dispatch(setMessage("Saving..."));
     dispatch(toggleModal());
     try {
-      console.log("Scrambled Save data: ", props.saveObject);
-      await saveFunc(props.saveObject);
+      console.log("Scrambled Save data: ", props.saveObject.save);
+      await saveFunc(props.saveObject.save);
 
       dispatch(setMessage("Save successful."));
       dispatch(toggleModal());

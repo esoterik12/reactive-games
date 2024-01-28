@@ -1,6 +1,6 @@
 import wordErrorGenerator from "@/utils/puzzle-generators/wordhuntGenerator";
 import * as React from "react";
-import { GenInputField } from "../../input/GenInputField";
+import { GenInputField } from "../../common/input/GenInputField";
 
 export interface IWordHuntProps {}
 

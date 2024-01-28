@@ -4,6 +4,7 @@ import { PictureRevealOutput } from "./PictureRevealOutput";
 import { PictureRevealInput } from "./PictureRevealInput";
 import { useDispatch } from "react-redux";
 import { setMessage, toggleModal } from "@/app/redux/modalSlice";
+import { DefaultGameContainer } from "../../common/containers/DefaultGameContainer";
 
 export interface IPictureRevealProps {}
 
@@ -15,7 +16,12 @@ export function PictureReveal(props: IPictureRevealProps) {
   const [isSubmit, setIsSubmit] = React.useState(false);
   const dispatch = useDispatch();
 
-  // Displays a modal if the users has input invalid images
+  function handleReset() {
+    setIsSubmit(false);
+    setPictureLinks(Array(15).fill(""));
+  }
+
+  // Displays a modal if the user has input invalid images
   // and they have been removed from the input.
   React.useEffect(() => {
     if (invalidImages > 0) {
@@ -32,14 +38,27 @@ export function PictureReveal(props: IPictureRevealProps) {
     }
   }, [invalidImages]);
 
+  const pictureRevealSave = {
+    save: {
+      title: "placeholderPictureRevealTitle",
+      output: pictureLinks,
+      dataType: "pictureReveal",
+    },
+    outputComplete: isSubmit,
+  };
+
   return (
-    <div className={classes.pictureRevealContainer}>
+    <DefaultGameContainer
+      saveGameObject={pictureRevealSave}
+      resetFunction={handleReset}
+    >
       {!isSubmit && (
         <PictureRevealInput
           pictureLinks={pictureLinks}
           setPictureLinks={setPictureLinks}
           setIsSubmit={setIsSubmit}
           setInvalidImages={setInvalidImages}
+          handleReset={handleReset}
         />
       )}
       {isSubmit && (
@@ -49,6 +68,6 @@ export function PictureReveal(props: IPictureRevealProps) {
           setPictureLinks={setPictureLinks}
         />
       )}
-    </div>
+    </DefaultGameContainer>
   );
 }

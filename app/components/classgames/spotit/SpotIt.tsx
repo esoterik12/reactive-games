@@ -4,6 +4,7 @@ import { resetWords, displayWords } from "@/app/redux/spotitSlice";
 import classes from "./SpotIt.module.css";
 import { SpotItInput } from "./SpotItInput";
 import { useSelector } from "react-redux";
+import { DefaultGameContainer } from "../../common/containers/DefaultGameContainer";
 
 export function SpotIt() {
   const dispatch = useDispatch();
@@ -23,15 +24,27 @@ export function SpotIt() {
   }
 
   function handleReset() {
-    dispatch(resetWords())
+    dispatch(resetWords());
   }
 
   function handleNext() {
-    dispatch(displayWords())
+    dispatch(displayWords());
   }
 
+  const spotItSave = {
+    save: {
+      title: "placeholderSpotItTitle",
+      output: displayArray,
+      dataType: "spotIt",
+    },
+    outputComplete: changed,
+  };
+
   return (
-    <div className={classes.pageContainer}>
+    <DefaultGameContainer
+      resetFunction={handleReset}
+      saveGameObject={spotItSave}
+    >
       {!changed && (
         <div>
           <SpotItInput />
@@ -41,7 +54,6 @@ export function SpotIt() {
       {changed && (
         <div className={classes.spotItOutput}>
           <div className={classes.buttonContainer}>
-            <button onClick={handleReset}>Reset</button>
             <button onClick={handleNext}>Next</button>
           </div>
           <div className={classes.spotItContainer}>
@@ -53,6 +65,6 @@ export function SpotIt() {
           </div>
         </div>
       )}
-    </div>
+    </DefaultGameContainer>
   );
 }

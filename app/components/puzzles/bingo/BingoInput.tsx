@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { GenInputField } from "../../input/GenInputField";
+import { GenInputField } from "../../common/input/GenInputField";
 import classes from "./BingoInput.module.css";
 import bingoGenerator from "@/utils/puzzle-generators/bingoGenerator";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";

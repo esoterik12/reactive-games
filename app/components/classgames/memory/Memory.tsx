@@ -2,6 +2,7 @@ import * as React from "react";
 import classes from "./Memory.module.css";
 import { MemoryCard } from "./MemoryCard";
 import { MemoryInput } from "./MemoryInput";
+import { DefaultGameContainer } from "../../common/containers/DefaultGameContainer";
 
 export interface wordsData {
   [key: number]: {
@@ -15,7 +16,9 @@ export interface wordsData {
 export function Memory() {
   const [wordsData, setWordsData] = React.useState<wordsData>({}); // holds all game data
   const [visibleWords, setVisibleWords] = React.useState<any>([]); // holds the current words in play
-  const [shuffledWords, setShuffledWords] = React.useState<string[]>([]);
+  const [shuffledWords, setShuffledWords] = React.useState<string[] | null>(
+    null
+  );
   const [isSubmitted, setIsSubmitted] = React.useState<boolean>(false);
 
   // adds words to the visibleWords array
@@ -41,7 +44,7 @@ export function Memory() {
           }));
           setVisibleWords([]);
         } else {
-          // resets the property visible to false of selected words
+          // resets the property of selected words "visible" to false
           setWordsData((prevWordsData) => ({
             ...prevWordsData,
             [keyOne]: {
@@ -82,12 +85,22 @@ export function Memory() {
     setWordsData({});
   }
 
+  const memorySave = {
+    save: {
+      title: "",
+      output: shuffledWords,
+      dataType: "memory",
+    },
+    outputComplete: isSubmitted,
+  };
+
   return (
-    <div className={classes.pageContainer}>
+    <DefaultGameContainer
+      resetFunction={handleReset}
+      saveGameObject={memorySave}
+    >
       <h2>Play a Memory Game</h2>
-      <p>
-        Input eight pairs of words to create a 4x4 memory grid.
-      </p>
+      <p>Input eight pairs of words to create a 4x4 memory grid.</p>
       {!isSubmitted && (
         <MemoryInput
           setWordsData={setWordsData}
@@ -101,7 +114,7 @@ export function Memory() {
             <button onClick={handleReset}>Reset</button>
           </div>
           <div className={classes.memoryContainer}>
-            {shuffledWords.map((number, index) => (
+            {shuffledWords?.map((number, index) => (
               <div key={index}>
                 <MemoryCard
                   index={index}
@@ -117,6 +130,6 @@ export function Memory() {
           </div>
         </>
       )}
-    </div>
+    </DefaultGameContainer>
   );
 }

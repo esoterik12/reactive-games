@@ -1,7 +1,7 @@
 import * as React from "react";
-import classes from "./Minefield.module.css";
-import { MinefieldCard } from "./MinefieldCard";
 import { MinefieldInput } from "./MinefieldInput";
+import { DefaultGameContainer } from "../../common/containers/DefaultGameContainer";
+import { MinefieldOutput } from "./MinefieldOutput";
 
 const initialPointsState = [0, 0];
 
@@ -20,63 +20,37 @@ export function Minefield(props: IMinefieldProps) {
   const [points, setPoints] = React.useState<number[]>(initialPointsState);
   const [turn, setTurn] = React.useState(0);
 
-  // conditional grid size styling:
-  let gridStyles;
-  if (minesData.length === 20) {
-    gridStyles = classes.smallGrid;
-  } else if (minesData.length === 25) {
-    gridStyles = classes.mediumGrid;
-  } else if (minesData.length === 36) {
-    gridStyles = classes.largeGrid;
-  } else {
-    gridStyles = classes.superGrid;
+  function handleReset() {
+    setTurn(0);
+    setMinesData([]);
   }
 
-  function handleReset() {
-    setTurn(0)
-    setMinesData([])
-  }
+  const minefieldSave = {
+    save: {
+      title: "placeholderMinesTitle",
+      output: { minesData, turn },
+      dataType: "minefield",
+    },
+    outputComplete: !!(minesData.length > 0),
+  };
 
   return (
-    <div className={classes.pageContainer}>
+    <DefaultGameContainer
+      resetFunction={handleReset}
+      saveGameObject={minefieldSave}
+    >
       {minesData.length === 0 && (
         <MinefieldInput setMinesData={setMinesData} setPoints={setPoints} />
       )}
 
-      {minesData.length !== 0 && (
-        <>
-          <div className={classes.pointsContainer}>
-            {points.map((team, index) => (
-              <div key={index} className={classes.teamsContainer}>
-                <div
-                  className={`${classes.indivTeamContainer} ${
-                    index === turn ? classes.activeTeam : ""
-                  }`}
-                >
-                  Team {index + 1}: {team}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className={`${classes.minefieldContainer} ${gridStyles}`}>
-            {Array.isArray(minesData) &&
-              minesData.map((mine, index) => (
-                <MinefieldCard
-                  key={`${mine.id}`}
-                  index={index}
-                  number={mine.id}
-                  minesData={minesData}
-                  setMinesData={setMinesData}
-                  turn={turn}
-                  setTurn={setTurn}
-                  points={points}
-                  setPoints={setPoints}
-                />
-              ))}
-          </div>
-          <button onClick={handleReset}>Reset</button>
-        </>
-      )}
-    </div>
+      <MinefieldOutput 
+          minesData={minesData}
+          setMinesData={setMinesData}
+          turn={turn}
+          setTurn={setTurn}
+          points={points}
+          setPoints={setPoints}
+      />
+    </DefaultGameContainer>
   );
 }

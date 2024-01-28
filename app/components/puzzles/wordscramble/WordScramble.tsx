@@ -1,13 +1,13 @@
 import { useState, useRef } from "react";
 import classes from "./WordScramble.module.css";
 import { useDispatch } from "react-redux";
-import { GenInputField } from "../../input/GenInputField";
+import { GenInputField } from "../../common/input/GenInputField";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";
 import { scrambleGenerator } from "@/utils/puzzle-generators/scrambleGenerator";
 import { validateScramble } from "@/utils/validation/validateScramble";
 import { WordScrambleOutput } from "./WordScrambleOutput";
-import { SaveButton } from "../../input/SaveButton";
 import generatePDF from "@/utils/pdf/generatePDF";
+import { DefaultContainer } from "../../common/containers/DefaultContainer";
 // queen, well, egg, real, trap, yes, up, in, octopus, punt, awake, seal, door, freeze, grow, help, jail, keen, lose, zeal, cream, veal, bean, need, mend
 
 export function WordScramble() {
@@ -24,8 +24,8 @@ export function WordScramble() {
         const wordsArray = scrambleInput.split(",").map((ele) => ele.trim()); // cleans and sorts input into array
         console.log("wordsArray: ", wordsArray);
 
-        validateScramble(wordsArray, scrambleTitle); // validates
-        setScrambleOutput(scrambleGenerator(wordsArray)); // generates
+        validateScramble(wordsArray, scrambleTitle);
+        setScrambleOutput(scrambleGenerator(wordsArray));
       }
     } catch (error) {
       console.log("Error generating scramble output: ", error);
@@ -46,10 +46,14 @@ export function WordScramble() {
   }
 
   // Save Object //
-  const scrambleSave = {
-    title: scrambleTitle,
-    output: scrambleOutput,
-    dataType: "scrambleOutput",
+  const scrambleData = {
+    save: {
+      title: scrambleTitle,
+      output: scrambleOutput,
+      dataType: "scrambleOutput",
+    },
+    outputComplete: !!scrambleOutput,
+    pdfTitle: "WordScramblePDF",
   };
 
   //  Counts number of words by splitting, trimming words, and filtering out empty elements
@@ -62,7 +66,11 @@ export function WordScramble() {
   }
 
   return (
-    <>
+    <DefaultContainer
+      printRef={printRef}
+      saveObject={scrambleData}
+      resetFunction={handleReset}
+    >
       {!scrambleOutput && (
         <div className={classes.scrambleContainer}>
           <div className={classes.scrambleInput}>
@@ -107,15 +115,6 @@ export function WordScramble() {
       {scrambleOutput && (
         <div className={classes.scrambleContainer}>
           <h2>Preview your Puzzles:</h2>
-          <div className={classes.outputButtonsContainer}>
-            <button onClick={handleReset}>Reset</button>{" "}
-            <button onClick={handleGeneratePDF}>Download PDF</button>
-            <SaveButton
-              saveObject={scrambleSave}
-              saved={saved}
-              setSaved={setSaved}
-            />
-          </div>
           <WordScrambleOutput
             scrambleTitle={scrambleTitle}
             scrambleOutput={scrambleOutput}
@@ -123,6 +122,6 @@ export function WordScramble() {
           />
         </div>
       )}
-    </>
+    </DefaultContainer>
   );
 }

@@ -1,0 +1,98 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 95%; 
+  min-height: 620px;
+  margin: 20px auto;
+  padding: 5px; 
+  border: 1px solid #ddd; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.pageContainer h2 {
+  margin: 20px;
+}
+
+/* Teams / Points */
+.pointsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.teamsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.indivTeamContainer {
+  border: 2px solid rgb(133, 133, 133);
+  border-radius: 8px; 
+  margin: 0;
+  width: 110px;
+  text-align: center;
+  padding: 10px 20px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.activeTeam {
+  color: red;
+  font-weight: 700;
+  border: 2px solid red; 
+  background-color: #ffecec; 
+}
+
+/* Optional: Animation for active team change */
+@keyframes activeTeamAnimation {
+  0% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #ffecec;
+  }
+}
+
+.activeTeam {
+  animation: activeTeamAnimation 0.5s ease;
+}
+
+/* END Teams / Points */
+
+
+.minefieldContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px;
+}
+
+.smallGrid {
+  grid-template-columns: repeat(4, 1fr);
+  width: 350px;
+}
+
+.mediumGrid {
+  grid-template-columns: repeat(5, 1fr);
+  width: 450px;
+}
+
+.largeGrid {
+  grid-template-columns: repeat(6, 1fr);
+  width: 550px;
+}
+
+.superGrid {
+  grid-template-columns: repeat(7, 1fr);
+  width: 650px;
+}
+
+.buttonContainer button {
+  width: 100px;
+}

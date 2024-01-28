@@ -22,11 +22,13 @@ Major:
   -Add fullscreen support for games
 
 Minor:
+  -Fix delete on save page so users cannot click twice
   -Fix extra page on PDF exports
   -Consistent styling for Save, Reset, DownloadPDF buttons
     -Handle ref in parent components?
   -Clean up styles and redundant classes in components
   -More customized PDF config options depending on output (eg. crtyptograms length)
+  -Fix change in alignment in Partners preview and final version
 
 Luxury:
   -Generative functionality for picture reveal?

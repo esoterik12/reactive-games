@@ -34,7 +34,6 @@
 
 .cardContainer {
   box-sizing: border-box;
-  /* border: 1px solid red; */
   min-height: 421px;
   max-height: 421px;
 }

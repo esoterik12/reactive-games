@@ -4,8 +4,7 @@ import classes from "./FindYourPartners.module.css";
 import { PartnersInput } from "./PartnersInput";
 import { PartnersPreview } from "./PartnersPreview";
 import { PartnersOutput } from "./PartnersOutput";
-import { SaveButton } from "../../input/SaveButton";
-import generatePDF from "@/utils/pdf/generatePDF";
+import { DefaultContainer } from "../../common/containers/DefaultContainer";
 
 export interface outputData {
   data: { [key: string]: string[] };
@@ -15,7 +14,6 @@ export function FindYourPartners() {
   const [isLoading, setIsLoading] = useState(false);
   const [outputData, setOutputData] = useState<outputData | null>(null);
   const [finalData, setFinalData] = useState<any>();
-  const [saved, setSaved] = useState(false);
   const printRef = useRef<HTMLDivElement>(null);
 
   function handleReset() {
@@ -23,18 +21,22 @@ export function FindYourPartners() {
     setFinalData(null);
   }
 
-  function handleGeneratePDF() {
-    generatePDF(printRef.current, "BingoPDF");
-  }
-
-  const partnersSave = {
-    title: outputData?.title,
-    output: finalData,
-    dataType: "partners",
+  const partnersData = {
+    save: {
+      title: outputData?.title || null,
+      output: finalData,
+      dataType: "partners",
+    },
+    outputComplete: !!finalData,
+    pdfTitle: "FindYourPartnersPDF",
   };
 
   return (
-    <div className={classes.partnerContainer}>
+    <DefaultContainer
+      printRef={printRef}
+      resetFunction={handleReset}
+      saveObject={partnersData}
+    >
       {isLoading && (
         <div className={classes.loadingSpinnerContainer}>
           <DefaultLoader />
@@ -58,18 +60,9 @@ export function FindYourPartners() {
         <>
           <h2>Preview Your Cards:</h2>
           <p>Download your final version.</p>
-          <div className={classes.buttonContainer}>
-            <button onClick={handleReset}>Reset</button>
-            <button onClick={handleGeneratePDF}>Download PDF</button>
-            <SaveButton
-              saveObject={partnersSave}
-              saved={saved}
-              setSaved={setSaved}
-            />
-          </div>
-          <PartnersOutput finalData={finalData} printRef={printRef}/>
+          <PartnersOutput finalData={finalData} printRef={printRef} />
         </>
       )}
-    </div>
+    </DefaultContainer>
   );
 }
