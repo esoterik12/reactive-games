@@ -1,5 +1,5 @@
 "use client";
-import classes from "./NavBar.module.css";
+import classes from "./Navbar.module.css";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonIcon from "@mui/icons-material/Person";
 import Link from "next/link";
