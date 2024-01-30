@@ -1,5 +1,4 @@
 import * as React from "react";
-import classes from "./PictureReveal.module.css";
 import { PictureRevealOutput } from "./PictureRevealOutput";
 import { PictureRevealInput } from "./PictureRevealInput";
 import { useDispatch } from "react-redux";
@@ -46,7 +45,7 @@ export function PictureReveal(props: IPictureRevealProps) {
     },
     outputComplete: isSubmit,
   };
-
+ 
   return (
     <DefaultGameContainer
       saveGameObject={pictureRevealSave}

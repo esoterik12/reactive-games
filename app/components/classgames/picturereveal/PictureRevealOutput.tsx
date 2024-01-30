@@ -2,10 +2,11 @@ import * as React from "react";
 import classes from "./PictureRevealOutput.module.css";
 import Image from "next/image";
 
+// setIsSubmit and setPictureLinks are optional to allow for display of output while loading a save
 export interface IPictureRevealOutputProps {
   pictureLinks: string[];
-  setIsSubmit: React.Dispatch<React.SetStateAction<boolean>>;
-  setPictureLinks: React.Dispatch<React.SetStateAction<string[]>>;
+  setIsSubmit?: React.Dispatch<React.SetStateAction<boolean>>;
+  setPictureLinks?: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export function PictureRevealOutput(props: IPictureRevealOutputProps) {
@@ -68,20 +69,24 @@ export function PictureRevealOutput(props: IPictureRevealOutputProps) {
     }
   }
 
-  function handleReset() {
-    setCurrentIndex(0);
-    setImgIndex(0);
-    // This ensures previous links remain in the input if the user resets
-    props.setPictureLinks((prevLinks: string[]) => {
-      const updatedLinks = [...prevLinks];
-      const spacesRemaining = 15 - prevLinks.length;
-      for (let i = 0; i < spacesRemaining; i++) {
-        updatedLinks.push("");
-      }
-      return updatedLinks;
-    });
-    props.setIsSubmit(false);
+  // Conditional loading of pictureLinks
+  let handleReset;
+  if (props.setPictureLinks && props.setIsSubmit) {
+    handleReset = () => {
+      setCurrentIndex(0);
+      setImgIndex(0);
+      props.setPictureLinks?.((prevLinks: string[]) => {
+        const updatedLinks = [...prevLinks];
+        const spacesRemaining = 15 - prevLinks.length;
+        for (let i = 0; i < spacesRemaining; i++) {
+          updatedLinks.push("");
+        }
+        return updatedLinks;
+      });
+      props.setIsSubmit?.(false);
+    };
   }
+
 
   return (
     <div className={classes.imgContainer}>
@@ -109,7 +114,9 @@ export function PictureRevealOutput(props: IPictureRevealOutputProps) {
         <button onClick={handleReveal}>Reveal</button>
         <button onClick={handleRevealAll}>Reveal All</button>
         <button onClick={handleNext}>Next</button>
-        <button onClick={handleReset}>Reset All</button>
+        {props.setPictureLinks && props.setIsSubmit && (
+          <button onClick={handleReset}>Reset All</button>
+        )}
       </div>
     </div>
   );

@@ -9,15 +9,17 @@ export interface IJeopardyInputProps {
   setQuestionData: React.Dispatch<
     React.SetStateAction<QuestionDataObject | undefined>
   >;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function JeopardyInput(props: IJeopardyInputProps) {
+  const {setQuestionData, loading, setLoading} = props
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = React.useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event?.preventDefault();
-    setIsLoading(true);
+    setLoading(true);
     const formData = new FormData(event.currentTarget);
     console.log("formData", formData);
 
@@ -42,7 +44,7 @@ export function JeopardyInput(props: IJeopardyInputProps) {
         console.log("Error with response in fetch request: ", errorData);
         dispatch(setMessage("Error - please try again."));
         dispatch(toggleModal());
-        setIsLoading(false);
+        setLoading(false);
       }
 
       if (response.ok) {
@@ -52,14 +54,14 @@ export function JeopardyInput(props: IJeopardyInputProps) {
           responseData
         );
         const responseObject = JSON.parse(responseData);
-        props.setQuestionData(responseObject);
-        setIsLoading(false);
+        setQuestionData(responseObject);
+        setLoading(false);
       }
     } catch (error: any) {
       console.log("Error from catch: ", error);
       dispatch(setMessage("Error - please try again."));
       dispatch(toggleModal());
-      setIsLoading(false);
+      setLoading(false);
     }
   }
 
@@ -78,13 +80,13 @@ export function JeopardyInput(props: IJeopardyInputProps) {
         <textarea id="theme" name="theme" />
 
         <div className={classes.buttonContainer}>
-          {!isLoading && (
+          {!loading && (
             <>
               <button type="submit">Generate</button>
               <button type="reset">Reset</button>
             </>
           )}
-          {isLoading && <DefaultLoader />}
+          {loading && <DefaultLoader />}
         </div>
       </form>
     </div>

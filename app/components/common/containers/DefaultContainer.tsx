@@ -33,6 +33,11 @@ export function DefaultContainer(props: IDefaultContainerProps) {
     generatePDF(props.printRef.current, props.saveObject.pdfTitle);
   }
 
+  function containerReset() {
+    props.resetFunction()
+    setSaved(false)
+  }
+
   return (
     <div className={classes.defaultContainer}>
       {props.saveObject.outputComplete && (
@@ -43,7 +48,7 @@ export function DefaultContainer(props: IDefaultContainerProps) {
             setSaved={setSaved}
           />
           <button onClick={handleGeneratePDF}>Download PDF</button>
-          <button onClick={() => props.resetFunction()}>Reset</button>
+          <button onClick={containerReset}>Reset</button>
         </div>
       )}
       {props.children}

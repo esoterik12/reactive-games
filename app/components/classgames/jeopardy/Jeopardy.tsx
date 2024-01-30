@@ -1,11 +1,9 @@
 import * as React from "react";
-import { DUMMY_REQUEST } from "./dummyContent";
-import { useDispatch } from "react-redux";
-import { toggleModal, setMessage } from "@/app/redux/modalSlice";
 import classes from "./Jeopardy.module.css";
 import { JeopardyOutput } from "./JeopardyOutput";
 import { DefaultLoader } from "../../common/thirdparty";
 import { JeopardyInput } from "./JeopardyInput";
+import { DefaultGameContainer } from "../../common/containers/DefaultGameContainer";
 
 export interface jeopardyRequest {
   levelDescription: string;
@@ -43,41 +41,7 @@ export function Jeopardy(props: IJeopardyProps) {
     QuestionDataObject | undefined
   >(); // Object to hold GPT generated questions
   const [jeopardyBoard, setJeopardyBoard] = React.useState<Question[][]>(); // Array with added data for the game board
-  const [isLoading, setIsLoading] = React.useState(false);
-  const dispatch = useDispatch();
-
-  async function handleGenerate() {
-    setIsLoading(true);
-    try {
-      const response = await fetch("/api/generators/jeopardy", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(DUMMY_REQUEST),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.log("Error with response in fetch request: ", errorData);
-        dispatch(setMessage("Error - please try again."));
-        dispatch(toggleModal());
-        setIsLoading(false);
-      }
-
-      if (response.ok) {
-        const responseData = await response.json();
-        const responseObject = JSON.parse(responseData);
-        setQuestionData(responseObject);
-        setIsLoading(false);
-      }
-    } catch (error: any) {
-      dispatch(setMessage(`${error}`));
-      dispatch(toggleModal());
-      console.log("Error in handleGenerate in Jeopardy.tsx: ", error);
-      setIsLoading(false);
-    }
-  }
+  const [loading, setLoading] = React.useState(false);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -107,7 +71,21 @@ export function Jeopardy(props: IJeopardyProps) {
     setJeopardyBoard(formDataArray);
   }
 
-  if (isLoading) {
+  function handleReset() {
+    setJeopardyBoard([]);
+    setQuestionData(undefined);
+  }
+
+  const jeopardyData = {
+    save: {
+      title: "placeholderJeopardyTitle",
+      output: jeopardyBoard,
+      dataType: "jeopardy",
+    },
+    outputComplete: !!questionData,
+  };
+
+  if (loading) {
     return (
       <div className={classes.jeopardyPageContainer}>
         <div className={classes.loadingSpinnerContainer}>
@@ -120,10 +98,19 @@ export function Jeopardy(props: IJeopardyProps) {
   }
 
   return (
-    <div className={classes.jeopardyPageContainer}>
+    <DefaultGameContainer
+      resetFunction={handleReset}
+      saveGameObject={jeopardyData}
+    >
       <div>
         {/* Placeholder generating questions from DUMMY_REQUEST */}
-        {!questionData && <JeopardyInput setQuestionData={setQuestionData} />}
+        {!questionData && (
+          <JeopardyInput
+            setQuestionData={setQuestionData}
+            loading={loading}
+            setLoading={setLoading}
+          />
+        )}
       </div>
       {questionData && !jeopardyBoard && (
         <div className={classes.jeopardyPreviewContainer}>
@@ -164,9 +151,8 @@ export function Jeopardy(props: IJeopardyProps) {
       {jeopardyBoard && (
         <JeopardyOutput
           jeopardyBoard={jeopardyBoard}
-          setJeopardyBoard={setJeopardyBoard}
         />
       )}
-    </div>
+    </DefaultGameContainer>
   );
 }

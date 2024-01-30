@@ -21,8 +21,8 @@ const DUMMY_LINKS = [
   },
   {
     key: "l4",
-    name: "My Puzzles",
-    active: "myPuzzles",
+    name: "My Work",
+    active: "myWork",
   },
   {
     key: "l2",

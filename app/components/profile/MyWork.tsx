@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 import { setLoad, clearLoad } from "@/app/redux/loadslice";
 import { toggleModal, setMessage } from "@/app/redux/modalSlice";
-import classes from "./MyPuzzles.module.css";
+import classes from "./MyWork.module.css";
 import { WordScrambleOutput } from "../puzzles/wordscramble/WordScrambleOutput";
 import { useSelector } from "react-redux";
 import { DefaultLoader } from "../common/thirdparty";
@@ -10,6 +10,10 @@ import { WordsearchOutput } from "../puzzles/wordsearch/WordsearchOutput";
 import { PartnersOutput } from "../puzzles/findyourpartners/PartnersOutput";
 import { BingoOutput } from "../puzzles/bingo/BingoOutput";
 import generatePDF from "@/utils/pdf/generatePDF";
+import { CryptogramOutput } from "../puzzles/cryptogram/CryptogramOutput";
+import { PictureRevealOutput } from "../classgames/picturereveal/PictureRevealOutput";
+import { MemoryOutput } from "../classgames/memory/MemoryOutput";
+import { JeopardyOutput } from "../classgames/jeopardy/JeopardyOutput";
 
 export interface IMyPuzzlesProps {}
 
@@ -27,8 +31,8 @@ interface UserWork {
   json_data: JsonData;
 }
 
-export function MyPuzzles(props: IMyPuzzlesProps) {
-  const [puzzles, setPuzzles] = React.useState<UserWork[]>([]);
+export function MyWork(props: IMyPuzzlesProps) {
+  const [puzzles, setPuzzles] = React.useState<UserWork[]>([]); // holds loaded data
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
@@ -88,6 +92,7 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
   }
 
   async function handleDelete(puzzleId: number) {
+    setLoading(true);
     try {
       const response = await fetch("/api/delete", {
         method: "POST",
@@ -100,17 +105,20 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
       if (response.ok) {
         console.log("Delete successful.");
         await loadPuzzles();
+        setLoading(false);
       }
 
       if (!response.ok) {
         console.log("Delete failed.");
         dispatch(setMessage("Delete failed."));
         dispatch(toggleModal());
+        setLoading(false);
       }
     } catch (error: any) {
       console.log("Delete failed.");
       dispatch(setMessage("Delete failed."));
       dispatch(toggleModal());
+      setLoading(false);
     }
   }
 
@@ -122,14 +130,31 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
     );
   }
 
+  if (puzzles.length === 0) {
+    return (
+      <div className={classes.pageContainer}>
+        <h2>You have no saved work.</h2>
+        <p>
+          Use Puzzle Creators or Classroom Games to create your own activities.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className={classes.pageContainer}>
-      <h2>My Saves</h2>
+      <h2>My Work</h2>
       <p>Revist your past work and share with other users.</p>
       {open && (
         <>
           <button onClick={handleBack}>Back</button>
-          <button onClick={handleGeneratePDF}>Download PDF</button>
+          {(loadedData.work_data_type === "scrambleOutput" ||
+            loadedData.work_data_type === "wordsearch" ||
+            loadedData.work_data_type === "bingo" ||
+            loadedData.work_data_type === "partners" ||
+            loadedData.work_data_type === "cryptogram") && (
+            <button onClick={handleGeneratePDF}>Download PDF</button>
+          )}
         </>
       )}
       {!open && (
@@ -187,6 +212,24 @@ export function MyPuzzles(props: IMyPuzzlesProps) {
           bingoOutput={loadedData.json_data.output}
           printRef={printRef}
         />
+      )}
+      {open && loadedData.work_data_type === "cryptogram" && (
+        <CryptogramOutput
+          cryptogramOutput={loadedData.json_data.output}
+          printRef={printRef}
+        />
+      )}
+      {open && loadedData.work_data_type === "pictureReveal" && (
+        <PictureRevealOutput pictureLinks={loadedData.json_data.output} />
+      )}
+      {open && loadedData.work_data_type === "memory" && (
+        <MemoryOutput
+          wordsData={loadedData.json_data.output}
+          isSubmitted={true}
+        />
+      )}
+      {open && loadedData.work_data_type === "jeopardy" && (
+        <JeopardyOutput jeopardyBoard={loadedData.json_data.output} />
       )}
     </div>
   );

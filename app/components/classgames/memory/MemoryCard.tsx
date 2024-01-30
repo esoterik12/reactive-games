@@ -3,17 +3,17 @@ import classes from "./MemoryCard.module.css";
 import { wordsData } from "./Memory";
 
 export interface IMemoryCardProps {
-  index: number
+  index: number;
   number: string; // will be parsedInt
-  setWordsData: any;
+  setLoadedWordsData: any;
   addVisible: any;
   wordsData: wordsData;
   visibleWords: string[];
-  shuffledWords: string[]
+  shuffledWords: string[];
 }
 
 export function MemoryCard(props: IMemoryCardProps) {
-  const numberKey = parseInt(props.number)
+  const numberKey = parseInt(props.number);
 
   function handleClick() {
     // stops clicks while evaluating two cards
@@ -21,7 +21,7 @@ export function MemoryCard(props: IMemoryCardProps) {
       return;
     }
     props.addVisible(numberKey);
-    props.setWordsData((prevWordsData: wordsData) => ({
+    props.setLoadedWordsData((prevWordsData: wordsData) => ({
       ...prevWordsData,
       [numberKey]: {
         ...prevWordsData[numberKey],
@@ -40,7 +40,6 @@ export function MemoryCard(props: IMemoryCardProps) {
     backStyles = classes.backIncomplete;
   }
 
-
   return (
     <div className={classes.container}>
       <div className={`${classes.card} ${isFlipped ? classes.flipped : ""}`}>
@@ -50,11 +49,8 @@ export function MemoryCard(props: IMemoryCardProps) {
           </button>
         )}
         {(isFlipped || isCompleted) && (
-          <button
-            disabled
-            className={`${classes.back} ${backStyles}`}
-          >
-              <p>{props.wordsData[numberKey].word}</p>
+          <button disabled className={`${classes.back} ${backStyles}`}>
+            <p>{props.wordsData[numberKey].word}</p>
           </button>
         )}
       </div>

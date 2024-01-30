@@ -7,8 +7,8 @@ import ThemeWrapper from "./components/theme-wrapper/ThemeWrapper";
 import Modal from "./components/modal/modal";
 
 export const metadata: Metadata = {
-  title: "React Puzzles",
-  description: "Create basic puzzles using React!",
+  title: "Reactive Classroom",
+  description: "Create classroom activities using React!",
 };
 
 export default async function RootLayout({

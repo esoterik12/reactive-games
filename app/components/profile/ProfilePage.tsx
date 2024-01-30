@@ -65,6 +65,31 @@ export function ProfilePage(props: IProfilePageProps) {
     );
   }
 
+  if (!profileData.data?.image) {
+    return (
+      <div className={classes.profileContainer}>
+        <div className={classes.profileLeft}>
+          <h3>Click Edit Profile to add your user details</h3>
+          <p>
+            <span className={classes.detailTextMinor}>Email: </span>
+            <span className={classes.detailText}>
+              {profileData?.data?.email}
+            </span>
+          </p>
+          <p>
+            <span className={classes.detailTextMinor}>Joined Date: </span>
+            <span className={classes.detailText}>{formattedDate}</span>
+          </p>
+          <div className={classes.linkContainer}>
+            <Link className={classes.editLink} href="/edit-profile">
+              <button>Edit Profile</button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={classes.profileContainer}>
       <div className={classes.profileLeft}>

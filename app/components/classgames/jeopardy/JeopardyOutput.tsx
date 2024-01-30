@@ -4,19 +4,21 @@ import { Question } from "./Jeopardy";
 
 export interface IJeopardyOutputProps {
   jeopardyBoard: Question[][] | undefined;
-  setJeopardyBoard: React.Dispatch<
-    React.SetStateAction<Question[][] | undefined>
-  >;
-}
+} 
 
 export function JeopardyOutput(props: IJeopardyOutputProps) {
   const [modal, setModal] = React.useState(false);
+  const [loadedJeopardyBoard, setLoadedJeopardyBoard] = React.useState<Question[][]>()
   const [pointsArray, setPointsArray] = React.useState<number[]>([0, 0, 0]);
   const [selectedTeams, setSelectedTeams] = React.useState<number[]>([]);
   const [activeQuestion, setActiveQuestion] = React.useState<number[]>([0, 0]);
 
+  React.useEffect(() => {
+    setLoadedJeopardyBoard(props.jeopardyBoard)
+  }, [])
+
   function handleClick(catIndex: number, objIndex: number) {
-    if (props.jeopardyBoard) {
+    if (loadedJeopardyBoard) {
       setModal(true);
       setActiveQuestion([catIndex, objIndex]);
     }
@@ -46,18 +48,17 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
   // This function updates the pointsArray depending on the points of the activeQuestion
   // as well as the selectedTeams state in the question modal
   function handleContinue() {
-    if (props.jeopardyBoard) {
-      const updatedArray = [...props.jeopardyBoard];
+    if (loadedJeopardyBoard) {
+      const updatedArray = loadedJeopardyBoard.map(category => 
+        category.map(question => ({ ...question }))
+      );
+      
+      updatedArray[activeQuestion[0]][activeQuestion[1]].turned = true;
 
-      updatedArray[activeQuestion[0]][activeQuestion[1]] = {
-        ...updatedArray[activeQuestion[0]][activeQuestion[1]],
-        turned: true,
-      };
-
-      props.setJeopardyBoard(updatedArray);
+      setLoadedJeopardyBoard(updatedArray);
 
       const points = Math.floor(
-        props.jeopardyBoard[activeQuestion[0]][activeQuestion[1]].points /
+        loadedJeopardyBoard[activeQuestion[0]][activeQuestion[1]].points /
           selectedTeams.length
       );
 
@@ -92,8 +93,8 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
         </div>
       </div>
       <div className={classes.jeopardyGrid}>
-        {props.jeopardyBoard &&
-          props.jeopardyBoard.map((category, catIndex) => (
+        {loadedJeopardyBoard &&
+          loadedJeopardyBoard.map((category, catIndex) => (
             <div className={classes.categoryColumn}>
               {/* Below gets the first word of the id to create a title */}
               <div className={classes.categoryTitle}>
@@ -120,17 +121,17 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
       {modal && (
         <div className={classes.jeopardyModal}>
           <div className={classes.modalQuestion}>
-            {props.jeopardyBoard && (
+            {loadedJeopardyBoard && (
               <>
                 <h2>
                   {
-                    props.jeopardyBoard[activeQuestion[0]][activeQuestion[1]]
+                    loadedJeopardyBoard[activeQuestion[0]][activeQuestion[1]]
                       .points
                   }
                 </h2>
                 <p>
                   {
-                    props.jeopardyBoard[activeQuestion[0]][activeQuestion[1]]
+                    loadedJeopardyBoard[activeQuestion[0]][activeQuestion[1]]
                       .question
                   }
                 </p>

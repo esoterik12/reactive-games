@@ -19,7 +19,7 @@ export default function Navbar({ session }: NavbarProps) {
   return (
     <div className={classes.lightNavbar}>
       <Link className={classes.homeLink} href="/">
-        <h4>Puzzles by React</h4>
+        <h4>Reactive Classroom</h4>
       </Link>
 
       <div className={classes.buttonContainer}>

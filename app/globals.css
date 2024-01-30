@@ -30,9 +30,15 @@ html {
 .light h2,
 .light h3,
 .light h4 {
-  color: #F18F01;
+  color: #e18700;
   font-weight: 300;
 }
+
+.light h3 {
+  color: #2F4461;
+  font-weight: 300;
+}
+
 .light p,
 .light button {
   font-weight: 300;

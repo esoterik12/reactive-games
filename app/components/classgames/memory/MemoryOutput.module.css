@@ -1,0 +1,11 @@
+.memoryContainer {
+  width: 450px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 20px;
+}
+
+.buttonContainer button {
+  width: 100px;
+}

@@ -4,7 +4,6 @@ import { validatePictureLink } from "@/utils/validation/validatePictureReveal";
 import { useDispatch } from "react-redux";
 import { setMessage, toggleModal } from "@/app/redux/modalSlice";
 import { mammalsPreset, flagsPreset, vehiclesPreset } from "./picture-presents";
-import { PictureRevealRequest } from "./PictureRevealRequest";
 
 export interface IPictureRevealInputProps {
   pictureLinks: string[];

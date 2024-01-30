@@ -6,10 +6,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>React Puzzles</title>
+        <title>Reactive Classroom</title>
         <meta
           name="description"
-          content="Create basic classroom puzzles using React!"
+          content="Create basic classroom activities using React!"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

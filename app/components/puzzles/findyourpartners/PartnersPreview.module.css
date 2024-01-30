@@ -18,7 +18,7 @@
   margin: 2px;
   color: rgb(158, 158, 158);
 }
-
+ 
 .partnerOutputContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

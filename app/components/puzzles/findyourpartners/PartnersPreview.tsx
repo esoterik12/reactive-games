@@ -34,7 +34,7 @@ export function PartnersPreview(props: IPartnersPreviewProps) {
         <div className={classes.pdfContainer}>
           <div className={classes.partnerOutputContainer}>
             {Object.keys(props.outputData.data).map((key) => (
-              <div key={key}>
+              <React.Fragment key={key}>
                 <div className={classes.cardContainer}>
                   <input name={key} defaultValue={key} />
                 </div>
@@ -44,7 +44,7 @@ export function PartnersPreview(props: IPartnersPreviewProps) {
                     defaultValue={props.outputData.data[key][0]}
                   />
                 </div>
-              </div>
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -52,3 +52,4 @@ export function PartnersPreview(props: IPartnersPreviewProps) {
     </div>
   );
 }
+ 

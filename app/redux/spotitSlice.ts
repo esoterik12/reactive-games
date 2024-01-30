@@ -31,7 +31,7 @@ export const { setWords, resetWords, displayWords } = spotItSlice.actions;
 
 export default spotItSlice;
 
-function prepareWords(wordsArray: string[]) {
+export function prepareWords(wordsArray: string[]) {
   const outputArray = [...wordsArray];
   const randomIndex = Math.floor(Math.random() * outputArray.length);
   console.log("randomIndex: ", randomIndex);

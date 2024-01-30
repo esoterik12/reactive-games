@@ -7,37 +7,44 @@
 import * as React from "react";
 import classes from "./DefaultGameContainer.module.css";
 import { SaveButton } from "../input/SaveButton";
+import { Question } from "../../classgames/jeopardy/Jeopardy";
 
+// This includes save property as optional so the container can be used for games that do not need a save
 export type SaveGameObject = {
-  save: {
+  save?: {
     title: string | null;
-    output: [] | {} | null;
+    output: [] | {} | Question[][] | null | undefined;
     dataType: string;
   };
   outputComplete: boolean; // Used to control output component visibility
-}
+};
 
 export interface IDefaultContainerProps {
   resetFunction: () => void;
-  saveGameObject: SaveGameObject
+  saveGameObject: SaveGameObject;
   children: React.ReactNode;
 }
 
 export function DefaultGameContainer(props: IDefaultContainerProps) {
   const [saved, setSaved] = React.useState(false);
 
-  console.log("saveGameObject: ", props.saveGameObject)
+  function containerReset() {
+    props.resetFunction()
+    setSaved(false)
+  }
 
   return (
     <div className={classes.defaultContainer}>
-      {props.saveGameObject.outputComplete && (
+      {props.saveGameObject?.outputComplete && (
         <div className={classes.outputButtonsContainer}>
-          <SaveButton
-            saveObject={props.saveGameObject}
-            saved={saved}
-            setSaved={setSaved}
-          />
-          <button onClick={() => props.resetFunction()}>Reset</button>
+          {props.saveGameObject?.save && (
+            <SaveButton
+              saveObject={props.saveGameObject}
+              saved={saved}
+              setSaved={setSaved}
+            />
+          )}
+          <button onClick={containerReset}>Reset</button>
         </div>
       )}
       {props.children}

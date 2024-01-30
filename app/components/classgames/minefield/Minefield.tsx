@@ -25,19 +25,14 @@ export function Minefield(props: IMinefieldProps) {
     setMinesData([]);
   }
 
-  const minefieldSave = {
-    save: {
-      title: "placeholderMinesTitle",
-      output: { minesData, turn },
-      dataType: "minefield",
-    },
+  const minefieldData = {
     outputComplete: !!(minesData.length > 0),
   };
 
   return (
     <DefaultGameContainer
       resetFunction={handleReset}
-      saveGameObject={minefieldSave}
+      saveGameObject={minefieldData}
     >
       {minesData.length === 0 && (
         <MinefieldInput setMinesData={setMinesData} setPoints={setPoints} />

@@ -5,7 +5,7 @@ import classes from "./ProfileDashboard.module.css";
 import { useState } from "react";
 import { ProfilePage } from "./ProfilePage";
 import { SocialFeed } from "./SocialFeed";
-import { MyPuzzles } from "./MyPuzzles";
+import { MyWork } from "./MyWork";
 import { SessionProvider } from "next-auth/react";
 import { PuzzlesMenu } from "../puzzles/PuzzlesMenu";
 import { GamesMenu } from "../classgames/GamesMenu";
@@ -24,7 +24,7 @@ export function ProfileDashboard(props: IProfileDashboardProps) {
         <div className={classes.profileItem}>
           {active === "profilePage" && <ProfilePage />}
           {active === "socialFeed" && <SocialFeed />}
-          {active === "myPuzzles" && <MyPuzzles />}
+          {active === "myWork" && <MyWork />}
           {active === "puzzleCreators" && <PuzzlesMenu />}
           {active === "classroomGames" && <GamesMenu />}
         </div>

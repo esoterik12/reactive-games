@@ -6,9 +6,9 @@ const LandingPage = () => {
     <section>
       <div className={classes.container}>
         <header className={classes.header}>
-          <h1>Welcome to Puzzle Creator!</h1>
+          <h1>Welcome to Reactive Classroom!</h1>
           <p>
-            Your go-to platform for fun and educational puzzles in the
+            Your go-to platform for fun and educational activities in the
             classroom.
           </p>
         </header>
@@ -30,7 +30,7 @@ const LandingPage = () => {
           <div className={classes.feature}>
             <h2>Easy to Use</h2>
             <p>
-              Intuitive interface designed for teachers. Save time and create
+              Intuitive interface designed for teachers. Save time and quickly create
               exciting content without a steep learning curve.
             </p>
           </div>
@@ -47,7 +47,7 @@ const LandingPage = () => {
           )} */}
         </section>
         <footer className={classes.footer}>
-          <p>&copy; 2023 Puzzle Creator. All rights reserved.</p>
+          <p>&copy; 2024 Puzzle Creator. All rights reserved.</p>
         </footer>
       </div>
     </section>
