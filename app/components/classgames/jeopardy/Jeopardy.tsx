@@ -65,9 +65,6 @@ export function Jeopardy(props: IJeopardyProps) {
         points = 100;
       }
     }
-
-    console.log(formDataArray);
-
     setJeopardyBoard(formDataArray);
   }
 

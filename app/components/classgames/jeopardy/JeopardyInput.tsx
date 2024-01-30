@@ -49,10 +49,6 @@ export function JeopardyInput(props: IJeopardyInputProps) {
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log(
-          "Success with api request in JeopardyInput.tsx: ",
-          responseData
-        );
         const responseObject = JSON.parse(responseData);
         setQuestionData(responseObject);
         setLoading(false);
