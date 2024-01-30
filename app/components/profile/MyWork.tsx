@@ -40,7 +40,7 @@ export function MyWork(props: IMyPuzzlesProps) {
   const printRef = React.useRef<HTMLDivElement>(null);
 
   // Function to fetch SQL data for user puzzles and set the returned data to state
-  async function loadPuzzles() {
+  const loadPuzzles = React.useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch("/api/load");
@@ -67,13 +67,13 @@ export function MyWork(props: IMyPuzzlesProps) {
       dispatch(toggleModal());
       setLoading(false);
     }
-  }
+  }, [dispatch]);
 
   React.useEffect(() => {
     setOpen(false);
     dispatch(clearLoad());
     loadPuzzles();
-  }, []);
+  }, [dispatch, loadPuzzles]);
 
   // Clears the loaded puzzle in Redux state
   function handleBack() {

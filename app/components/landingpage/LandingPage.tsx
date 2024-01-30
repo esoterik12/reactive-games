@@ -16,7 +16,7 @@ const LandingPage = () => {
           <div className={classes.feature}>
             <h2>Create Engaging Activities</h2>
             <p>
-              Generate custom puzzles and activities to captivate your students'
+              Generate custom puzzles and activities to captivate your students`&apos;`
               attention and enhance their learning experience.
             </p>
           </div>
@@ -24,7 +24,7 @@ const LandingPage = () => {
             <h2>Flexible Customization</h2>
             <p>
               Tailor puzzles to fit your lesson plans. Choose from a variety of
-              templates and themes to suit your classroom's needs.
+              templates and themes to suit your classroom`&apos;`s needs.
             </p>
           </div>
           <div className={classes.feature}>

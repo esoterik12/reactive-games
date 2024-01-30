@@ -35,7 +35,7 @@ export function PictureReveal(props: IPictureRevealProps) {
       );
       dispatch(toggleModal());
     }
-  }, [invalidImages]);
+  }, [invalidImages, dispatch]);
 
   const pictureRevealSave = {
     save: {

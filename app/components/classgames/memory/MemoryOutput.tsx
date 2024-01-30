@@ -69,7 +69,7 @@ export function MemoryOutput(props: IMemoryOutputProps) {
       }, 1000);
       return () => clearTimeout(timeout);
     }
-  }, [visibleWords]);
+  }, [visibleWords, loadedWordsData]);
 
   function addVisible(key: number) {
     setVisibleWords((prevVisibleWords: []) => [...prevVisibleWords, key]);

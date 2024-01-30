@@ -64,7 +64,7 @@ export function PictureRevealInput(props: IPictureRevealInputProps) {
       <h2>Create Your Picture Reveal Activity</h2>
       <p>Add up to 15 links to images from Wikipedia!</p>
       <p>
-        Do a Google image search prefaced by "Wikipedia" and paste the image
+        Do a Google image search prefaced by `&quot;`Wikipedia`&quot;` and paste the image
         link below.
       </p>
       <p>

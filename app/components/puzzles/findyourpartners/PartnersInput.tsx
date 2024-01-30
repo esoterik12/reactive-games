@@ -87,7 +87,7 @@ export function PartnersInput(props: IPartnersInputProps) {
 
         <div>
           <label className={classes.formLabel} htmlFor="options">
-            Choose how you'd like your matching pairs to be generated.
+            Choose how you`&apos;`d like your matching pairs to be generated.
           </label>
           <select name="options" id="options">
             <option value="rhyme">Rhyming pairs</option>

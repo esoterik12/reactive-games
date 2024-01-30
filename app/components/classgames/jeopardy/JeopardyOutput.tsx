@@ -15,7 +15,7 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
 
   React.useEffect(() => {
     setLoadedJeopardyBoard(props.jeopardyBoard)
-  }, [])
+  }, [props.jeopardyBoard])
 
   function handleClick(catIndex: number, objIndex: number) {
     if (loadedJeopardyBoard) {
@@ -95,7 +95,7 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
       <div className={classes.jeopardyGrid}>
         {loadedJeopardyBoard &&
           loadedJeopardyBoard.map((category, catIndex) => (
-            <div className={classes.categoryColumn}>
+            <div key={catIndex} className={classes.categoryColumn}>
               {/* Below gets the first word of the id to create a title */}
               <div className={classes.categoryTitle}>
                 <h3>{category[0].id.match(/\b\w+\b/)}</h3>
@@ -103,6 +103,7 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
 
               {category.map((object, objIndex) => (
                 <div
+                  key={objIndex}
                   className={`${classes.cardContainer} ${
                     object.turned ? classes.flipped : ""
                   }`}
@@ -138,7 +139,8 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
                 <div className={classes.pointsSelector}>
                   {pointsArray.map((team, index) => (
                     <button
-                      className={`${
+                    key={index}
+                    className={`${
                         selectedTeams.includes(index)
                           ? classes.selectedTeam
                           : ""

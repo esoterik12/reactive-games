@@ -124,11 +124,11 @@ export function Jeopardy(props: IJeopardyProps) {
           be questions[0] - [5] // The object should also generate answers for
           each question (eg questions[0].answer) // See TS interface above */}
           <form className={classes.jeopardyForm} onSubmit={handleSubmit}>
-            {questionData.categories.map((category) => (
-              <div>
+            {questionData.categories.map((category,index ) => (
+              <div key={index}>
                 <h3>{category.category}</h3>
                 {category.questions.map((question, index) => (
-                  <div>
+                  <div key={index}>
                     <label
                       htmlFor={`${category.category} - ${(index + 1) * 100}`}
                     >

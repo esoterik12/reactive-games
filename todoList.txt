@@ -11,6 +11,12 @@ Minor:
   -Clean up styles and redundant classes in components
   -Clean up modal styling
   -Fix auto log out
+  -jeopardy modal styling
+  -Memory text color
+  -Randomize picture reveal squares disappearing (only randomizes on new load)
+  -Text spill on MyWork table
+  -Clean up MyWork table to be more user friendly
+  -Clean up console.log usage
 
 Luxury:
   -Generative functionality for picture reveal?

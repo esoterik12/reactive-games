@@ -29,7 +29,7 @@ export function SaveButton(props: ISaveButtonProps) {
       dispatch(setMessage(`${error}`));
       dispatch(toggleModal());
     }
-  }
+  } 
 
   return (
     <>

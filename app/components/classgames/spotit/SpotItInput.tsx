@@ -109,8 +109,8 @@ export function SpotItInput() {
       </div>
 
       <p>
-        Or enter a description of the words you'd like to use, for example:
-        "Basic short E words."
+        Or enter a description of the words you`&apos;`d like to use, for example:
+        `&quot;`Basic short E words.`&quot;`
       </p>
 
       <GenInputField

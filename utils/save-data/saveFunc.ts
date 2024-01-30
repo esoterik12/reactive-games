@@ -1,4 +1,4 @@
-export default async function saveFunc(saveData: {} | []) {
+export default async function saveFunc(saveData: {} | [] | undefined) {
   try {
     const response = await fetch("/api/save", {
       method: "POST",
@@ -20,4 +20,4 @@ export default async function saveFunc(saveData: {} | []) {
     console.log("Caught error in handleSave.ts - Save failed.");
     throw new Error("Save failed.")
   }
-}
+} 

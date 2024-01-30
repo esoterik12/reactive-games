@@ -29,8 +29,8 @@ export function WordsearchOutput(props: IWordsearchOutputProps) {
               {props.wordsearchInput
                 .split(",")
                 .map((ele) => ele.trim())
-                .map((word) => (
-                  <p>{word}</p>
+                .map((word, index) => (
+                  <p key={index}>{word}</p>
                 ))}
             </div>
           </div>
