@@ -47,7 +47,7 @@ const LandingPage = () => {
           )} */}
         </section>
         <footer className={classes.footer}>
-          <p>&copy; 2024 Puzzle Creator. All rights reserved.</p>
+          <p>&copy; 2024 Reactive Classroom. All rights reserved.</p>
         </footer>
       </div>
     </section>

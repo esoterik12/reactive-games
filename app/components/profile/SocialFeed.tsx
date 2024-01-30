@@ -3,7 +3,6 @@ import { SocialTabs } from '../social/SocialTabs';
 import { SocialFeedStream } from '../social/Feed';
 import { Messages } from '../social/Messages';
 import { Friends } from '../social/Friends';
-import { WordHunt } from '../puzzles/wordhunt/WordHunt';
 
 export interface ISocialFeedProps {
 }
@@ -18,7 +17,6 @@ export function SocialFeed (props: ISocialFeedProps) {
         {activeSocial === "messages" && <Messages />}
         {activeSocial === "friends" && <Friends/> }
       </SocialTabs>
-      <WordHunt />
     </div>
   );
 }

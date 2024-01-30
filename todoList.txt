@@ -9,15 +9,24 @@ Major:
 Minor:
   -Fix extra page on PDF exports
   -Clean up styles and redundant classes in components
-  -More customized PDF config options depending on output (eg. crtyptograms length)
-  -Fix change in alignment in Partners preview and final version
   -Clean up modal styling
   -Fix auto log out
 
 Luxury:
   -Generative functionality for picture reveal?
+  -More customized PDF config options depending on output (eg. crtyptograms length)
 
-Complete:
+Gallery Expansion:
+  -Gallery Activities:
+    -Word Hunt
+    -Sentence Mistakes
+    -??
+    -??
+    -??
+
+
+################# Complete ###################
+
   -Module index for third party library components
   -SpotIt loading to stop generating
   -Styling for error modal etc.
@@ -46,6 +55,7 @@ Complete:
     -Fix delete on save page so users cannot click twice
     -Placeholder text for no saved data (+call to action)
     -Placeholder text for no user details (+call to action)
+    -Fix change in alignment in Partners preview and final version
 
 Cut / Disabled:
   -Fix dark color scheme 
