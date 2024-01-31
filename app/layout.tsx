@@ -24,6 +24,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <nav>
+          <p>Navbar Comp</p>
           {!!session && <Logout />}
           {!session && <Link href="/login">Login</Link>}
         </nav>
