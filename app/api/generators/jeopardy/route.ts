@@ -19,7 +19,7 @@ async function sendJeopardyReq(jeopardyReq: jeopardyRequest) {
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_SECRET}`,
+    Authorization: `Bearer ${process.env.OPENAI_SECRET}`,
   };
 
   const jeopardyPrompt = `

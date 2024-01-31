@@ -30,7 +30,7 @@ async function sendFindYourPartnerReq(words: string[], options: string) {
   const url = "https://api.openai.com/v1/chat/completions";
   const headers = {
     "Context-Type": "application/json",
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_SECRET}`,
+    Authorization: `Bearer ${process.env.OPENAI_SECRET}`,
   };
   const partnerPrompt = `Take each of the following words and return matching 
   pairs for each. Each returned word must be a word that is a ${options} with the chosen words. 

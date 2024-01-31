@@ -37,7 +37,7 @@ async function sendSpotItReq(spotItRequest: string) {
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_SECRET}`,
+    Authorization: `Bearer ${process.env.OPENAI_SECRET}`,
   };
 
   const spotItPrompt = `Please send me an array of 12 words that fit the description below. 
