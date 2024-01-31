@@ -63,7 +63,6 @@ Softer True Blue: #5A7ABE
   width: 200px;
   height: 600px;
   gap: 4px;
-  
 }
 
 .categoryTitle {
@@ -194,6 +193,7 @@ Softer True Blue: #5A7ABE
 
 .buttonContainer button {
   background-color: #f0b2bf !important;
+  margin: 10px;
 }
 
 .buttonContainer button:hover {
