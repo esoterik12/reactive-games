@@ -9,6 +9,7 @@ import { MyWork } from "./MyWork";
 import { SessionProvider } from "next-auth/react";
 import { PuzzlesMenu } from "../puzzles/PuzzlesMenu";
 import { GamesMenu } from "../classgames/GamesMenu";
+import { GalleryMenu } from "../contentCreators/galleryActivities/GalleryMenu";
 
 export interface IProfileDashboardProps {}
 
@@ -27,6 +28,7 @@ export function ProfileDashboard(props: IProfileDashboardProps) {
           {active === "myWork" && <MyWork />}
           {active === "puzzleCreators" && <PuzzlesMenu />}
           {active === "classroomGames" && <GamesMenu />}
+          {active === "galleryActivities" && <GalleryMenu />}
         </div>
       </div>
     </SessionProvider>

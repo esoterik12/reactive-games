@@ -175,12 +175,16 @@ Softer True Blue: #5A7ABE
 .pointsSelector {
   display: flex;
   flex-direction: row;
+  box-sizing: border-box;
 }
 
 .pointsSelector button {
   margin: 12px !important;
   background-color: #7fa1eb;
+
+
 }
+
 .pointsSelector button:hover {
   background-color: #5e88e4;
 }
@@ -188,7 +192,8 @@ Softer True Blue: #5A7ABE
 .selectedTeam {
   box-sizing: border-box;
   background-color: #5e88e4 !important;
-  border: 1px red solid !important;
+  outline: 1px red solid !important;
+
 }
 
 .buttonContainer button {

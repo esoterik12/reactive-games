@@ -40,7 +40,7 @@ export function Jeopardy(props: IJeopardyProps) {
   const [questionData, setQuestionData] = React.useState<
     QuestionDataObject | undefined
   >(); // Object to hold GPT generated questions
-  const [jeopardyBoard, setJeopardyBoard] = React.useState<Question[][]>(); // Array with added data for the game board
+  const [jeopardyBoard, setJeopardyBoard] = React.useState<Question[][] | null>(); // Array with added data for the game board
   const [loading, setLoading] = React.useState(false);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -69,7 +69,7 @@ export function Jeopardy(props: IJeopardyProps) {
   }
 
   function handleReset() {
-    setJeopardyBoard([]);
+    setJeopardyBoard(null);
     setQuestionData(undefined);
   }
 

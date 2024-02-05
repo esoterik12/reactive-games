@@ -46,7 +46,7 @@
   color: red;
   font-weight: 700;
   border: 2px solid red; 
-  background-color: #ffecec; 
+  background-color: #ffecec !important; 
 }
 
 /* Optional: Animation for active team change */

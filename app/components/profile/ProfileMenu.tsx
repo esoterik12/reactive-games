@@ -34,6 +34,11 @@ const DUMMY_LINKS = [
     name: "Classroom Games",
     active: "classroomGames",
   },
+  {
+    key: "l6",
+    name: "Gallery Activities",
+    active: "galleryActivities",
+  },
 ];
 
 export interface IProfileMenuProps {
@@ -48,14 +53,13 @@ export function ProfileMenu(props: IProfileMenuProps) {
     props.setActive(activeKey);
   };
 
-  let activeStyles:any;
+  let activeStyles: any;
   theme === "light"
-    ? activeStyles = classes.buttonContainerActiveLight
-    : activeStyles = classes.buttonContainerActiveDark;
+    ? (activeStyles = classes.buttonContainerActiveLight)
+    : (activeStyles = classes.buttonContainerActiveDark);
 
   return (
     <div className={classes.menuContainer}>
-
       {DUMMY_LINKS.map((link: LinkItem) => (
         <div
           key={link.key}

@@ -50,7 +50,7 @@ export function MemoryCard(props: IMemoryCardProps) {
         )}
         {(isFlipped || isCompleted) && (
           <button disabled className={`${classes.back} ${backStyles}`}>
-            <p>{props.wordsData[numberKey].word}</p>
+            <p className={classes.cardText}>{props.wordsData[numberKey].word}</p>
           </button>
         )}
       </div>

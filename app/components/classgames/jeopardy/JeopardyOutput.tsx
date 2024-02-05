@@ -29,6 +29,19 @@ export function JeopardyOutput(props: IJeopardyOutputProps) {
     setSelectedTeams([]);
   }
 
+  
+  React.useEffect(() => {
+    const closeOnEscape= (e: KeyboardEvent) => {
+      if ((e.key === "Escape")) {
+        closeModal()
+      }
+    }
+    document.body.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.removeEventListener('keydown', closeOnEscape);
+    };
+  })
+
   function handleTeamSelect(index: number) {
     if (!selectedTeams.includes(index)) {
       setSelectedTeams((prevSelectedTeams) => {

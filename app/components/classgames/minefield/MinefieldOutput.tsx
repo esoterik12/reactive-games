@@ -1,6 +1,6 @@
 import * as React from "react";
 import { MineData } from "./Minefield";
-import classes from './MinefieldOutput.module.css'
+import classes from "./MinefieldOutput.module.css";
 import { MinefieldCard } from "./MinefieldCard";
 
 export interface IMinefieldOutputProps {
@@ -13,7 +13,16 @@ export interface IMinefieldOutputProps {
 }
 
 export function MinefieldOutput(props: IMinefieldOutputProps) {
-  const {minesData, setMinesData, turn, setTurn, points, setPoints} = props
+  const { minesData, setMinesData, turn, setTurn, points, setPoints } = props;
+  const [displayTurn, setDisplayTurn] = React.useState(turn);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setDisplayTurn(turn);
+    },800);
+
+    return () => clearTimeout(timer); 
+  }, [turn]); 
 
   // conditional grid size styling:
   let gridStyles;
@@ -36,7 +45,7 @@ export function MinefieldOutput(props: IMinefieldOutputProps) {
               <div key={index} className={classes.teamsContainer}>
                 <div
                   className={`${classes.indivTeamContainer} ${
-                    index === turn ? classes.activeTeam : ""
+                    index === displayTurn ? classes.activeTeam : ""
                   }`}
                 >
                   Team {index + 1}: {team}

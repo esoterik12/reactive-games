@@ -22,13 +22,15 @@ async function sendJeopardyReq(jeopardyReq: jeopardyRequest) {
     Authorization: `Bearer ${process.env.OPENAI_SECRET}`,
   };
 
+  console.log('jeopardy request to check vocab', jeopardyReq)
+
   const jeopardyPrompt = `
     I would like you to produce a set of Jeopardy questions based on some specific input.
     There should be 4 categories with 6 questions in each category. The questions should be numbered from 1 to 6.
     Question number 1 should be very easy and they should get progressively harder until question number 6.
     Build the questions and categories around the following content:
-    1. Vocabulary content questions: ${jeopardyReq.vocabularyContent}
-    2. Grammar content questions: ${jeopardyReq.grammarContent}
+    1. Vocabulary content questions: ${jeopardyReq.vocabularyContent} 
+    2. Grammar content questions: ${jeopardyReq.grammarContent} 
     3. Phonics content questions: ${jeopardyReq.phonicsContent}
     4. Theme content questions: ${jeopardyReq.themeContent}
         
@@ -78,7 +80,8 @@ async function sendJeopardyReq(jeopardyReq: jeopardyRequest) {
   `;
 
   const data = {
-    model: "gpt-3.5-turbo-0613",
+    model: "gpt-3.5-turbo-1106",
+    response_format: {"type": "json_object"},
     messages: [
       { role: "system", content: "You are a helpful assistant." },
       { role: "user", content: jeopardyPrompt },

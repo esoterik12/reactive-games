@@ -1,14 +1,14 @@
 import * as React from "react";
 import { useState, useRef } from "react";
-import classes from "./PuzzlesTabs.module.css";
+import classes from "./GalleryTabs.module.css";
 
-export interface IPuzzlesTabsProps {
+export interface IGalleryTabsProps {
   children: React.ReactNode;
-  setActivePuzzle: (activeKey: string) => void;
-  activePuzzle: string;
+  setActiveGallery: (activeKey: string) => void;
+  activeGallery: string;
 }
 
-export function PuzzlesTabs(props: IPuzzlesTabsProps) {
+export function GalleryTabs(props: IGalleryTabsProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -27,12 +27,12 @@ export function PuzzlesTabs(props: IPuzzlesTabsProps) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dropdownRef, props.activePuzzle]);
+  }, [dropdownRef, props.activeGallery]);
 
   // closes the menu once a selection is made
   React.useEffect(() => {
     setMenuOpen(false);
-  }, [props.activePuzzle]);
+  }, [props.activeGallery]);
 
   const activeButtonStyles = classes.activeButtonLight;
 
@@ -42,17 +42,17 @@ export function PuzzlesTabs(props: IPuzzlesTabsProps) {
         <button onClick={() => setMenuOpen(!menuOpen)}>Menu</button>
         {menuOpen && (
           <div ref={dropdownRef} className={classes.dropdown}>
-            <p onClick={() => props.setActivePuzzle("cryptogram")}>
-              Cryptogram
+            <p onClick={() => props.setActiveGallery("wordHunt")}>
+              Word Hunt
             </p>
-            <p onClick={() => props.setActivePuzzle("bingo")}>Bingo</p>
-            <p onClick={() => props.setActivePuzzle("wordsearch")}>
+            <p onClick={() => props.setActiveGallery("bingo")}>Bingo</p>
+            <p onClick={() => props.setActiveGallery("wordsearch")}>
               Wordsearch
             </p>
-            <p onClick={() => props.setActivePuzzle("wordscramble")}>
+            <p onClick={() => props.setActiveGallery("wordscramble")}>
               Word Scramble
             </p>
-            <p onClick={() => props.setActivePuzzle("findyourpartner")}>
+            <p onClick={() => props.setActiveGallery("findyourpartner")}>
               Find Your Partner
             </p>
           </div>
@@ -61,41 +61,41 @@ export function PuzzlesTabs(props: IPuzzlesTabsProps) {
       <div className={classes.tabsContainerLight}>
         <button
           className={`${
-            props.activePuzzle === "cryptogram" ? activeButtonStyles : ""
+            props.activeGallery === "wordHunt" ? activeButtonStyles : ""
           }`}
-          onClick={() => props.setActivePuzzle("cryptogram")}
+          onClick={() => props.setActiveGallery("wordHunt")}
         >
-          Cryptogram
+          Word Hunt
         </button>
         <button
           className={`${
-            props.activePuzzle === "bingo" ? activeButtonStyles : ""
+            props.activeGallery === "bingo" ? activeButtonStyles : ""
           }`}
-          onClick={() => props.setActivePuzzle("bingo")}
+          onClick={() => props.setActiveGallery("bingo")}
         >
           Bingo
         </button>
         <button
           className={`${
-            props.activePuzzle === "wordsearch" ? activeButtonStyles : ""
+            props.activeGallery === "wordsearch" ? activeButtonStyles : ""
           }`}
-          onClick={() => props.setActivePuzzle("wordsearch")}
+          onClick={() => props.setActiveGallery("wordsearch")}
         >
           Wordsearch
         </button>
         <button
           className={`${
-            props.activePuzzle === "wordscramble" ? activeButtonStyles : ""
+            props.activeGallery === "wordscramble" ? activeButtonStyles : ""
           }`}
-          onClick={() => props.setActivePuzzle("wordscramble")}
+          onClick={() => props.setActiveGallery("wordscramble")}
         >
           Word Scramble
         </button>
         <button
           className={`${
-            props.activePuzzle === "findyourpartner" ? activeButtonStyles : ""
+            props.activeGallery === "findyourpartner" ? activeButtonStyles : ""
           }`}
-          onClick={() => props.setActivePuzzle("findyourpartner")}
+          onClick={() => props.setActiveGallery("findyourpartner")}
         >
           Find Your Partner
         </button>

@@ -54,3 +54,8 @@
 .flipped {
   transform: rotateY(180deg);
 }
+
+.cardText {
+  color: #2F4461;
+  font-weight: 600 !important;
+}

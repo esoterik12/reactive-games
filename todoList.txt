@@ -5,18 +5,17 @@ Major:
     +This means allowing other users access to your files
     +Or it may simply mean a search functionality that allows all users to access all files?
   -Add fullscreen support for games
+  -Blur reveal
 
 Minor:
   -Fix extra page on PDF exports
   -Clean up styles and redundant classes in components
   -Clean up modal styling
   -Fix auto log out
-  -jeopardy modal styling
-  -Memory text color
   -Randomize picture reveal squares disappearing (only randomizes on new load)
-  -Text spill on MyWork table
   -Clean up MyWork table to be more user friendly
   -Clean up console.log usage
+  -Clean up theme usage and unnecessary imports
 
 Luxury:
   -Generative functionality for picture reveal?
@@ -63,5 +62,17 @@ Gallery Expansion:
     -Placeholder text for no user details (+call to action)
     -Fix change in alignment in Partners preview and final version
 
+  02/05/2024:
+  -Delay on minefield team highlight
+  -Memory text color
+  -Text spill on MyWork table
+  -jeopardy modal styling
+  -Jeopardy modal close escape
+  -Jeopardy text extraction reliability
+
+################################################################
+
 Cut / Disabled:
   -Fix dark color scheme 
+
+

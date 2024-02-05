@@ -5,6 +5,11 @@ import { setMessage, toggleModal } from "@/app/redux/modalSlice";
 import { QuestionDataObject } from "./Jeopardy";
 import { DefaultLoader } from "../../common/thirdparty";
 
+// create, dispute, terrific, absolute, immediate, fortunate
+// past simple tense
+// short vowels
+// recycling
+
 export interface IJeopardyInputProps {
   setQuestionData: React.Dispatch<
     React.SetStateAction<QuestionDataObject | undefined>
@@ -49,6 +54,8 @@ export function JeopardyInput(props: IJeopardyInputProps) {
 
       if (response.ok) {
         const responseData = await response.json();
+        console.log("Response Data for improved validation: ", responseData)
+        
         const responseObject = JSON.parse(responseData);
         setQuestionData(responseObject);
         setLoading(false);

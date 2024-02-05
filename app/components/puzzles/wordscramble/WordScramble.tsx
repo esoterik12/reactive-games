@@ -41,10 +41,6 @@ export function WordScramble() {
     setSaved(false);
   }
 
-  function handleGeneratePDF() {
-    generatePDF(printRef.current, "BingoPDF");
-  }
-
   // Save Object //
   const scrambleData = {
     save: {
